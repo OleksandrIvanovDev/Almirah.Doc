@@ -8,7 +8,7 @@ This document defines software requirements applicable for Almirah software.
 
 | Term | Definition |
 |---|---|
-| Item Id | Unique identifier for a paragraph in the specification document defined in the following form "[AAA-NNN]", where AAA - is any combination of leters and NNN - is the number.
+| Item Id | Unique identifier for a paragraph in the specification document defined in the following form "[AAA-NNN]", where AAA - is any combination of letters and NNN - is the number. |
 | Controlled Item | Paragraph in a specification document that is started with the Item Id. |
 | External Item Id | Controoled Item Id from another specification that is also managed by Almira system. It is defined as ">[BBB-NNN]" symbols at the end of Controlled Item, where BBB - is any combination of leters different from AAA and NNN - is the number. |
 
