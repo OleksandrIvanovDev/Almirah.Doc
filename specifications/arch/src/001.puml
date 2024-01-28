@@ -1,0 +1,43 @@
+@startuml
+
+left to right direction
+'top to bottom direction
+
+actor User
+actor Analyst
+actor Developer
+actor Tester
+actor "Process Engineer" as PE
+
+rectangle Almirah{
+    usecase (Define Specification) as DefSpec
+    usecase (Store Specification) as StSpec
+    usecase (Load Specification) as LdSpec
+    usecase (Change Specification) as ChSpec
+    usecase (Delete Specification) as DelSpec
+    usecase (Review Specification) as RwSpec
+    usecase (View Change History) as VH
+    usecase (Manage Traceability) as MT
+    usecase (Create Reference) as CRef
+    usecase (Remove Reference) as RRef
+    usecase (Review Traceability) as RTr
+}
+
+MT <|-- CRef
+MT <|-- RRef
+MT <|-- RTr
+
+Analyst --> DefSpec
+Analyst --> StSpec
+User --> LdSpec
+User --> VH
+User ...> RTr
+Analyst --> ChSpec
+Analyst ---> DelSpec
+Analyst ---> MT
+Developer --> RwSpec
+Tester --> RwSpec
+PE --> RwSpec
+
+
+@enduml
