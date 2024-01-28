@@ -1,0 +1,17 @@
+@startuml
+
+left to right direction
+'top to bottom direction
+
+actor User
+actor Analyst
+actor Developer
+actor Tester
+actor "Process Engineer" as PE
+
+Analyst ..|> User
+Developer ..|> User
+Tester -up..|> User
+PE -up..|> User
+
+@enduml

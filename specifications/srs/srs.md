@@ -22,8 +22,8 @@ This document defines software requirements applicable for Almirah software.
 
 >Example: "This is a non-controlled item"
 
-[SRS-002] The software shall allow to create a reference to external Controlled Item. >[SYS-002]
+[SRS-002] The software shall allow to create a reference from a Controlled Item to external Controlled Item. >[ARCH-001]
 
 >Example: "[ITM-001] This is a controlled item with the reference to the external controlled item >[EXT-004]"
 
-[SRS-003] The software shall indicate whether a Controlled Item is referenced in another specification via External Item Id
+[SRS-003] The software shall indicate whether a Controlled Item is referenced in another specification via External Item Id >[SYS-002]
