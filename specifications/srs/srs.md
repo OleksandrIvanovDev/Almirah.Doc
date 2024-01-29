@@ -14,7 +14,7 @@ This document defines software requirements applicable for Almirah software.
 
 ## Requirements
 
-[SRS-001] The software shall allow to create a Controlled Items.
+[SRS-001] The software shall allow to create a Controlled Items. >[ARCH-005]
 
 >Example: "[ITM-001] This is a controlled item"
 
@@ -26,4 +26,4 @@ This document defines software requirements applicable for Almirah software.
 
 >Example: "[ITM-001] This is a controlled item with the reference to the external controlled item >[EXT-004]"
 
-[SRS-003] The software shall indicate whether a Controlled Item is referenced in another specification via External Item Id >[SYS-002]
+[SRS-003] The software shall indicate whether a Controlled Item is referenced in another specification via External Item Id >[ARCH-004]
