@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="883px" preserveAspectRatio="none" style="width:708px;height:883px;background:#FFFFFF;" version="1.1" viewBox="0 0 708 883" width="708px" zoomAndPan="magnify"><defs/><g><!--MD5=[49bcf06e00d88d228b311ee214687666]
+cluster Almirah--><g id="cluster_Almirah"><rect fill="none" height="608" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;" width="434" x="268" y="34.95"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="52" x="459" y="51.4832">Almirah</text></g><g id="elem_DefSpec"><ellipse cx="371.9267" cy="236.7353" fill="#F1F1F1" rx="84.4267" ry="19.2853" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="125" x="309.4267" y="240.4639">Define Specification</text></g><g id="elem_StSpec"><ellipse cx="372.0075" cy="310.1515" fill="#F1F1F1" rx="81.5075" ry="18.7015" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="118" x="312.6675" y="313.9804">Store Specification</text></g><g id="elem_LdSpec"><ellipse cx="372.1887" cy="89.9877" fill="#F1F1F1" rx="80.6887" ry="18.5377" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="313.5015" y="93.9161">Load Specification</text></g><g id="elem_ChSpec"><ellipse cx="372.2471" cy="383.9994" fill="#F1F1F1" rx="88.2471" ry="20.0494" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="134" x="305.2471" y="387.7279">Change Specification</text></g><g id="elem_DelSpec"><ellipse cx="371.9267" cy="458.7353" fill="#F1F1F1" rx="84.4267" ry="19.2853" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="125" x="309.4267" y="462.4639">Delete Specification</text></g><g id="elem_RwSpec"><ellipse cx="372.1163" cy="607.0733" fill="#F1F1F1" rx="86.1163" ry="19.6233" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="129" x="307.6163" y="610.8018">Review Specification</text></g><g id="elem_VH"><ellipse cx="372.0408" cy="163.1582" fill="#F1F1F1" rx="86.5408" ry="19.7082" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="130" x="307.0408" y="166.8867">View Change History</text></g><g id="elem_MT"><ellipse cx="372.1926" cy="532.9885" fill="#F1F1F1" rx="85.6926" ry="19.5385" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="128" x="308.1926" y="536.717">Manage Traceability</text></g><g id="elem_CRef"><ellipse cx="602.9775" cy="496.7455" fill="#F1F1F1" rx="79.4775" ry="18.2955" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="113" x="545.256" y="500.8209">Create Reference</text></g><g id="elem_RRef"><ellipse cx="603.169" cy="569.9838" fill="#F1F1F1" rx="83.169" ry="19.0338" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122" x="542.169" y="573.7123">Remove Reference</text></g><g id="elem_RTr"><ellipse cx="603.169" cy="238.9838" fill="#F1F1F1" rx="83.169" ry="19.0338" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122" x="542.169" y="242.7123">Review Traceability</text></g><!--MD5=[fee662a292a0353a69bd162820bae93b]
+entity User--><g id="elem_User"><ellipse cx="168" cy="59.45" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M168,67.45 L168,94.45 M155,75.45 L181,75.45 M168,94.45 L155,109.45 M168,94.45 L181,109.45 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="29" x="153.5" y="125.4832">User</text></g><!--MD5=[7f62685678746839eddda14500f93391]
+entity Analyst--><g id="elem_Analyst"><ellipse cx="29" cy="349.45" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M29,357.45 L29,384.45 M16,365.45 L42,365.45 M29,384.45 L16,399.45 M29,384.45 L42,399.45 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="46" x="6" y="415.4832">Analyst</text></g><!--MD5=[db66fe8cbe2cdf0454290dbf82c3f59c]
+entity Developer--><g id="elem_Developer"><ellipse cx="168" cy="583.45" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M168,591.45 L168,618.45 M155,599.45 L181,599.45 M168,618.45 L155,633.45 M168,618.45 L181,633.45 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65" x="135.5" y="649.4832">Developer</text></g><!--MD5=[de7935bb680e75847b0f6897915bb757]
+entity Tester--><g id="elem_Tester"><ellipse cx="168" cy="696.45" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M168,704.45 L168,731.45 M155,712.45 L181,712.45 M168,731.45 L155,746.45 M168,731.45 L181,746.45 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="41" x="147.5" y="762.4832">Tester</text></g><!--MD5=[6bb665717dfb7d467f5e0e6c38ac4b45]
+entity PE--><g id="elem_PE"><ellipse cx="168" cy="809.45" fill="#F1F1F1" rx="8" ry="8" style="stroke:#181818;stroke-width:0.5;"/><path d="M168,817.45 L168,844.45 M155,825.45 L181,825.45 M168,844.45 L155,859.45 M168,844.45 L181,859.45 " fill="none" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="112" x="112" y="875.4832">Process Engineer</text></g><!--MD5=[bc3ccdafa5c9af5cbe3cae7595752596]
+reverse link MT to CRef--><g id="link_MT_CRef"><path d="M462.76,518.84 C487.45,514.96 513.75,510.82 536.78,507.2 " fill="none" id="MT-backto-CRef" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="463.8,525.76,442.95,521.95,461.62,511.93,463.8,525.76" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[02243fde2723214bec3a5a6744507d3b]
+reverse link MT to RRef--><g id="link_MT_RRef"><path d="M462.08,547.34 C486.15,551.23 511.8,555.38 534.48,559.04 " fill="none" id="MT-backto-RRef" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="460.96,554.25,442.33,544.15,463.19,540.43,460.96,554.25" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[de1d56c82839a51326a4127e544e25e2]
+reverse link MT to RTr--><g id="link_MT_RTr"><path d="M443.17,508.2 C449.2,504.6 454.93,500.53 460,495.95 C537.02,426.46 581.32,305.05 596.25,258.17 " fill="none" id="MT-backto-RTr" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="none" points="446.09,514.57,425.09,517.4,439.74,502.09,446.09,514.57" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[802bac963e85022e3dcc7c55b2364960]
+link Analyst to DefSpec--><g id="link_Analyst_DefSpec"><path d="M52.04,360.78 C67.85,347.81 90.15,331.07 112,319.95 C174.57,288.09 251.84,265.24 305.62,251.68 " fill="none" id="Analyst-to-DefSpec" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="310.75,250.4,301.0533,248.6754,305.8959,251.5992,302.9721,256.4419,310.75,250.4" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[199dffd4ac1e7f50174af9ae05570f15]
+link Analyst to StSpec--><g id="link_Analyst_StSpec"><path d="M52.1,372.77 C68.51,367.62 91.49,360.76 112,355.95 C174.35,341.33 246.1,328.93 298.25,320.7 " fill="none" id="Analyst-to-StSpec" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="303.24,319.91,293.7308,317.3457,298.2998,320.681,294.9645,325.25,303.24,319.91" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[307225abe4a43d614444ad8a3d7a1ab8]
+link User to LdSpec--><g id="link_User_LdSpec"><path d="M182.57,89.95 C203.82,89.95 246.6,89.95 286.04,89.95 " fill="none" id="User-to-LdSpec" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="291.33,89.95,282.33,85.95,286.33,89.95,282.33,93.95,291.33,89.95" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[71cdf285f72b366eb58b8504519f221a]
+link User to VH--><g id="link_User_VH"><path d="M182.78,95.68 C200.53,102.99 232.38,115.89 260,125.95 C278.23,132.59 298.31,139.43 316.32,145.39 " fill="none" id="User-to-VH" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="321.34,147.04,314.0368,140.4322,316.5895,145.4803,311.5413,148.033,321.34,147.04" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[d0dcb20fdb3fe1829b8d9ada473fd141]
+link User to RTr--><g id="link_User_RTr"><path d="M182.64,83.19 C225.88,62.76 362.75,6 460,53.95 C529.06,88 573.88,173.55 592.36,215.3 " fill="none" id="User-to-RTr" style="stroke:#181818;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#181818" points="594.38,219.92,594.4485,210.0714,592.3812,215.3369,587.1156,213.2695,594.38,219.92" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[7d25ccaa9194c643b481d48a3c8f51e4]
+link Analyst to ChSpec--><g id="link_Analyst_ChSpec"><path d="M52.11,380.21 C97.1,380.74 201.54,381.96 278.7,382.87 " fill="none" id="Analyst-to-ChSpec" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="283.74,382.93,274.7863,378.8274,278.7403,382.8729,274.6949,386.8269,283.74,382.93" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[2b4472bed99d39d899f77ae38baa198c]
+link Analyst to DelSpec--><g id="link_Analyst_DelSpec"><path d="M52.11,385.07 C102.8,396.82 228.98,426.05 306.56,444.02 " fill="none" id="Analyst-to-DelSpec" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="311.6,445.19,303.735,439.262,306.729,444.0615,301.9294,447.0555,311.6,445.19" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[2a23dd4a8732ee30977962232ab77587]
+link Analyst to MT--><g id="link_Analyst_MT"><path d="M52.34,395.88 C68.48,407.01 91.04,421.82 112,432.95 C179.15,468.61 261.88,498.29 315.5,515.82 " fill="none" id="Analyst-to-MT" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="320.27,517.38,312.943,510.7986,315.5139,515.8375,310.475,518.4083,320.27,517.38" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[53a482f13cef41956f4ca23a531a349c]
+link Developer to RwSpec--><g id="link_Developer_RwSpec"><path d="M200.56,612.86 C222.49,612.1 252.87,611.04 281.92,610.04 " fill="none" id="Developer-to-RwSpec" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="286.94,609.86,277.7977,606.1968,281.9434,610.0456,278.0947,614.1913,286.94,609.86" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[9f2a7f34660650f70f4d586f6ce03123]
+link Tester to RwSpec--><g id="link_Tester_RwSpec"><path d="M188.74,715.23 C222.84,694.97 293.21,653.16 335.85,627.83 " fill="none" id="Tester-to-RwSpec" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="340.39,625.13,330.61,626.2922,336.0925,627.6857,334.699,633.1682,340.39,625.13" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[790a4aff1581bccbdce280f595bb7a59]
+link PE to RwSpec--><g id="link_PE_RwSpec"><path d="M208.18,800.88 C213.57,795.27 218.98,789.51 224,783.95 C272.25,730.55 325.4,664.64 352.65,630.28 " fill="none" id="PE-to-RwSpec" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="355.84,626.25,347.1064,630.8024,352.727,630.1627,353.3667,635.7833,355.84,626.25" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[24fac23037723b9a68bb5f140bf3a8ed]
+@startuml
+
+left to right direction
+'top to bottom direction
+
+actor User
+actor Analyst
+actor Developer
+actor Tester
+actor "Process Engineer" as PE
+
+rectangle Almirah{
+    usecase (Define Specification) as DefSpec
+    usecase (Store Specification) as StSpec
+    usecase (Load Specification) as LdSpec
+    usecase (Change Specification) as ChSpec
+    usecase (Delete Specification) as DelSpec
+    usecase (Review Specification) as RwSpec
+    usecase (View Change History) as VH
+    usecase (Manage Traceability) as MT
+    usecase (Create Reference) as CRef
+    usecase (Remove Reference) as RRef
+    usecase (Review Traceability) as RTr
+}
+
+MT <|- - CRef
+MT <|- - RRef
+MT <|- - RTr
+
+Analyst - -> DefSpec
+Analyst - -> StSpec
+User - -> LdSpec
+User - -> VH
+User ...> RTr
+Analyst - -> ChSpec
+Analyst - - -> DelSpec
+Analyst - - -> MT
+Developer - -> RwSpec
+Tester - -> RwSpec
+PE - -> RwSpec
+
+
+@enduml
+
+@startuml
+
+left to right direction
+
+actor User
+actor Analyst
+actor Developer
+actor Tester
+actor "Process Engineer" as PE
+
+rectangle Almirah{
+    usecase (Define Specification) as DefSpec
+    usecase (Store Specification) as StSpec
+    usecase (Load Specification) as LdSpec
+    usecase (Change Specification) as ChSpec
+    usecase (Delete Specification) as DelSpec
+    usecase (Review Specification) as RwSpec
+    usecase (View Change History) as VH
+    usecase (Manage Traceability) as MT
+    usecase (Create Reference) as CRef
+    usecase (Remove Reference) as RRef
+    usecase (Review Traceability) as RTr
+}
+
+MT <|- - CRef
+MT <|- - RRef
+MT <|- - RTr
+
+Analyst - -> DefSpec
+Analyst - -> StSpec
+User - -> LdSpec
+User - -> VH
+User ...> RTr
+Analyst - -> ChSpec
+Analyst - - -> DelSpec
+Analyst - - -> MT
+Developer - -> RwSpec
+Tester - -> RwSpec
+PE - -> RwSpec
+
+
+@enduml
+
+PlantUML version 1.2022.7(Mon Aug 22 20:01:30 EEST 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
