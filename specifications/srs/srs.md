@@ -27,3 +27,17 @@ This document defines software requirements applicable for Almirah software.
 >Example: "[ITM-001] This is a controlled item with the reference to the external controlled item >[EXT-004]"
 
 [SRS-003] The software shall indicate whether a Controlled Item is referenced in another specification via External Item Id >[ARCH-004]
+
+### Statistics
+
+[SRS-005] The softare shall provide the "Number of Controlled Items" for each specification
+
+[SRS-006] The softare shall provide the "Number of Items w/ Up-links" for each specification
+
+[SRS-007] The softare shall provide the "Number of Items w/ Down-links" for each specification
+
+[SRS-008] The software shall provide the "Number of Items w/ Test Coverage" for each specification
+
+[SRS-009] The software shall provide the "Duplicated Item Ids found" (just a number) for each specification
+
+[SRS-010] The software shall provide the "Last used Item Id" for each specification
