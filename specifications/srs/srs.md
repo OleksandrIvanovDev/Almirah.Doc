@@ -4,6 +4,12 @@
 
 This document defines software requirements applicable for Almirah software.
 
+## Reference Documents
+
+| Document ID | Document Title |
+|---|---|
+| ARCH | [Almirah Framework Architecture](./../arch/arch.md) |
+
 ## Definitions
 
 | Term | Definition |
@@ -30,11 +36,11 @@ This document defines software requirements applicable for Almirah software.
 
 ### Statistics
 
-[SRS-005] The softare shall provide the "Number of Controlled Items" for each specification
+[SRS-005] The software shall provide the "Number of Controlled Items" for each specification
 
-[SRS-006] The softare shall provide the "Number of Items w/ Up-links" for each specification
+[SRS-006] The software shall provide the "Number of Items w/ Up-links" for each specification
 
-[SRS-007] The softare shall provide the "Number of Items w/ Down-links" for each specification
+[SRS-007] The software shall provide the "Number of Items w/ Down-links" for each specification
 
 [SRS-008] The software shall provide the "Number of Items w/ Test Coverage" for each specification
 
