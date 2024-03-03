@@ -4,6 +4,12 @@
 
 This document defines software requirements applicable for Almirah software.
 
+## Reference Documents
+
+| Document ID | Document Title |
+|---|---|
+| ARCH | [Almirah Framework Architecture](./../arch/arch.md) |
+
 ## Definitions
 
 | Term | Definition |
@@ -28,13 +34,80 @@ This document defines software requirements applicable for Almirah software.
 
 [SRS-003] The software shall indicate whether a Controlled Item is referenced in another specification via External Item Id >[ARCH-004]
 
+### Text Formating
+
+[SRS-011] The software shall allow to use internal links in the text (links to any markdown files that are managed by this software)
+
+>Example 1: [This is a short form of internal link to the System Level Specification](sys.md)
+
+>Example 2: [This is a relative form of internal link to the System Level Specification](./../sys/sys.md)
+
+[SRS-012] The software shall allow to use the links to any headings in the text
+
+>Example 1: [This is a link to the heading in the same document](#overview)
+
+>Example 2: [This is a link to the heading in another internal document](./../sys/sys.md#overview)
+
+[SRS-013] The software shall allow to use external links in the text (links to any public resources)
+
+>Example 1: [This is an external link](https://www.markdownguide.org/extended-syntax)
+
+>Example 2: [This is an external link with the anchorx](https://markdownguide.offshoot.io/extended-syntax/#tables)
+
+[SRS-014] The software shall allow to use italic font decoration
+
+>Example 1: *This is a text in italic*
+
+[SRS-015] The software shall allow to use bold font decoration
+
+>Example 1: **This is a text in bold**. However since this is a part of the blockquote it could be rendered as bold and italic. It is OK.
+
+[SRS-016] The software shall allow to use bold and italic font decoration simultaneously
+
+>Example 1: ***This is a text in bold and italic***
+
+[SRS-017] The software shall allow to use unordered lists
+
+>Example of a unordered list is shown below:
+
+* This is a first unordered list item
+* This is a second unordered list item
+* This is a third unordered list item
+
+[SRS-018] The software shall allow to use ordered lists
+
+>Example of a ordered list is shown below:
+
+1. This is a first item of ordered list
+1. This is a second item of ordered list
+1. This is a third item of ordered list
+
+[SRS-019] The software shall allow to use nested levels of ordered and unordered lists
+
+>Example of a ordered list with nested levels is shown below:
+
+1. This is a first item of ordered list
+   1. This is a first item of ordered sub-list level 2
+   1. This is a second item of ordered sub-list level 2
+      1. This is a first item of ordered sub-list level 3
+      1. This is a second item of ordered sub-list level 3
+   1. This is a third item of ordered sub-list level 2
+1. This is a second item of ordered list
+   * This is a first item of unordered sub-list level 2
+     1. This is a first item of ordered sub-list level 3
+   * This is a second item of unordered sub-list level 2
+   * This is a third item of unordered sub-list level 2
+1. This is a third item of ordered list
+
+1. This is a standalone list separated from previous one by emply line in the Markdown source file
+
 ### Statistics
 
-[SRS-005] The softare shall provide the "Number of Controlled Items" for each specification
+[SRS-005] The software shall provide the "Number of Controlled Items" for each specification
 
-[SRS-006] The softare shall provide the "Number of Items w/ Up-links" for each specification
+[SRS-006] The software shall provide the "Number of Items w/ Up-links" for each specification
 
-[SRS-007] The softare shall provide the "Number of Items w/ Down-links" for each specification
+[SRS-007] The software shall provide the "Number of Items w/ Down-links" for each specification
 
 [SRS-008] The software shall provide the "Number of Items w/ Test Coverage" for each specification
 
