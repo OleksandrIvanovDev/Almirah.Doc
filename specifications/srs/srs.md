@@ -66,6 +66,41 @@ This document defines software requirements applicable for Almirah software.
 
 >Example 1: ***This is a text in bold and italic***
 
+[SRS-017] The software shall allow to use unordered lists
+
+>Example of a unordered list is shown below:
+
+* This is a first unordered list item
+* This is a second unordered list item
+* This is a third unordered list item
+
+[SRS-018] The software shall allow to use ordered lists
+
+>Example of a ordered list is shown below:
+
+1. This is a first item of ordered list
+1. This is a second item of ordered list
+1. This is a third item of ordered list
+
+[SRS-019] The software shall allow to use nested levels of ordered and unordered lists
+
+>Example of a ordered list with nested levels is shown below:
+
+1. This is a first item of ordered list
+   1. This is a first item of ordered sub-list level 2
+   1. This is a second item of ordered sub-list level 2
+      1. This is a first item of ordered sub-list level 3
+      1. This is a second item of ordered sub-list level 3
+   1. This is a third item of ordered sub-list level 2
+1. This is a second item of ordered list
+   * This is a first item of unordered sub-list level 2
+     1. This is a first item of ordered sub-list level 3
+   * This is a second item of unordered sub-list level 2
+   * This is a third item of unordered sub-list level 2
+1. This is a third item of ordered list
+
+1. This is a standalone list separated from previous one by emply line in the Markdown source file
+
 ### Statistics
 
 [SRS-005] The software shall provide the "Number of Controlled Items" for each specification
