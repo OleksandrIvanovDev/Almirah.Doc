@@ -20,15 +20,17 @@ This document defines software requirements applicable for Almirah software.
 
 ## Requirements
 
+### Paragraph Types
+
 [SRS-001] The software shall allow to create a Controlled Items. >[ARCH-005]
 
 >Example: "[ITM-001] This is a controlled item"
 
-[SRS-004] The software shall allow to create a non-controlled items.
+[SRS-004] The software shall allow to create a non-controlled items. >[ARCH-003]
 
 >Example: "This is a non-controlled item"
 
-[SRS-002] The software shall allow to create a reference from a Controlled Item to external Controlled Item. >[ARCH-001]
+[SRS-002] The software shall allow to create a reference from a Controlled Item to external Controlled Item. >[ARCH-002]
 
 >Example: "[ITM-001] This is a controlled item with the reference to the external controlled item >[EXT-004]"
 
@@ -100,6 +102,14 @@ This document defines software requirements applicable for Almirah software.
 1. This is a third item of ordered list
 
 1. This is a standalone list separated from previous one by emply line in the Markdown source file
+
+### Traceability
+
+[SRS-020] The software shall provide a traceability reports for all specificeations that contains Controlled Items with the references to external controlled item. The level of traceability is item to item (paragraph to paragraph) >[ARCH-001]
+
+[SRS-021] The software shall generate trceability reports in HTML format. >[ARCH-004]
+
+[SRS-022] The software shall additionally provide the traceability report in CSV fomrat if appropriate software configuration is enabled.
 
 ### Statistics
 
