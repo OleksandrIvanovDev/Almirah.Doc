@@ -22,15 +22,15 @@ This document defines software requirements applicable for Almirah software.
 
 ### Paragraph Types
 
-[SRS-001] The software shall allow to create a Controlled Items. >[ARCH-005]
+[SRS-001] The software shall allow to create a Controlled Items. >[ARCH-005], >[SYS-005]
 
 >Example: "[ITM-001] This is a controlled item"
 
-[SRS-004] The software shall allow to create a non-controlled items. >[ARCH-003]
+[SRS-004] The software shall allow to create a non-controlled items. >[ARCH-003], >[SYS-005]
 
 >Example: "This is a non-controlled item"
 
-[SRS-002] The software shall allow to create a reference from a Controlled Item to external Controlled Item. >[ARCH-002]
+[SRS-002] The software shall allow to create a reference from a Controlled Item to external Controlled Item. >[ARCH-002], >[SYS-001]
 
 >Example: "[ITM-001] This is a controlled item with the reference to the external controlled item >[EXT-004]"
 
