@@ -105,11 +105,13 @@ This document defines software requirements applicable for Almirah software.
 
 ### Traceability
 
-[SRS-020] The software shall provide a traceability reports for all specificeations that contains Controlled Items with the references to external controlled item. The level of traceability is item to item (paragraph to paragraph) >[ARCH-001]
+[SRS-020] The software shall provide a traceability reports for all specifications that contains Controlled Items with the references to external controlled item. The level of traceability is item to item (paragraph to paragraph) >[ARCH-001]
 
-[SRS-021] The software shall generate trceability reports in HTML format. >[ARCH-004]
+[SRS-021] The software shall generate traceability reports in HTML format. >[ARCH-004]
 
-[SRS-022] The software shall additionally provide the traceability report in CSV fomrat if appropriate software configuration is enabled.
+[SRS-022] The software shall additionally provide the traceability report in CSV format if appropriate software configuration is enabled.
+
+[SRS-023] The software shall indicate if there is a link to the item that does not exist. (like the following one) >[ARCH-999], (or that one) >[DNEXST-001]
 
 ### Statistics
 
