@@ -103,6 +103,39 @@ This document defines software requirements applicable for Almirah software.
 
 1. This is a standalone list separated from previous one by empty line in the Markdown source file
 
+[SRS-024] The software shall allow using unordered lists with bold, italic, and mixed formatting
+
+>Example of an unordered list is shown below:
+
+* *This is a first unordered list item formatted in italic*
+* **This is a second unordered list item formatted in bold**
+* ***This is a third unordered list item formatted in a mixed way***
+
+[SRS-025] The software shall allow using ordered lists with bold, italic, and mixed formatting
+
+>Example of an unordered list is shown below:
+
+1. *This is a first ordered list item formatted in italic*
+1. **This is a second ordered list item formatted in bold**
+1. ***This is a third ordered list item formatted in a mixed way***
+
+[SRS-026] The software shall allow using nested levels of ordered and unordered lists with bold, italic, and mixed formatting
+
+>Example of an ordered list with nested levels is shown below:
+
+1. This is a first item of ordered list
+   1. *This is a first item of ordered sub-list level 2 (formatted in italic)*
+   1. This is a second item of ordered sub-list level 2
+      1. This is a first item of ordered sub-list level 3
+      1. **This is a second item of ordered sub-list level 3 [formatted in bold]**
+   1. *This is a third item of ordered sub-list level 2 formatted in italic*
+1. This is a second item of ordered list
+   * ***This is a first item of unordered sub-list level 2 {formatted in a mixed way}***
+     1. This is a first item of ordered sub-list level 3
+   * ***This is a second item of unordered sub-list level 2 formatted in a mixed way***
+   * This is a third item of unordered sub-list level 2
+1. This is a third item of ordered list
+
 ### Traceability
 
 [SRS-020] The software shall provide a traceability reports for all specifications that contains Controlled Items with the references to external controlled item. The level of traceability is item to item (paragraph to paragraph) >[ARCH-001]
