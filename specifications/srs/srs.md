@@ -134,6 +134,7 @@ This document defines software requirements applicable for Almirah software.
      1. This is a first item of ordered sub-list level 3
    * ***This is a second item of unordered sub-list level 2 formatted in a mixed way***
    * This is a third item of unordered sub-list level 2
+     * **This is a first item of unordered sub-list level 3 before the skip-level list item**
 1. This is a third item of ordered list
 
 [SRS-027] The software shall allow using code blocks (see example below).
