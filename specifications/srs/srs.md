@@ -136,6 +136,17 @@ This document defines software requirements applicable for Almirah software.
    * This is a third item of unordered sub-list level 2
 1. This is a third item of ordered list
 
+[SRS-027] The software shall allow using code blocks (see example below).
+
+```JSON
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "age": 25
+}
+```
+
+
 ### Traceability
 
 [SRS-020] The software shall provide a traceability reports for all specifications that contains Controlled Items with the references to external controlled item. The level of traceability is item to item (paragraph to paragraph) >[ARCH-001]
