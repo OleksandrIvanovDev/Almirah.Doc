@@ -1,16 +1,16 @@
-# Almirah Software Requirements Specification
+% Almirah Software Requirements Specification
 
-## Overview
+# Overview
 
 This document defines software requirements applicable for Almirah software.
 
-## Reference Documents
+# Reference Documents
 
 | Document ID | Document Title |
 |---|---|
 | ARCH | [Almirah Framework Architecture](./../arch/arch.md) |
 
-## Definitions
+# Definitions
 
 | Term | Definition |
 |---|---|
@@ -18,9 +18,9 @@ This document defines software requirements applicable for Almirah software.
 | Controlled Item | Paragraph in a specification document that is started with the Item ID. |
 | External Item ID | Controlled Item ID from another specification that is also managed by Almirah framework. It is defined as ">[BBB-NNN]" symbols at the end of Controlled Item, where BBB - is any combination of letters different from AAA and NNN - is the number. |
 
-## Requirements
+# Requirements
 
-### Paragraph Types
+## Paragraph Types
 
 [SRS-001] The software shall allow creating Controlled Items. >[ARCH-005], >[SYS-005]
 
@@ -36,7 +36,7 @@ This document defines software requirements applicable for Almirah software.
 
 [SRS-003] The software shall indicate whether a Controlled Item is referenced in another specification via External Item ID >[ARCH-004]
 
-### Text Formatting
+## Text Formatting
 
 [SRS-011] The software shall allow using internal links in the text (links to any markdown files that are managed by this software)
 
@@ -147,8 +147,7 @@ This document defines software requirements applicable for Almirah software.
 }
 ```
 
-
-### Traceability
+## Traceability
 
 [SRS-020] The software shall provide a traceability reports for all specifications that contains Controlled Items with the references to external controlled item. The level of traceability is item to item (paragraph to paragraph) >[ARCH-001]
 
@@ -158,7 +157,7 @@ This document defines software requirements applicable for Almirah software.
 
 [SRS-023] The software shall indicate if there is a link to the item that does not exist. (like the following one) >[ARCH-999], (or that one) >[DNEXST-001]
 
-### Statistics
+## Statistics
 
 [SRS-005] The software shall provide the "Number of Controlled Items" for each specification
 
