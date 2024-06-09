@@ -1,24 +1,24 @@
-# Requirements for External Components
+% Requirements for External Components
 
-## Overview
+# Overview
 
 This document defines requirements for external components that could be used by Almirah framework to provide a complete set of functionalities.
 
-## Reference Documents
+# Reference Documents
 
 | Document ID | Document Title |
 |---|---|
 | ARCH | [Almirah Framework Architecture](./../arch/arch.md) |
 
-## Definitions
+# Definitions
 
 | Term | Definition |
 |---|---|
 | SCM | Source Control Management |
 
-## Requirements
+# Requirements
 
-### Source Control Management System
+## Source Control Management System
 
 [RFEC-001] The Source Control Management (SCM) system shall allow storing text and binary (image) files. >[ARCH-006]
 
@@ -34,7 +34,7 @@ This document defines requirements for external components that could be used by
 
 [RFEC-008] Deletion of the file from SCM shall preserve all previously stored version of this file and its history for further access. >[ARCH-011]
 
-### Code Review Tool
+## Code Review Tool
 
 The code review tool could be part of the SCM or selected and installed separately.
 
