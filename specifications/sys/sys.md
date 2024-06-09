@@ -1,12 +1,12 @@
-# Almirah System Specification
+% Almirah System Specification
 
-## Overview
+# Overview
 
 This document defines system level requirements applicable for Almirah framework.
 
-## Requirements
+# Requirements
 
-### Basic Operations with Specifications
+## Basic Operations with Specifications
 
 [SYS-005] The framework shall allow users to create specifications.
 
@@ -22,7 +22,7 @@ This document defines system level requirements applicable for Almirah framework
 
 [SYS-010] The framework shall allow users to view the history of changes in specifications.
 
-### Traceability Between Specifications
+## Traceability Between Specifications
 
 [SYS-001] The framework shall allow users to establish traceability between specifications.
 
