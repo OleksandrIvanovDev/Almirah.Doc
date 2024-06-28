@@ -170,3 +170,38 @@ This document defines software requirements applicable for Almirah software.
 [SRS-009] The software shall provide the "Duplicated Item Ids found" (just a number) for each specification
 
 [SRS-010] The software shall provide the "Last used Item ID" for each specification
+
+## User Interface
+
+### Up-links
+
+[SRS-028] For each Controlled Item software shall show an External Controlled Item ID the Item refers to in form of clickable link (up-link).
+
+[SRS-031] If there is more than one up-link in the Controlled Item, the software shall show them in two steps:
+
+1. Initially the software show the number of up-links (clickable);
+1. When User clicks on the number of up-link, the number is replaced with the list of clickable up-links;
+
+[SRS-032] If User clicks on the up-link, the software shall navigate to an External Controlled Item this up-link refers to.
+
+### Down-links
+
+[SRS-029] For each Controlled Item software shall show an External Controlled Item ID the Item is referenced in form of clickable link (down-link).
+
+[SRS-033] If there is more than one down-link in the Controlled Item, the software shall show them in two steps:
+
+1. Initially the software show the number of down-links (clickable);
+1. When User clicks on the number of down-link, the number is replaced with the list of clickable down-links;
+
+[SRS-034] If User clicks on the down-link, the software shall navigate to an External Controlled Item this item is referenced in.
+
+### Coverage Links
+
+[SRS-030] For each Controlled Item software shall show a test case and test step IDs the Item is verified by in form of clickable link (coverage link).
+
+[SRS-035] If there is more than one coverage-link in the Controlled Item, the software shall show them in two steps:
+
+1. Initially the software show the number of coverage links (clickable);
+1. When User clicks on the number of coverage link, the number is replaced with the list of clickable coverage links;
+
+[SRS-036] If User clicks on the coverage link, the software shall navigate to a particular test case and test step this item is verified by.
