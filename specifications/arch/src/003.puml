@@ -1,0 +1,29 @@
+@startuml
+
+class Specification {
+    +docItems
+    +document_id
+}
+
+class ControlledParagraph{
+    +text
+    +id
+    +up_link << ControlledParagraph >>
+    +down_links [ ] << ControlledParagraph >>
+}
+
+Specification *-- ControlledParagraph
+
+class Protocol {
+    +docItems
+    +document_id
+}
+
+class ControlledTable{
+    +column_names
+    +rows [ ] << columns [ ] << column >> >>
+    +up_link << ControlledParagraph >>
+    +down_links [ ] << ControlledParagraph >>
+}
+
+@enduml

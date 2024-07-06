@@ -15,6 +15,64 @@ This document defines the architecture of the Almirah framework as a set of proc
 |---|---|
 | SYS | [Almirah System Specification](sys.md) |
 
+# Business Process View
+
+Almirah framework is designed to support software development process that is a composition of the following high-level processes:
+
+* Software release planning;
+* Software design;
+* Software implementation;
+* Software testing;
+* Final software release process.
+
+![Business Process View](./img/003.svg)
+
+## Software Release Planning
+
+On the release planning stage a High-Level Requirements (an a process input) are transformed to the Work Breakdown Structure (process output).
+
+![Software Release Planning Process](./img/004.svg)
+
+This transformation requires the following software services:
+
+* High-Level Requirements to be captured in a form of specification and stored with version control;
+* WBS Items to be created with appropriate planning  attributes, such as: effort estimation, start date, end date, item type, sub-items.
+
+## Software Design
+
+Software design process transform High-Level Requirement Specification stored with version control to one or several Detailed Specification(s).
+
+Several examples of Detailed Specification are:
+
+* Software Requirements Specification;
+* Functional Requirements Specification;
+* Non-functional Requirements Specification;
+* Software Architecture Specification;
+* System Architecture Specification;
+* Software Detailed Design Specification;
+* e.t.c.
+
+![Software Design Process](./img/005.svg)
+
+All the Detailed Specifications are:
+
+* Created;
+* Stored with version control;
+* Reviewed and approved;
+
+with dedicated software services.
+
+In addition to that, Almirah framework defines Specifications Traceability Control that requires:
+
+* Traceability Creation;
+* Traceability Review;
+* Traceability Approval.
+
+![Traceability Aspect of Software Design Process](./img/006.svg)
+
+## Software Implementation
+
+
 # Use Case View
 
 ## User Roles
