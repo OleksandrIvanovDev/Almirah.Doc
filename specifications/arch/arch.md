@@ -276,6 +276,128 @@ S2T Traceability creation and maintenance requires the S2T Traceability Manageme
 * S2T Traceability Review service;
 * S2T Traceability Approval service.
 
+# Application View
+
+The complete list of software services identified to service all the Software Release Development Processes is the following:
+
+1. S2S Traceability Management;
+   * S2S Traceability Creation;
+   * S2S Traceability Review;
+   * S2S Traceability Approval;
+1. S2T Traceability Management;
+   * S2T Traceability Creation;
+   * S2T Traceability Review;
+   * S2WI Traceability Approval;
+1. S2WI Traceability Management
+   * S2WI Traceability Creation;
+   * S2WI Traceability Review;
+   * S2WI Traceability Approval;
+1. Source Code Creation
+1. Source Code Storage w/ Version Control
+1. Source Code  Review and Approval
+1. Specification Creation;
+1. Specification Storage w/ Version Control;
+1. Specification Review and Approval;
+1. Test Case Creation;
+1. Test Case Storage w/ Version Control;
+1. Test Case Review and Approval;
+1. Test Marking;
+1. WBS Item Creation;
+1. WBS Item Tracking;
+1. WI2C Traceability Management
+   * WI2C Traceability Creation;
+   * WI2C Traceability Review;
+   * WI2C Traceability Approval;
+1. WI2S Traceability Management
+   * WI2S Traceability Creation;
+   * WI2S Traceability Review;
+   * WI2S Traceability Approval;
+1. WI2T Traceability Management
+   * WI2T Traceability Creation;
+   * WI2T Traceability Review;
+   * WI2T Traceability Approval;
+
+## WBS Software Services
+
+The WBS Item Creation and WBS Item Tracking services are realized by the Task/Issue Tracking Software.
+
+![WBS Software Services Realization](./img/026.svg)
+
+Since there are different processes to be tracked with WBS Items (Software Design, Software Implementation, Test Design, Test Execution) the Task/Issue Tracking Software shall support the following item types:
+
+* Document Task;
+* Code Task;
+* Test Design Task;
+* Test Execution Task.
+
+## Content Creation Services
+
+Almirah framework defines markdown files as the primary format for creating Detailed Specifications and Test Cases. The Test Marking is defined as a Test Case update process in markdown format, which inserts pass/fail marks into the file.
+
+A Markdown Files Editor realizes the following software services:
+
+* Specification Creation service;
+* Test Case Creation service;
+* Test Marking service.
+
+![Content Creation Software Services Realization](./img/027.svg)
+
+The Source Code Creation is realized by a Source Code Editor. The Source Code Editor and Markdown Files Editor can be the same Integrated Development Environment if it supports both formats.
+
+## Storage with Version Control
+
+Since Specifications and Test Cases are created as markdown files, it is possible to store them in a Source Control in the same way as the Source Code.
+
+![Storage w/ Version Control Software Services Realization](./img/028.svg)
+
+It is recommended to maintain separate repositories for:
+
+1. Source Code;
+2. Specifications (High-Level Requirement Specification and Detailed Specifications) and Test Cases (both executed and not executed).
+
+## Content Review and Approval Services
+
+A Code Review Software is used to review and approve the content of:
+
+* Detailed Specifications;
+* Source Code;
+* Test Cases;
+* Executed Test Cases.
+
+![Storage w/ Version Control Software Services Realization](./img/029.svg)
+
+The Source Control may Realize these content review services as well.
+
+## Traceability Services
+
+### S2S Traceability
+
+In Almirah framework traceability between specifications is implemented with a custom extension to the markdown syntax.
+
+This extension consists of two tags:
+
+* Paragraph ID tag - "[SPID-001]" placed at the start of the paragraph, where
+  * SPID - is a current specification ID letters;
+  * 001 - is a unique paragraph number in this specification (can be non-sequential);
+* Reference to paragraph ID tag - ">[SPID-001]" placed at the end of the paragraph that refers to a paragraph in another specification;
+  * SPID - is another(external) specification ID letter;
+  * 001 - is a unique paragraph number in the external specification;
+
+These Markdown extensions are added manually to the specification body with the Markdown Files Editor and processed by a custom Ruby script (Almirah Ruby gem). The processing includes:
+
+1. Parsing all the specifications;
+1. Identification of S2S links;
+1. S2S link errors check:
+   * against duplicated paragraph ID tags;
+   * against links to non-existing paragraph ID tag; 
+1. Rendering all the specifications to HTML files where the S2S links are replaced with hyperlinks.
+
+Specifications converted to HTML with hyperlinks allows to review S2S links for correctness.
+
+![S2S Traceability Software Services Realization](./img/030.svg)
+
+When S2S links are reviewed for correctness with Code Review Software in raw and HTML format, specifications containing these links are approved in the Code Review Software.
+
 # Use Case View
 
 ## User Roles
