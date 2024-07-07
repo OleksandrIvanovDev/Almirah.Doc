@@ -44,7 +44,7 @@ The transformation of High-Level Requirements to the Work Breakdown Structure re
 
 ## Software Design
 
-Software design process transform High-Level Requirement Specification stored with version control to one or several Detailed Specification(s).
+Software design process transforms High-Level Requirement Specification stored with version control to one or several Detailed Specification(s).
 
 Several examples of Detailed Specification are:
 
@@ -60,7 +60,7 @@ Several examples of Detailed Specification are:
 
 WBS Item(s) is(are) used to track the scope of transformation High-Level Requirements to Detailed Specifications. A WBS Item Tracking software service is required to instrument this process.
 
-For example, WBS Item can cover the transformation of entire specification, one or several sections, or even a single High-Level Requirement.
+For example, WBS Item can cover the transformation of entire specification, one or several sections, or even a single High-Level Requirement paragraph.
 
 All the Detailed Specifications need to be:
 
@@ -132,6 +132,54 @@ S2S Traceability creation and maintenance requires the S2S Traceability Manageme
 
 ## Software Implementation
 
+Software Implementation process transforms Detailed Specifications stored with version control to the Source Code. The Source Code is created, stored with version control, reviewed and approved during the Software Implementation process.
+
+![Software Implementation Process](./img/013.svg)
+
+WBS Item(s) is(are) used to track the scope of transformation Detailed Specifications to the Source Code. A WBS Item Tracking software service is required to instrument this process.
+
+For example, WBS Item can cover the transformation of entire specification, one or several sections, or even a single Detailed Specification paragraph.
+
+The Source Code need to be:
+
+* Created;
+* Stored with version control;
+* Reviewed and approved;
+
+with dedicated software services.
+
+### Traceability
+
+Almirah framework defines several traceability types for the Software Implementation Process:
+
+* Specification to WBS Item (S2WI) traceability;
+* WBS Item to Code (WI2C) traceability;
+
+Sections below describe the purpose of each traceability type in the Software Implementation Process.
+
+#### S2WI Traceability
+
+Specification to WBS Item traceability is used to identify the scope of WBS Item that will be used further for the transformation of a Detailed Specification to the Source Code.
+
+![S2WI Traceability in Software Implementation Process. Option 2](./img/014.svg)
+
+S2WI Traceability creation and maintenance in scope of Software Implementation Process requires the same S2WI Traceability Management software services used for S2WI Traceability creation and maintenance in Software Design Process. These services are the following:
+
+* S2WI Traceability Creation service;
+* S2WI Traceability Review service;
+* S2WI Traceability Approval service.
+
+#### WI2C Traceability
+
+WBS Item to Code traceability is used to identify the exact output of the Software Implementation process obtained in the scope of WBS Item.
+
+![WI2C Traceability in Software Implementation Process](./img/015.svg)
+
+WI2C Traceability creation and maintenance requires the WI2C Traceability Management software service that is a composition of:
+
+* WI2C Traceability Creation service;
+* WI2C Traceability Review service;
+* WI2C Traceability Approval service.
 
 # Use Case View
 
