@@ -27,6 +27,13 @@ Almirah framework is designed to support software development process that is a 
 
 ![Business Process View](./img/003.svg)
 
+The Software Testing process can be split into two stages:
+
+* Test Design Process, where Test Cases are created against specifications;
+* Test Execution Process, where preliminary created Test Cases are executed on the Software Implementation artifact.
+
+![Splitted Software Testing Process](./img/017.svg)
+
 ## Software Release Planning
 
 On the release planning stage a High-Level Requirements (an a process input) are transformed to the Work Breakdown Structure (process output).
@@ -180,6 +187,94 @@ WI2C Traceability creation and maintenance requires the WI2C Traceability Manage
 * WI2C Traceability Creation service;
 * WI2C Traceability Review service;
 * WI2C Traceability Approval service.
+
+## Software Testing
+
+### Test Design Process
+
+The Software Testing process transforms Detailed Specifications stored with version control to the Test Cases in the (Test Design stage).
+
+![Test Design Process](./img/018.svg)
+
+WBS Item(s) is(are) used to track the scope of transformation Detailed Specifications to the Test Cases. A WBS Item Tracking software service is required to instrument this process.
+
+WBS Item can cover a single or multiple specification transformation to a Test Case, one or several sections, or even a single Detailed Specification paragraph.
+
+The Test Cases need to be:
+
+* Created;
+* Stored with version control;
+* Reviewed and approved;
+
+with dedicated software services.
+
+### Test Execution Process
+
+When any software artifact is ready for testing (Test Execution stage), these Test Cases are executed to verify that the software artifact implementation meets Detailed Specifications.
+
+![Test Execution Process](./img/019.svg)
+
+WBS Item(s) is(are) used to track the scope of Test Case Execution. A WBS Item Tracking software service is required to instrument this process. WBS Item can include a single or multiple Test Cases for execution.
+
+With dedicated software services, preliminary created, stored, reviewed, and approved Test Cases need to be:
+
+* Marked with pass/fail results;
+* Stored with version control with these marks;
+* Reviewed and approved;
+
+### Traceability
+
+Almirah framework defines several traceability types for the Software Testing Processes:
+
+* Specification to WBS Item (S2WI) traceability;
+* WBS Item to Test Cases (WI2T) traceability;
+* Specification to Test Case (S2T) Traceability.
+
+Sections below describe the purpose of each traceability type in the Software Testing Processes.
+
+#### S2WI Traceability
+
+In the Test Design Process, the Specification to WBS Item traceability is used to identify the scope of the WBS Item that will be used further to transform a Detailed Specification into Test Cases.
+
+![S2WI Traceability in Test Design Process](./img/020.svg)
+
+In the Test Execution Process, the Specification to WBS Item traceability defines the scope of Test Cases for testing particular Detailed Specification items.
+
+![S2WI Traceability in Test Execution Process](./img/021.svg)
+
+S2WI Traceability creation and maintenance require the same S2WI Traceability Management software services in both processes. These services are the following:
+
+* S2WI Traceability Creation service;
+* S2WI Traceability Review service;
+* S2WI Traceability Approval service.
+
+#### WI2T Traceability
+
+WBS Item to Test Case traceability is used to identify the exact list of Test Cases either designed or executed in the scope of this WBS Item.
+
+![WI2T Traceability in Test Design Process](./img/022.svg)
+
+![WI2T Traceability in Test Execution Process](./img/023.svg)
+
+WI2T Traceability creation and maintenance requires the WI2T Traceability Management software service that is a composition of:
+
+* WI2T Traceability Creation service;
+* WI2T Traceability Review service;
+* WI2T Traceability Approval service.
+
+#### S2T Traceability
+
+Specification to Test Case traceability defines what specification part (section or paragraph) is covered (tested) with the particular test. This type of traceability is applicable for both: Test Design and Test Execution Processes.
+
+![S2T Traceability in Test Design Process](./img/024.svg)
+
+![S2T Traceability in Test Execution Process](./img/025.svg)
+
+S2T Traceability creation and maintenance requires the S2T Traceability Management software service that is a composition of:
+
+* S2T Traceability Creation service;
+* S2T Traceability Review service;
+* S2T Traceability Approval service.
 
 # Use Case View
 
