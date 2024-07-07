@@ -33,7 +33,11 @@ On the release planning stage a High-Level Requirements (an a process input) are
 
 ![Software Release Planning Process](./img/004.svg)
 
-This transformation requires the following software services:
+The Work Breakdown Structure elements (WBS Items) are used to track planned activities through all the processes.
+
+![WBS Items](./img/007.svg)
+
+The transformation of High-Level Requirements to the Work Breakdown Structure requires the following software services:
 
 * High-Level Requirements to be captured in a form of specification and stored with version control;
 * WBS Items to be created with appropriate planning  attributes, such as: effort estimation, start date, end date, item type, sub-items.
@@ -54,7 +58,11 @@ Several examples of Detailed Specification are:
 
 ![Software Design Process](./img/005.svg)
 
-All the Detailed Specifications are:
+WBS Item(s) is(are) used to track the scope of transformation High-Level Requirements to Detailed Specifications. A WBS Item Tracking software service is required to instrument this process.
+
+For example, WBS Item can cover the transformation of entire specification, one or several sections, or even a single High-Level Requirement.
+
+All the Detailed Specifications need to be:
 
 * Created;
 * Stored with version control;
@@ -62,13 +70,65 @@ All the Detailed Specifications are:
 
 with dedicated software services.
 
-In addition to that, Almirah framework defines Specifications Traceability Control that requires:
+### Traceability
 
-* Traceability Creation;
-* Traceability Review;
-* Traceability Approval.
+Almirah framework defines several traceability types for the Software Design Process:
 
-![Traceability Aspect of Software Design Process](./img/006.svg)
+* Specification to WBS Item (S2WI) traceability;
+* WBS Item to Specification (WI2S) traceability;
+* Specification to Specification (S2S) traceability;
+
+Sections below describe the purpose of each traceability type in the Software Design Process.
+
+#### S2WI Traceability
+
+Specification to WBS Item traceability is used to identify the scope of WBS Item. It can be applied to the High-Level Requirement Specification transformation to a Detailed Specification.
+
+![S2WI Traceability in Software Design Process. Option 1](./img/008.svg)
+
+Or S2WI traceability can be applied to the transformation of one Detailed Specification to another.
+
+![S2WI Traceability in Software Design Process. Option 2](./img/009.svg)
+
+S2WI Traceability creation and maintenance requires the S2WI Traceability Management software service that is a composition of:
+
+* S2WI Traceability Creation service;
+* S2WI Traceability Review service;
+* S2WI Traceability Approval service.
+
+#### WI2S Traceability
+
+WBS Item to Specification traceability is used to identify exact output of Software Design process obtained in scope of WBS Item. It can be applied to both: the High-Level Requirement Specification transformation to a Detailed Specification, and Detailed Specification to Detailed Specification transformations.
+
+![WI2S Traceability in Software Design Process. Option 1](./img/010.svg)
+
+![WI2S Traceability in Software Design Process. Option 2](./img/011.svg)
+
+WI2S Traceability creation and maintenance requires the WI2S Traceability Management software service that is a composition of:
+
+* WI2S Traceability Creation service;
+* WI2S Traceability Review service;
+* WI2S Traceability Approval service.
+
+#### S2S Traceability
+
+Specification to Specification traceability is used:
+
+* To identify the logical connection between two specifications;
+* To show how the high-level specification item was designed on the low-level;
+* To verify the completeness of the Software Design Process.
+
+S2S Traceability is applied to both: the High-Level Requirement Specification transformation to a Detailed Specification, and Detailed Specification to Detailed Specification transformations.
+
+![S2S Traceability in Software Design Process. Option 1](./img/006.svg)
+
+![S2S Traceability in Software Design Process. Option 2](./img/012.svg)
+
+S2S Traceability creation and maintenance requires the S2S Traceability Management software service that is a composition of:
+
+* S2S Traceability Creation service;
+* S2S Traceability Review service;
+* S2S Traceability Approval service.
 
 ## Software Implementation
 
