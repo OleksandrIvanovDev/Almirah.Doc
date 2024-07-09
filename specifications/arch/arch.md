@@ -398,6 +398,38 @@ Specifications converted to HTML with hyperlinks allows to review S2S links for 
 
 When S2S links are reviewed for correctness with Code Review Software in raw and HTML format, specifications containing these links are approved in the Code Review Software.
 
+### S2T Traceability
+
+In Almirah framework traceability between Specifications and Test Cases is implemented with custom extension to the markdown syntax and several additional rules.
+
+These rules are the following:
+
+* Test Case markdown file name defines the Test Case ID;
+* Test Case markdown file name consists of two parts combined with dash ("tc-001"):
+  * several letters as a prefix (for example "tc");
+  * sequential number of the test case (for example "001");
+* Test Case steps are defined as rows in the markdown table, where:
+  * The first column indicates the test step number (1, 2, 3, e.t.c);
+  * The last column is reserved for the reference to a specification paragraph ID (reference to paragraph ID tag - ">[SPID-001]") if the step is intended to verify some statement from the specification (see [S2S Traceability](#s2s-traceability-1) section for details);
+  * The column before the last is reserved for the test step result. The only "pass" and "fail" marks are defined for this purpose. All other values are ignored.
+
+These Markdown extensions are added manually to the test case body with the Markdown Files Editor and processed by a custom Ruby script (Almirah Ruby gem). The processing includes:
+
+1. Parsing all the specifications;
+1. Parsing all the test cases;
+1. Identification of S2T links;
+1. S2T link errors check:
+   * against duplicated test steps;
+   * against links to non-existing paragraph ID tag;
+1. Rendering all the specifications to HTML files where the S2T links are replaced with hyperlinks;
+1. Rendering all the test cases to HTML files where the S2T links are replaced with hyperlinks;
+
+Specifications and Test Cases converted to HTML with hyperlinks in both directions allow the review of S2T links for correctness.
+
+![S2T Traceability Software Services Realization](./img/031.svg)
+
+When S2T links are reviewed for correctness with Code Review Software in raw and HTML format, test cases containing these links are approved in the Code Review Software.
+
 # Use Case View
 
 ## User Roles
