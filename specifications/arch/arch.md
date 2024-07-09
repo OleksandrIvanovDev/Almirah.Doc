@@ -430,6 +430,28 @@ Specifications and Test Cases converted to HTML with hyperlinks in both directio
 
 When S2T links are reviewed for correctness with Code Review Software in raw and HTML format, test cases containing these links are approved in the Code Review Software.
 
+### S2WI Traceability
+
+As it was stated in the [Business View](#s2wi-traceability) section, the Specification to WBS Item traceability is used to define the scope of the transformation of either:
+
+* High-Level Requirements Specification to Detailed Specification;
+* Or Detailed Specification to Detailed Specification.
+
+The Task/Issue Tracking Software ultimately realizes this type of traceability.
+
+![S2WI Traceability Realization](./img/032.svg)
+
+If a WBS Item requires traceability to specification, it is done by mentioning the specification ID or specification paragraph ID in the Description field of the WBS Item.
+
+S2WI Traceability Review and Approval services are realized via custom WBS Item State field values:
+
+![S2WI Traceability Review and Approval Flow](./img/033.svg)
+
+1. When WBS Item is created it has the Draft state;
+2. After the scope description in the WBS Item, the author moves the item to the "Scope Review" state;
+3. If the reviewer is OK with the scope defined (including specified paragraph IDs), they move the item to the "Scope Approved" state;
+4. In the case scope requires correction, the reviewer will move the item back to the Draft state;
+
 # Use Case View
 
 ## User Roles

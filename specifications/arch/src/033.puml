@@ -1,0 +1,25 @@
+@startuml
+<style>
+stateDiagram{
+    arrow {
+        LineColor Maroon
+    }
+    start{
+        BackgroundColor LightGrey
+    }
+}
+</style>
+skinparam State {
+  BackgroundColor Business
+  BorderColor Maroon
+  FontColor black
+}
+state "Scope Review" as SR
+state "Scope Approved" as SA
+
+[*] -> Draft: 1
+Draft -> SR: 2
+SR -> SA: 3
+SR -> Draft: 4
+
+@enduml
