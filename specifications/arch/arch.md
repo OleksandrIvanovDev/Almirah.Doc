@@ -49,6 +49,16 @@ The transformation of High-Level Requirements to the Work Breakdown Structure re
 * High-Level Requirements to be captured in a form of specification and stored with version control;
 * WBS Items to be created with appropriate planning  attributes, such as: effort estimation, start date, end date, item type, sub-items.
 
+### Business Roles
+
+Project Manager triggers (initiates) Software Release Planning process.
+
+Either Manager or Team Lead stores High-Level Requirement Specification to Source Control as an input for planning.
+
+![Business Roles in Release Planning](./img/043.svg)
+
+Both Manager and Team Lead are responsible for creation of Work Breakdown Structure based on High-Level Requirement Specification.
+
 ## Software Design
 
 Software design process transforms High-Level Requirement Specification stored with version control to one or several Detailed Specification(s).
@@ -137,6 +147,31 @@ S2S Traceability creation and maintenance requires the S2S Traceability Manageme
 * S2S Traceability Review service;
 * S2S Traceability Approval service.
 
+### Business Roles
+
+As soon as Software Release Planning is complete, Project Manager triggers (initiates) the Software Design process.
+
+Team Lead clarifies the scope of WBS Items with S2WI Traceability.
+
+Manager Approves S2WI Traceability as a scope of WBS Item.
+
+![Business Roles in Software Design Process](./img/044.svg)
+
+Specification Author:
+
+* Creates Specification;
+* Creates S2S Traceability;
+* Sores Specification w/ Version Control;
+* Creates WI2S Traceability.
+
+>Due to the different specification types the exact Specification Author profile is not defined. This role can be inherited by such roles as Architect, Designer, Analyst, Technical Writer, e.t.c.
+
+When Specification is created and stored with traceability:
+
+* Team Lead is responsible for the Specification Content Review;
+* WI2S Traceability Reviewer is responsible for WI2S Traceability Review;
+* S2S Traceability Reviewer is responsible for S2S Traceability Review correspondingly.
+
 ## Software Implementation
 
 Software Implementation process transforms Detailed Specifications stored with version control to the Source Code. The Source Code is created, stored with version control, reviewed and approved during the Software Implementation process.
@@ -187,6 +222,28 @@ WI2C Traceability creation and maintenance requires the WI2C Traceability Manage
 * WI2C Traceability Creation service;
 * WI2C Traceability Review service;
 * WI2C Traceability Approval service.
+
+### Business Roles
+
+Completion WBS Item in scope of Software Design Process is a trigger for the Software Implementation Process start.
+
+![Business Roles in Software Implementation Process](./img/045.svg)
+
+Software Developer:
+
+* Clarifies the scope of software implementation WBS Items with S2WI Traceability;
+* Implements the Source Code;
+* Sores Source Code w/ Version Control;
+* Creates WI2C Traceability.
+
+Team Lead Reviews and Approves S2WI Traceability as a scope of WBS Item.
+
+When Source Code is created and stored with traceability, Team Lead is responsible for the Source Code Review and Approval.
+
+WI2C Traceability Reviewer is responsible for:
+
+* WI2C Traceability Review;
+* WI2C Traceability Approve.
 
 ## Software Testing
 
@@ -275,6 +332,58 @@ S2T Traceability creation and maintenance requires the S2T Traceability Manageme
 * S2T Traceability Creation service;
 * S2T Traceability Review service;
 * S2T Traceability Approval service.
+
+### Business Roles
+
+Completion WBS Item in scope of Software Design Process is a trigger for the Test Design Process start.
+
+#### Roles in Test Design Process
+
+![Business Roles in Test Design Process](./img/046.svg)
+
+Test Engineer:
+
+* Clarifies the scope of test design WBS Items with S2WI Traceability;
+* Creates the Test Case;
+* Creates S2T Traceability;
+* Sores Test Case w/ Version Control;
+* Creates WI2T Traceability.
+
+Team Lead Reviews and Approves S2WI Traceability as a scope of WBS Item.
+
+When Test Case is created and stored with traceability, Team Lead is responsible for the Test Case Review and Approval.
+
+WI2T Traceability Reviewer is responsible for:
+
+* WI2T Traceability Review;
+* WI2T Traceability Approve.
+
+S2T Traceability Reviewer is responsible for:
+
+* S2T Traceability Review;
+* S2T Traceability Approve.
+
+#### Roles in Test Execution Process
+
+![Business Roles in Test Execution Process](./img/047.svg)
+
+Test Engineer:
+
+* Clarifies the scope of test design WBS Items with S2WI Traceability;
+* Executes the Test Case by Marking;
+* Sores Executed Test Case w/ Version Control;
+* Creates WI2T Traceability.
+
+Team Lead Reviews and Approves S2WI Traceability as a scope of WBS Item.
+
+When Test Case is executed and stored with traceability, Team Lead is responsible for the Test Case Review and Approval.
+
+WI2T Traceability Reviewer is responsible for:
+
+* WI2T Traceability Review;
+* WI2T Traceability Approve.
+
+S2T Traceability Reviewer is responsible for:
 
 ## Software Release Closure
 
@@ -695,3 +804,6 @@ One-to-all traceability matrix indicates references from all specifications to a
 [ARCH-031] Almirah Ruby gem shall generate one-to-all traceability matrices for specification and test cases.
 
 One-to-all traceability matrix indicates references from all test cases to one specification.
+
+# Actors and Roles
+
