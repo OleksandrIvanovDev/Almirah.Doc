@@ -344,6 +344,8 @@ The complete list of software services identified to service all the Software Re
    * WI2T Traceability Creation;
    * WI2T Traceability Review;
    * WI2T Traceability Approval;
+1. Specification Export;
+1. Test Case Export.
 
 ## WBS Software Services
 
@@ -562,6 +564,26 @@ The "WI2T Traceability Review" stage of the Test Design or Test Execution proces
 * From the "Correction Required" state the WBS Item is moved back to the Transformation state to implement the corrections **(8)**
 
 The framework divides review process in three stages ("WI2T Traceability Review", "S2T Traceability Review", and "Content Review") to keep focus on a single aspect of the process output on each stage. It also allows dedicated person assignment for each review stage (different reviewers).
+
+## Export Software Services
+
+The Software Release Closure process requires Specification and Test Cases export software services.
+
+![Export Software Services](./img/041.svg)
+
+Specifications and/or Test Cases (either executed or not) are loaded from the Source Control using a release tag, label, or commit ID in the form of Markdown files. Then, these files are converted to the defined output format with Markdown Files Converter.
+
+Markdown Files Converter saves the content of Specifications and Test Cases in the format of any Text Processor software supports.
+
+![Conversion of Exported Documents](./img/042.svg)
+
+Further export steps defines:
+
+* Adjust Formatting of the document;
+* Review document in the exported format;
+* Conversion of document to a PDF document.
+
+All these steps are made with a Text Processor Software.
 
 # Use Case View
 
