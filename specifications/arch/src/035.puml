@@ -1,0 +1,36 @@
+@startuml
+<style>
+stateDiagram{
+    arrow {
+        LineColor Maroon
+    }
+    start{
+        BackgroundColor LightGrey
+    }
+}
+</style>
+skinparam State {
+  BackgroundColor Business
+  BorderColor Maroon
+  FontColor black
+}
+state "Transformation" as TR
+state "WI2S Traceability Review" as WTR
+state "S2S Traceability Review" as STR
+state "Content Review" as CR
+state "Content Approved" as CA
+state "Correction Required" as COR
+
+[*] -down-> TR
+COR -right-> TR: 8
+TR -> WTR: 1
+WTR -> STR: 2
+STR -> CR: 3
+CR -down-> CA: 4
+
+WTR --> COR: 5
+STR -> COR: 6
+CR -> COR: 7
+
+
+@enduml
