@@ -577,7 +577,7 @@ Markdown Files Converter saves the content of Specifications and Test Cases in t
 
 ![Conversion of Exported Documents](./img/042.svg)
 
-Further export steps defines:
+Further export steps define:
 
 * Adjust Formatting of the document;
 * Review document in the exported format;
@@ -585,66 +585,113 @@ Further export steps defines:
 
 All these steps are made with a Text Processor Software.
 
-# Use Case View
+# Software Component Requirements
 
-## User Roles
+Analysis described above allows to come up with the following software components requirements (divided by sections).
 
-![User Roles](./img/002.svg)
+## Source Control
 
-[ARCH-015] There are 4 user roles Almirah framework defines: Analyst, Developer, Tester, and Process Engineer.
+[ARCH-001] Source Control Software Component shall store source code files.
 
-## Requirement Management
+[ARCH-002] Source Control Software Component shall store markdown files.
 
-![Requirement Management Use Cases](./img/001.svg)
+[ARCH-003] Source Control Software Component shall allow to specify a commit message.
 
-### Create Specification
+[ARCH-004] Source Control Software Component shall allow to reference to a particular commit ID or version ID.
 
-[ARCH-005] Specifications are created by Analyst as a plain text documents in Markdown format. Markdown set of links is extended by specific tags. >[SYS-005]
+## Code Review
 
-"[AAA-NNN]" tag at the beginning of paragraph indicates paragraph ID. This ID can be used for a reference from other specifications.
+[ARCH-005] Code Review Software Component shall allow to review source code files.
 
-">[AAA-NNN]" tag at the end of the paragraph indicated the reference to a paragraph outside this specification.
+[ARCH-006] Code Review Software Component shall allow to review markdown files.
 
-### Store Specification
+[ARCH-007] Code Review Software Component shall allow to review commit message files.
 
-[ARCH-006] Created specifications are saved and stored in a source control tool for further review and updates. >[SYS-005]
+## Markdown Editor
 
-### Load Specification
+[ARCH-008] Markdown Editor Software Component shall allow to create markdown files.
 
-[ARCH-007] Created and stored specifications are loaded from a source control tool. >[SYS-006]
+[ARCH-009] Markdown Editor Software Component shall allow to edit markdown files.
 
-### Change Specification
+## Source Code Editor
 
-[ARCH-008] Loaded from a source control tool specifications are changed in the Markdown format and stored in a source control tool for further review and updates. >[SYS-007]
+[ARCH-010] Source Code Editor Software Component shall allow to create source code files.
 
-### Delete Specification
+[ARCH-011] Source Code Editor Software Component shall allow to edit source code files.
 
-[ARCH-009] Created and stored specifications can be removed from a source control tool with a next commit. >[SYS-008]
+## Markdown Files Converter
 
-[ARCH-011] However, all the content and history of changes well be preserved in a source control tool.
+[ARCH-012] Markdown Files Converter Software Component shall convert markdown files to a Text Processor files format (documents).
 
-### Review Specification
+## Text Processor
 
-[ARCH-012] Created or updated specifications are reviewed with a code review tool as files in the Markdown format >[SYS-009]
+[ARCH-013] Text Processor Software Component shall allow to edit documents in the Text Processor file format.
 
->Note: The code review tool can be part of the source control (pull requests, merge requests, etc.) or can be established separately.
+[ARCH-014] Text Processor Software Component shall allow to adjust formatting of documents.
 
-### View Change History
+[ARCH-015] Text Processor Software Component shall allow to export documents to PDF format.
 
-[ARCH-014] The history of specification changes is a history of Markdown file changes provided by a source control tool. >[SYS-010]
+## Task/Issue Tracking Software
 
-### Traceability Management
+[ARCH-016] Task/Issue Tracking Software Component shall allow to create different WBS Item types.
 
-[ARCH-001] Traceability is established on the level of paragraphs. A paragraph from one specification may contain a reference to a paragraph from another specification. >[SYS-001]
+[ARCH-017] Task/Issue Tracking Software Component shall allow to create a custom WBS Item states for each item type.
 
-#### Create Reference
+[ARCH-018] Task/Issue Tracking Software Component shall allow to create a custom workflow for each WBS Item type.
 
-[ARCH-002] The reference between paragraphs in two different specifications is created by adding an item ID from another specification at the end of the paragraph. >[SYS-002]
+[ARCH-019] Task/Issue Tracking Software Component shall allow to write a description for each WBS Item.
 
-#### Remove Reference
+## Almirah Ruby gem
 
-[ARCH-003] The reference between paragraphs in two different specifications can be removed by deletion an item ID at the end of the paragraph. >[SYS-002]
+[ARCH-020] Almirah Ruby gem shall convert specifications from markdown format to HTML format.
 
-#### Review Traceability
+[ARCH-021] Almirah Ruby gem shall convert test cases from markdown format to HTML format.
 
-[ARCH-004] Information about traceability between different specifications is a result of running a custom script. This script parses all the specifications and extracts all the references. Based on this information the script generates HTML representation of each specification extended with external references. Traceability report in HTML format is also generated by this script. >[SYS-002]
+[ARCH-022] Almirah Ruby gem shall support **Paragraph ID** tag  as a markdown extension.
+
+**Paragraph ID** tag is "[SPID-001]" placed at the start of the paragraph, where
+
+* SPID - is a current specification ID letters (capitalized);
+* 001 - is a unique paragraph number in this specification (can be non-sequential).
+
+[ARCH-023] Almirah Ruby gem shall support **Reference to Paragraph ID** tag as a markdown extension.
+
+**Reference to paragraph ID** tag is ">[SPID-001]" placed at the end of the paragraph that refers to a paragraph in another specification, where
+
+* SPID - is another(external) specification ID letter (capitalized);
+* 001 - is a unique paragraph number in the external specification.
+
+[ARCH-024] Almirah Ruby gem shall replace **Paragraph ID** and **Reference to Paragraph ID** tags with hyperlinks between specifications in HTML format.
+
+[ARCH-025] Almirah Ruby gem shall support **Test Step** tags as a markdown extension.
+
+**Test Steps** are defined as rows in the markdown table, where:
+
+* The first column indicates the **Test Step Number** (1, 2, 3, e.t.c);
+* The last column is reserved for the reference to a specification paragraph ID (**Reference to Paragraph ID** tag - ">[SPID-001]") if the step is intended to verify some statement from the specification;
+* The column before the last is reserved for the **Test Step Result**. The only "pass" and "fail" marks are defined for this purpose. All other values are ignored.
+
+[ARCH-026] Almirah Ruby gem shall process test case markdown file name as a **Test Case ID**.
+
+Test case markdown file name (**Test Case ID**) consists of two parts combined with dash ("tc-001"):
+
+* Several letters as a prefix (for example "tc");
+* Sequential number of the test case (for example "001", "002", e.t.c.).
+
+[ARCH-027] Almirah Ruby gem shall process specification markdown file name as a **Specification ID**.
+
+**Specification ID** is several letters in lower case, that will be used as a **Paragraph ID** prefix converted to capital letters (for example, "spid.md", "arch.md", "srs.md" e.t.c).
+
+[ARCH-028] Almirah Ruby gem shall replace **Test Step Number** and **Reference to Paragraph ID** tags with hyperlinks between specification and test cases in HTML format.
+
+[ARCH-029] Almirah Ruby gem shall generate one-to-one traceability matrices for specifications.
+
+One-to-one traceability matrix indicates references from one specification to another.
+
+[ARCH-030] Almirah Ruby gem shall generate one-to-all traceability matrices for specifications.
+
+One-to-all traceability matrix indicates references from all specifications to a single one.
+
+[ARCH-031] Almirah Ruby gem shall generate one-to-all traceability matrices for specification and test cases.
+
+One-to-all traceability matrix indicates references from all test cases to one specification.
