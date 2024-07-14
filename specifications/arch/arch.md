@@ -276,6 +276,34 @@ S2T Traceability creation and maintenance requires the S2T Traceability Manageme
 * S2T Traceability Review service;
 * S2T Traceability Approval service.
 
+## Software Release Closure
+
+On the software release closure stage all the planned artifacts are released. The list of artifacts may include:
+
+* Software Source Code;
+* Software Binaries;
+* Detailed Specifications;
+* Test Cases (either executed or not).
+
+Exact list of the required artifacts depends on the project type and is defined on the Release Planning stage.
+
+![Software Release Closure Process](./img/040.svg)
+
+Releasing artifacts requires the following software services at the minimum:
+
+* Source Code Storage w/ Version Control;
+* Specification Storage w/ Version Control;
+* Test Case Storage w/ Version Control;
+* Specification Export;
+* Test Case Export.
+
+The list of WBS Item types required to plan and close release process is the following:
+
+* Source Code Release;
+* Software Binary Release;
+* Specification Release;
+* Test Cases Release.
+
 # Application View
 
 The complete list of software services identified to service all the Software Release Development Processes is the following:
