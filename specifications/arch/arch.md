@@ -452,6 +452,34 @@ S2WI Traceability Review and Approval services are realized via custom WBS Item 
 3. If the reviewer is OK with the scope defined (including specified paragraph IDs), they move the item to the "Scope Approved" state;
 4. In the case scope requires correction, the reviewer will move the item back to the Draft state;
 
+### WI2S Traceability
+
+WBS Item to Specification traceability is used to identify exact output of Software Design process. It can be applied to both: the High-Level Requirement Specification transformation to a Detailed Specification, and Detailed Specification to Detailed Specification transformations.
+
+![WI2S Traceability Realization](./img/034.svg)
+
+Two software components realize the WI2S Traceability creation part:
+
+* by Source Control with the reference of WBS Item in the Source Control commit message (forward direction);
+* by Task/Issue Tracking Software referencing Source Control commit ID in the WBS Item (opposite direction).
+
+WI2S Traceability Review and Approval services are realized by:
+
+* Task/Issue Tracking software with a custom value of the WBS Item State field ("WI2S Traceability Review");
+* Code Review Software by a Source Control commit message review.
+
+The "WI2S Traceability Review" stage of the design process can precede the main "Content Review" stage or even both "S2S Traceability Review" and "Content Review" if the S2S traceability review is separated from the content review.
+
+![Document Task Approval Flow](./img/035.svg)
+
+* When one specification (part or item) is transformed into another, the Author moves the WBS Item to the "WI2S Traceability Review" state **(1)**.
+* If Reviewer is OK with provided WI2S Traceability they moves WBS Item to "S2S Traceability Review State" **(2)**. Otherwise, Reviewer moves WBS Item to the "Correction Required" state **(5)**.
+* In the "S2S Traceability Review" state Reviewer checks if the links between specifications are correct and moves the WBS Item to the "Content Review" sate **(3)** or "Correction Required" state **(6)**.
+* If Reviewer is OK with the provided content they moves WBS Item to the "Content Approved" state **(4)**. Otherwise, "Correction Required" state is used **(8)**.
+* From the "Correction Required" state the WBS Item is moved back to the Transformation state to implement the corrections **(8)**
+
+The framework divides review process in three stages ("WI2S Traceability Review", "S2S Traceability Review", and "Content Review") to keep focus on a single aspect of the process output on each stage. It also allows dedicated person assignment for each review stage (different reviewers).
+
 # Use Case View
 
 ## User Roles
