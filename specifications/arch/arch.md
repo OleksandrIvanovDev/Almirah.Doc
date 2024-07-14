@@ -1,4 +1,9 @@
-% Almirah Framework Architecture
+---
+title: "Almirah Framework Architecture"
+revision: "1.0"
+date: "14-Jul-2024"
+author: "Oleksandr Ivanov"
+---
 
 # Overview
 
@@ -8,12 +13,6 @@ This document defines the architecture of the Almirah framework as a set of proc
 * Requirements Management
 * Test Management
 * Change Management
-
-# Reference Documents
-
-| Document ID | Document Title                         |
-|---|---|
-| SYS | [Almirah System Specification](sys.md) |
 
 # Business Process View
 
@@ -413,6 +412,19 @@ The list of WBS Item types required to plan and close release process is the fol
 * Specification Release;
 * Test Cases Release.
 
+### Business Roles
+
+When all the WBS Items in scope of Software Design, Software Implementation, Software Testing processes are completed, Manager initiates Software Release Closure process.
+
+![Business Roles in Software Release Closure Process](./img/048.svg)
+
+Document Manager:
+
+* Exports Specifications with converting them to Test Processor Format;
+* Exports Tets Cases (executed and not-executed) with converting them to Test Processor Format.
+
+Team Lead Reviews exported documents and convert them to PDF format.
+
 # Application View
 
 The complete list of software services identified to service all the Software Release Development Processes is the following:
@@ -807,3 +819,18 @@ One-to-all traceability matrix indicates references from all test cases to one s
 
 # Actors and Roles
 
+Almirah framework defines the following Roles:
+
+* Document Manager;
+* Manager;
+* S2S Traceability Reviewer;
+* S2T Traceability Reviewer;
+* Software Developer;
+* Specification Author;
+* Team Lead;
+* Test Engineer;
+* WI2C Traceability Reviewer;
+* WI2S Traceability Reviewer;
+* WI2T Traceability Reviewer.
+
+One Actor can serve multiple roles.
