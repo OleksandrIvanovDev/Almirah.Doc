@@ -480,6 +480,33 @@ The "WI2S Traceability Review" stage of the design process can precede the main 
 
 The framework divides review process in three stages ("WI2S Traceability Review", "S2S Traceability Review", and "Content Review") to keep focus on a single aspect of the process output on each stage. It also allows dedicated person assignment for each review stage (different reviewers).
 
+### WI2C Traceability
+
+WBS Item to Code traceability is used to identify the exact output of the Software Implementation process.
+
+![WI2C Traceability Realization](./img/036.svg)
+
+Two software components realize the WI2C Traceability creation part:
+
+* by Source Control with the reference of WBS Item in the Source Control commit message (forward direction);
+* by Task/Issue Tracking Software referencing Source Control commit ID in the WBS Item (opposite direction).
+
+WI2C Traceability Review and Approval services are realized by:
+
+* Task/Issue Tracking software with a custom value of the WBS Item State field ("WI2C Traceability Review");
+* Code Review Software by a Source Control commit message review.
+
+The "WI2C Traceability Review" stage of Software Implementation process can precede the main "Content Review" stage.
+
+![Code Task Approval Flow](./img/037.svg)
+
+* When a Specification (part or item) or WBS Item Description is transformed into the Code, Developer moves the WBS Item to the "WI2C Traceability Review" state **(1)**.
+* If Reviewer is OK with provided WI2C Traceability they moves WBS Item to the "Content Review" sate **(2)** or "Correction Required" state **(4)** otherwise.
+* If Reviewer is OK with the provided content they moves WBS Item to the "Content Approved" state **(3)**. Otherwise, "Correction Required" state is used **(5)**.
+* From the "Correction Required" state the WBS Item is moved back to the Transformation state to implement the corrections **(6)**
+
+The framework divides review process in two stages ("WI2C Traceability Review", and "Content Review") to keep focus on a single aspect of the process output on each stage. It also allows dedicated person assignment for each review stage (different reviewers).
+
 # Use Case View
 
 ## User Roles
