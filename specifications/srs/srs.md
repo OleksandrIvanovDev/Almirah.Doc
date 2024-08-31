@@ -147,6 +147,18 @@ This document defines software requirements applicable for Almirah software.
 }
 ```
 
+[SRS-037] The software shall allow to align the text in markdown table clolumns using the following options:
+
+* '| :--- |' - alignment left;
+* '| ---: |' - alignment right;
+* '| :---: |' - alignment center.
+
+Table example:
+
+| Column with Alignment Left | Column with Alignment Center | Column with Default Alignment | Coulmn with Alignment Rignt |
+| :--- | :---: | --- | ---: |
+| Text A | Text B | Text C | Text D |
+
 ## Traceability
 
 [SRS-020] The software shall provide a traceability reports for all specifications that contains Controlled Items with the references to external controlled item. The level of traceability is item to item (paragraph to paragraph) >[ARCH-001]
