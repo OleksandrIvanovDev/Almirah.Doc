@@ -3,3 +3,8 @@
     input:
       - arch
     
+  repositories:
+    - name: Almirah.Code
+      path: ../Almirah.Code
+    - name: Almirah.Tests
+      path: ../Almirah.Tests
