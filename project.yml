@@ -3,3 +3,6 @@
     input:
       - arch
     
+  repositories:
+    - name: Almirah.Code
+      path: ../Almirah.Code/lib
