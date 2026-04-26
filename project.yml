@@ -6,3 +6,5 @@
   repositories:
     - name: Almirah.Code
       path: ../Almirah.Code/lib
+    - name: Almirah.Spec
+      path: ../Almirah.Code/spec
