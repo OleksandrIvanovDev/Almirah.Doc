@@ -187,9 +187,17 @@ Table example:
 
 ## Source Code
 
-[SRS-037] The software shall allow to create a reference from a Source Code File to external Controlled Item.
+[SRS-038] The software shall allow to create a reference from a Source Code File to external Controlled Item.
 
 >Example: "<REQ> Some Text >[EXT-004] </REQ>"
+
+## Decision Records
+
+[SRS-039] The software shall allow to create decision records as a markdown files (one file for each record)
+
+[SRS-040] The software shall recognise Decision Record ID from the file name
+
+>Example: the file "adr-170-some-further-text.md" corresponds to a decision record #170
 
 ## User Interface
 
@@ -225,3 +233,9 @@ Table example:
 1. When User clicks on the number of coverage link, the number is replaced with the list of clickable coverage links;
 
 [SRS-036] If User clicks on the coverage link, the software shall navigate to a particular test case and test step this item is verified by.
+
+### Decision Records
+
+[SRS-041] The software shall show a list of controlled records.
+
+[SRS-042] When user clicks on a decision record, the software shall open a page with selected decision record details.
