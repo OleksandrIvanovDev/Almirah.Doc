@@ -27,8 +27,8 @@ The Almirah Ruby script shall processs decision records, link them to the docume
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
 | Requirements | In-progress | 12-05-2026 | | SRS specification needs to be updated |
-| Code | Not Started | | | Decision records to be processed by Almirah Ruby gem |
-| Tests | Not Started | | | End-to-end tests shall be implemented |
+| Code | In-progress | 13-05-2026 |  | Decision records to be processed by Almirah Ruby gem |
+| Tests | 13-05-2026 | | | End-to-end tests shall be implemented |
 
 ## Consequences
 
