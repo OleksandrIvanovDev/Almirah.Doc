@@ -1,3 +1,7 @@
+---
+title: "ADR-170: Introduce Decision Records"
+---
+
 # ADR-170: Introduce Decision Records
 
 ## Status
