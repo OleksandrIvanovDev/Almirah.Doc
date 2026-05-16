@@ -195,9 +195,31 @@ Table example:
 
 [SRS-039] The software shall allow to create decision records as a markdown files (one file for each record)
 
-[SRS-040] The software shall recognise Decision Record ID from the file name
+[SRS-040] The software shall derive the Decision Record ID as the filename prefix made up of letters, a dash, and digits. If the filename does not match this pattern, the full filename stem shall be used as the ID.
 
->Example: the file "adr-170-some-further-text.md" corresponds to a decision record #170
+>Example 1: "adr-170-introduce-decision-records.md" — ID is "adr-170"
+
+>Example 2: "ise-1892.md" — ID is "ise-1892"
+
+>Example 3: "meeting-notes.md" — ID is "meeting-notes"
+
+[SRS-043] The software shall accept decision records placed in the `decisions/` folder at the project root, including nested subfolders.
+
+[SRS-044] The software shall derive the Decision Record Sequence Number as the digits portion of the ID.
+
+>Example: ID "adr-170" — Sequence Number is "170"
+
+[SRS-045] The software shall derive the Decision Record Type as the letters portion of the ID, in upper case.
+
+>Example: ID "adr-170" — Type is "ADR"
+
+[SRS-046] The software shall accept the Decision Record title from the YAML frontmatter `title` field of the source markdown file.
+
+>Example: a file with frontmatter `title: "ADR-170: Introduce Decision Records"` renders with that title.
+
+[SRS-047] The software shall render each decision record to an individual HTML page whose filename matches the Decision Record ID.
+
+>Example: "decisions/adr-170-introduce-decision-records.md" → "build/decisions/adr-170.html"
 
 ## User Interface
 
@@ -236,6 +258,8 @@ Table example:
 
 ### Decision Records
 
-[SRS-041] The software shall show a list of controlled records.
+[SRS-041] The software shall provide a Decision Records Overview page listing every decision record with the following columns: Sequence Number, Type, Title.
 
-[SRS-042] When user clicks on a decision record, the software shall open a page with selected decision record details.
+[SRS-042] When a User clicks on the Title in the Decision Records Overview, the software shall navigate to the rendered page of the selected decision record.
+
+[SRS-048] The software shall provide a clickable "Decision Records" link in the top navigation bar of every rendered page, when at least one decision record exists in the project. The link shall lead to the Decision Records Overview page.
