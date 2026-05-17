@@ -9,6 +9,7 @@ title: "ADR-170: Introduce Decision Records"
 | 14-05-2026 | Proposed |
 | 14-05-2026 | Accepted |
 | 15-05-2026 | In-Progress |
+| 17-05-2026 | Implemented |
 
 # Context
 
@@ -28,9 +29,9 @@ The Almirah Ruby script shall processs decision records, link them to the docume
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Requirements | In-progress | 12-05-2026 | 20-05-2026 | SRS specification needs to be updated to reflect basic operations with decision records such as: store decision records, show decision records, show decision records overview |
-| Code | In-progress | 13-05-2026 | 24-05-2026 | Decision records to be processed by Almirah Ruby gem in scope of defined in the Requirements |
-| Tests | In-progress | 13-05-2026 | 24-05-2026 | End-to-end tests shall be implemented to cover newly created Requirements |
+| Requirements | Done | 12-05-2026 | 17-05-2026 | SRS-039 through SRS-048 added or revised in srs.md to cover ID derivation, sequence number, type, frontmatter title, per-record HTML rendering, overview page, and top-nav link |
+| Code | Done | 13-05-2026 | 17-05-2026 | Decision and DecisionsOverview doc types, parse_decisions / render_decisions_overview / render_all_decisions wired into Project pipelines, Decision Records nav link in BaseDocument |
+| Tests | Done | 13-05-2026 | 17-05-2026 | 18 end-to-end tests in decisions_spec.rb with `<REQ>` traces mapping to SRS-040 through SRS-048 |
 
 # Out of Scope
 
@@ -69,4 +70,5 @@ No alternatives were considered
 
 # References
 
-TBD
+- SRS-039 through SRS-048 in [srs.md](./../specifications/srs/srs.md) — software requirements covering decision records
+- [ISSUE-171](./issues/issue-171-dash-unordered-list.md) — dash-marker support, surfaced while dogfooding this ADR
