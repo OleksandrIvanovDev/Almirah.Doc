@@ -231,9 +231,9 @@ Table example:
 
 >Example: a Status table row containing "*" in the leading column and "Accepted" in the Status column makes "Accepted" the current status of the record.
 
-[SRS-050] The software shall render the "*" in the leading marker column of a Decision Record Status table as a solid right-pointing triangle ("▶") in the generated HTML. Other tables and other columns shall be unaffected.
+[SRS-050] The software shall render the "*" in the leading marker column of a Decision Record Status table as a solid right-pointing triangle ("▶") in the generated HTML, and shall visually highlight the entire marked row so that the current state is distinguishable from past and planned rows. Other tables and other columns shall be unaffected.
 
->Example: the source row "| * | 17-05-2026 | Accepted |" renders with "▶" in the first column cell.
+>Example: the source row "| * | 17-05-2026 | Accepted |" renders with "▶" in the first column cell and a highlighted row background.
 
 ## User Interface
 
