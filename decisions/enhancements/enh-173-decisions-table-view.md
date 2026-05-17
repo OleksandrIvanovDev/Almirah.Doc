@@ -7,7 +7,8 @@ title: "ENH-173: Decision Records Overview Table Style and Clickable ID"
 |  | Date | Status |
 |:---:|---|---|
 |   | 17-05-2026 | Proposed |
-| * | 17-05-2026 | Accepted |
+|   | 17-05-2026 | Accepted |
+| * | 17-05-2026 | In-Progress |
 
 # Context
 
@@ -21,11 +22,12 @@ This makes the overview feel flatter than it could and forces the user's eye and
 
 # Decision
 
-Three changes to the Decision Records Overview page, scoped to that page only:
+Four changes to the Decision Records Overview page, scoped to that page only:
 
 1. Column header text shall render in bold font weight.
 2. The `Title` cell content shall render in bold font weight on every row.
 3. The `#` cell shall be a hyperlink to the rendered decision page, using the same target as the existing `Title` link. The anchor's `name` and `id` attributes shall be retained so that deep links into the overview row (e.g., `overview.html#adr-170`) keep working; only the `href` changes from a same-page self-reference to a navigation target.
+4. Three additional columns shall be appended after the `Title` column, in this order: `Start Date`, `Target Date`, `Owner`. The cells in these columns shall be empty in scope of this enhancement. They reserve visual space and column headings for future content; no data extraction from the decision record source is performed by this ADR. After this change, the overview column order is: `#`, `Type`, `Status`, `Title`, `Start Date`, `Target Date`, `Owner`.
 
 Implementation note: to keep these styling changes from affecting the Specifications Index and other `table.controlled` instances, the overview shall opt in via an additional CSS class (for example, `table.controlled.decisions_overview`), and the new CSS rules shall target that class.
 
@@ -33,7 +35,7 @@ Implementation note: to keep these styling changes from affecting the Specificat
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Code | Not-Started |  |  | `DecisionsOverview` emits an additional CSS class on the table; CSS rules for bold headers and bold Title cells scoped to that class; `#` anchor's `href` targets the decision page |
+| Code | Not-Started |  |  | `DecisionsOverview` emits an additional CSS class on the table; CSS rules for bold headers and bold Title cells scoped to that class; `#` anchor's `href` targets the decision page; three empty placeholder columns (`Start Date`, `Target Date`, `Owner`) added after `Title` |
 
 The changes are considered as consmetic, so there are neither requirements nor end-to-end tests are made in scope of this enhancement.
 
@@ -41,8 +43,8 @@ The changes are considered as consmetic, so there are neither requirements nor e
 
 - Bold formatting of cells other than the column headers and `Title`. The `Type` and `Status` cells, and the body of the `#` cell, keep their current weight.
 - Visual changes to other index pages (Specifications Index, Traceability Matrices, etc.). The change is scoped to the Decision Records Overview.
-- Reordering or renaming overview columns.
-- Adding new columns to the overview.
+- Reordering or renaming the existing overview columns (`#`, `Type`, `Status`, `Title`).
+- Populating values into the three new columns (`Start Date`, `Target Date`, `Owner`). The columns are reserved as visual placeholders only; deriving their values from decision record content is a separate, future change.
 
 # Consequences
 
