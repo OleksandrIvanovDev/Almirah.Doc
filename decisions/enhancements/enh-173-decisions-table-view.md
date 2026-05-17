@@ -8,7 +8,8 @@ title: "ENH-173: Decision Records Overview Table Style and Clickable ID"
 |:---:|---|---|
 |   | 17-05-2026 | Proposed |
 |   | 17-05-2026 | Accepted |
-| * | 17-05-2026 | In-Progress |
+|   | 17-05-2026 | In-Progress |
+| * | 17-05-2026 | Implemented |
 
 # Context
 
@@ -35,7 +36,7 @@ Implementation note: to keep these styling changes from affecting the Specificat
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Code | Not-Started |  |  | `DecisionsOverview` emits an additional CSS class on the table; CSS rules for bold headers and bold Title cells scoped to that class; `#` anchor's `href` targets the decision page; three empty placeholder columns (`Start Date`, `Target Date`, `Owner`) added after `Title` |
+| Code | Done | 17-05-2026 | 17-05-2026 | `DecisionsOverview` emits `class="controlled decisions_overview"`; `#` anchor `href` switched to the decision page (with `name`/`id` retained for deep links); inline `<b>` removed; three CSS rules scoped to `table.controlled.decisions_overview` (bold `th`, `td.item_id`, `td.item_text`); three empty placeholder columns added after `Title` with class `item_meta` |
 
 The changes are considered as consmetic, so there are neither requirements nor end-to-end tests are made in scope of this enhancement.
 
@@ -61,6 +62,7 @@ The changes are considered as consmetic, so there are neither requirements nor e
 ## Neutral
 
 - This is the first overview-scoped CSS rule. It sets a precedent for per-overview-page styling that future overview pages can opt in to via the same class mechanism.
+- A small CSS adjustment was made during implementation: `white-space: nowrap` was added to `table.controlled td.item_status` so multi-word status values (e.g., "In-Progress") render on one line. Strictly a follow-on tweak to ADR-172's CSS, applied here because the wrap was discovered while reviewing this ENH's visual changes.
 
 # Alternatives Considered
 
