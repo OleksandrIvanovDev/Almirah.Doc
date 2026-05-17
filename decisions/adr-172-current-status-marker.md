@@ -37,9 +37,11 @@ For documents of type Decision Record only, the parser shall locate the Status s
 
 When zero or more than one row carries an asterisk, the extracted `current_status` shall be `nil`; this leaves room for a future validation step if duplicate or missing markers become a maintenance problem in practice.
 
-## Triangle substitution during HTML rendering
+## Triangle substitution and row highlight during HTML rendering
 
 When rendering a Decision Record's Status table to HTML, the asterisk in the leading marker column shall be replaced with a solid right-pointing triangle "▶" (U+25B6 BLACK RIGHT-POINTING TRIANGLE), matching the visual convention used by database administration tools to highlight the current row. The substitution applies only to the marker column of the Status table in Decision Record documents; other documents and other tables are unchanged.
+
+In addition, the entire marked row shall be visually highlighted (light yellow background, `#ffffee`) so that the current state is immediately distinguishable from past and planned rows at a glance.
 
 ## Status column on the Decision Records Overview page
 
@@ -50,14 +52,13 @@ A new "Status" column shall be added to the Decision Records Overview page betwe
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
 | Requirements | In-Progress | 17-05-2026 |  | New SRS items for current-status extraction on the Decision class, asterisk-to-triangle substitution during HTML rendering, and the new Status column on the Decision Records Overview page |
-| Code | In-Progress | 17-05-2026 |  | Add `current_status` attribute on Decision; parser locates the Status section and reads the "*"-marked row; renderer substitutes "*" with "▶" in the Status table's marker column for Decision Records; DecisionsOverview adds a Status column between Type and Title |
-| Tests | In-Progress | 17-05-2026 |  | Unit tests for `current_status` extraction (including zero / multiple markers); end-to-end tests for the rendered triangle character in the Status table and for the Status column value in the Decision Records Overview page |
+| Code | In-Progress | 17-05-2026 |  | Add `current_status` attribute on Decision; parser locates the Status section and reads the "*"-marked row; renderer substitutes "*" with "▶" and tags the marked row with a CSS class for background highlighting; DecisionsOverview adds a Status column between Type and Title |
+| Tests | In-Progress | 17-05-2026 |  | Unit tests for `current_status` extraction (including zero / multiple markers); end-to-end tests for the rendered triangle, the row highlight, and the Status column value in the Decision Records Overview page |
 
 # Out of Scope
 
 - Automatic detection of the current status by comparing today's date against row dates. Authors mark the row manually.
 - Validation that exactly one row carries a marker. If zero or more than one is present, `current_status` is `nil` — adding strict validation is a follow-up if it becomes a real maintenance problem.
-- Additional visual emphasis on the marked row beyond the triangle substitution (e.g., row background colour, bold text). Can be added later if desired.
 - Retroactive update of existing decision records (ADR-170, ISSUE-171) to use the new format. Can be done independently as each record is touched.
 
 # Consequences
