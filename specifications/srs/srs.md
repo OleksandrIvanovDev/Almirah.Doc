@@ -70,13 +70,19 @@ This document defines software requirements applicable for Almirah software.
 
 >Example 1: ***This is a text in bold and italic***
 
-[SRS-017] The software shall allow using unordered lists
+[SRS-017] The software shall allow using unordered lists with either "*" or "-" as the item marker
 
->Example of an unordered list is shown below:
+>Example 1: an unordered list using "*" as the marker
 
 * This is a first unordered list item
 * This is a second unordered list item
 * This is a third unordered list item
+
+>Example 2: an unordered list using "-" as the marker
+
+- This is a first unordered list item
+- This is a second unordered list item
+- This is a third unordered list item
 
 [SRS-018] The software shall allow using ordered lists
 
