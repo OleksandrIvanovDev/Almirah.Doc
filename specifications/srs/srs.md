@@ -227,6 +227,14 @@ Table example:
 
 >Example: "decisions/adr-170-introduce-decision-records.md" → "build/decisions/adr-170.html"
 
+[SRS-049] The software shall recognise a leading marker column in a Decision Record Status table and shall expose the status value of the row marked with "*" as the Decision Record's current status. When zero rows or more than one row carry the marker, the current status shall be undefined.
+
+>Example: a Status table row containing "*" in the leading column and "Accepted" in the Status column makes "Accepted" the current status of the record.
+
+[SRS-050] The software shall render the "*" in the leading marker column of a Decision Record Status table as a solid right-pointing triangle ("▶") in the generated HTML. Other tables and other columns shall be unaffected.
+
+>Example: the source row "| * | 17-05-2026 | Accepted |" renders with "▶" in the first column cell.
+
 ## User Interface
 
 ### Up-links
@@ -269,3 +277,5 @@ Table example:
 [SRS-042] When a User clicks on the Title in the Decision Records Overview, the software shall navigate to the rendered page of the selected decision record.
 
 [SRS-048] The software shall provide a clickable "Decision Records" link in the top navigation bar of every rendered page, when at least one decision record exists in the project. The link shall lead to the Decision Records Overview page.
+
+[SRS-051] The Decision Records Overview page shall include a "Status" column between the "Type" and "Title" columns, displaying each decision record's current status. The cell shall be empty when the current status is undefined.
