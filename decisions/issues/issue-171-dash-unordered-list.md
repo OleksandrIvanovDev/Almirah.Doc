@@ -8,6 +8,7 @@ title: "ISSUE-171: Dash as Marker for Unordered List"
 |---|---|
 | 17-05-2026 | Proposed |
 | 17-05-2026 | Accepted |
+| 17-05-2026 | Implemented |
 
 # Context
 
@@ -21,9 +22,9 @@ It would be good to add the support of "-" along as "*".
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Requirements | In-progress | 17-05-2026 | 24-05-2026 | SRS specification needs to be updated to add one more marker for bullet lists |
-| Code | Not-Started |  |  | Implement support of "-" markers in the code |
-| Tests | Not-Started |  |   | Update unit and end-to-end tests in scope of newly added or updated requirements |
+| Requirements | Done | 17-05-2026 | 17-05-2026 | SRS-017 updated to allow "*" or "-" as the item marker |
+| Code | Done | 17-05-2026 | 17-05-2026 | Dash support added in doc_parser.rb and markdown_list.rb |
+| Tests | Done | 17-05-2026 | 17-05-2026 | Five new unit tests in doc_parser_spec.rb; `<REQ>` traces added for SRS-017, SRS-019, SRS-024 |
 
 # Out of Scope
 
@@ -42,7 +43,7 @@ Not identified.
 
 ## Neutral
 
-Not identified.
+- The unordered-list continuation regex was anchored to start-of-line and tightened to require whitespace after the marker. This is stricter than the previous regex for "*" as well, and closes a latent edge case where mid-paragraph "*" could be read as a list continuation.
 
 # Alternatives Considered
 
