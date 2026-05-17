@@ -32,6 +32,12 @@ specifications/       # Specification documents (one folder per document)
 tests/
   protocols/          # Reusable test protocol templates (tp-NNN/)
   runs/               # Test execution records (NNN/tp-NNN/)
+decisions/            # Decision records (see "Decision Records" below)
+  adr-NNN-*.md        # Architecture Decision Records (top level)
+  issues/             # Bug/defect decision records
+    issue-NNN-*.md
+  enhancements/       # Enhancement proposals
+    enh-NNN-*.md
 project.yml           # Declares specification inputs and linked repositories
 ```
 
@@ -62,6 +68,33 @@ Test protocols (`tests/protocols/tp-NNN/tp-NNN.md`) are templates containing tes
 Test runs (`tests/runs/NNN/tp-NNN/tp-NNN.md`) are copies of protocols filled in with actual results (`pass`/`fail`) and evidence images.
 
 The `Req-ID` column in test steps uses the same `>[AAA-NNN]` traceability syntax to link steps back to requirements.
+
+## Decision Records
+
+Decision records capture decisions made about the project — architectural choices, bug-fix decisions, enhancement proposals. They live under `decisions/` and are processed by Almirah alongside specifications.
+
+**Filename convention**: `<letters>-<digits>-<descriptive-slug>.md`. The ID is derived from the `<letters>-<digits>` prefix (e.g., `adr-170-introduce-decision-records.md` → ID `adr-170`). Type is the uppercased letter prefix (`ADR`, `ISSUE`, `ENH`); sequence number is the digits.
+
+**Frontmatter**: every decision record should carry a YAML `title:` field, since this is what the rendered HTML and the overview page display. Without it, the title falls back to `<id>.md`.
+
+```yaml
+---
+title: "ADR-170: Introduce Decision Records"
+---
+```
+
+**Status table**: each record starts with a `# Status` section containing a table. The leading column carries `*` in exactly one row to indicate the current state. Future-dated rows may be written upfront for planning.
+
+```markdown
+|  | Date | Status |
+|:---:|---|---|
+|   | 14-05-2026 | Proposed |
+|   | 14-05-2026 | Accepted |
+| * | 15-05-2026 | In-Progress |
+|   | 24-05-2026 | Implemented |
+```
+
+**Sections**: follow the same structure as ADR-170 — Status, Context, Decision, Scope, Out of Scope, Consequences (Positive/Negative/Neutral), Alternatives Considered, Software Versions, References.
 
 ## project.yml
 
