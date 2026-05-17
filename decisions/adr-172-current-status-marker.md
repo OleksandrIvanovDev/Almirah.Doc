@@ -7,7 +7,8 @@ title: "ADR-172: Current Status Marker in Decision Record Status Table"
 |  | Date | Status |
 |:---:|---|---|
 |   | 17-05-2026 | Proposed |
-| * | 17-05-2026 | Accepted |
+|   | 17-05-2026 | Accepted |
+| * | 17-05-2026 | In-Progress |
 
 # Context
 
@@ -48,9 +49,9 @@ A new "Status" column shall be added to the Decision Records Overview page betwe
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Requirements | Not-Started |  |  | New SRS items for current-status extraction on the Decision class, asterisk-to-triangle substitution during HTML rendering, and the new Status column on the Decision Records Overview page |
-| Code | Not-Started |  |  | Add `current_status` attribute on Decision; parser locates the Status section and reads the "*"-marked row; renderer substitutes "*" with "▶" in the Status table's marker column for Decision Records; DecisionsOverview adds a Status column between Type and Title |
-| Tests | Not-Started |  |  | Unit tests for `current_status` extraction (including zero / multiple markers); end-to-end tests for the rendered triangle character in the Status table and for the Status column value in the Decision Records Overview page |
+| Requirements | In-Progress | 17-05-2026 |  | New SRS items for current-status extraction on the Decision class, asterisk-to-triangle substitution during HTML rendering, and the new Status column on the Decision Records Overview page |
+| Code | In-Progress | 17-05-2026 |  | Add `current_status` attribute on Decision; parser locates the Status section and reads the "*"-marked row; renderer substitutes "*" with "▶" in the Status table's marker column for Decision Records; DecisionsOverview adds a Status column between Type and Title |
+| Tests | In-Progress | 17-05-2026 |  | Unit tests for `current_status` extraction (including zero / multiple markers); end-to-end tests for the rendered triangle character in the Status table and for the Status column value in the Decision Records Overview page |
 
 # Out of Scope
 
