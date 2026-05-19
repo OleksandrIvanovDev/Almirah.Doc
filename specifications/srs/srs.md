@@ -235,6 +235,20 @@ Table example:
 
 >Example: the source row "| * | 17-05-2026 | Accepted |" renders with "▶" in the first column cell and a highlighted row background.
 
+[SRS-052] The software shall recognise the "Affected Documents" section in Decision Records that indicates the list of Controlled Items with their text updated or created in scope of the Decision Record.
+
+[SRS-053] The software shall recognise the "Affected Documents" section as a single markdown table with the following columns in order: "#", "Proposed Text", and "Req-ID".
+
+[SRS-054] The software shall accept the External Controlled Item ID in the "Req-ID" column of the "Affected Documents" table in the form ">[BBB-NNN]", using the same syntax as test step references in Test Protocols.
+
+>Example: a row "| 1 | The software shall ... | >[SRS-052] |" links the Decision Record to the Controlled Item [SRS-052].
+
+[SRS-055] When a Decision Record contains an "Affected Documents" section, the software shall establish a link from each row of the section to the referenced Controlled Item in the target Specification document.
+
+[SRS-056] The software shall report a broken reference if the "Req-ID" column in an "Affected Documents" table refers to a Controlled Item ID that does not exist, naming the owning Decision Record in the report.
+
+[SRS-057] The software shall render the "Req-ID" cell in the "Affected Documents" table of a Decision Record as a clickable link to the referenced Controlled Item in the Specification document.
+
 ## User Interface
 
 ### Up-links
@@ -269,6 +283,17 @@ Table example:
 1. When User clicks on the number of coverage link, the number is replaced with the list of clickable coverage links;
 
 [SRS-036] If User clicks on the coverage link, the software shall navigate to a particular test case and test step this item is verified by.
+
+### Decision Record Links
+
+[SRS-058] For each Controlled Item software shall show a Decision Record ID the Item is affected by in form of clickable link (decision record link).
+
+[SRS-059] If there is more than one decision record link in the Controlled Item, the software shall show them in two steps:
+
+1. Initially the software show the number of decision record links (clickable);
+1. When User clicks on the number of decision record link, the number is replaced with the list of clickable decision record links;
+
+[SRS-060] If User clicks on the decision record link, the software shall navigate to the Decision Record this item is affected by.
 
 ### Decision Records
 
