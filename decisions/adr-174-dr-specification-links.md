@@ -6,10 +6,10 @@ title: "ADR-174: Links Between Decision Records and Specifications"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 19-05-2026 | Proposed |
+|   | 19-05-2026 | Proposed |
 |   | 19-05-2026 | Accepted |
 |   | 19-05-2026 | In-Progress |
-|   | 19-05-2026 | Implemented |
+| * | 19-05-2026 | Implemented |
 
 # Context
 
@@ -42,17 +42,15 @@ The section is optional. A decision record with no specification impact (purely 
 
 ## Reader-side: new "DR" column on controlled-paragraph tables
 
-In the rendered HTML of every specification, the controlled-paragraph table gains one additional column after the existing "COV" column, placed at the right edge of the table:
-
-| # |   | UL | DL | COV | DR |
+In the rendered HTML of every specification, the controlled-paragraph table gains one additional column after the existing "COV" column, placed at the right edge of the table: "| # |   | UL | DL | COV | DR |"
 
 - Header text: `DR`.
-- Tooltip (`title` attribute on the `<th>`): `Decision Record`.
+- Tooltip ("title" attribute on the header): `Decision Record`.
 - Cell content: zero, one, or many clickable links to decision records that list this controlled paragraph in their "Affected Documents" table. Each link's visible text is the decision-record ID (e.g., `ADR-174`, `ISSUE-171`, `ENH-173`); the `href` points to the rendered decision-record page.
 - When the cell has more than one link, the same collapse-to-count widget used by the UL and DL columns is reused (a digit that expands the full list on click). When the cell has zero links, the cell is empty.
-- Visual placement: the column lives only on `<table class="controlled">` instances rendered for Specifications. It is not added to Protocols, the Decision Records Overview, the Specifications Index, or any traceability matrix.
+- Visual placement: the column lives only on table class="controlled" instances rendered for Specifications. It is not added to Protocols, the Decision Records Overview, the Specifications Index, or any traceability matrix.
 
-## Linking model (Almirah Ruby gem)
+## Linking model
 
 The link is computed during the existing Parse → Link phase of the pipeline.
 
@@ -60,7 +58,7 @@ The link is computed during the existing Parse → Link phase of the pipeline.
 2. **Link**: extend the linker so that for each `(_, req_id)` pair, the target ControlledParagraph in the referenced specification gets the owning Decision appended to a new `decision_record_links` collection (analogous to the existing `coverage_links` used to populate the COV column).
 3. **Check**: a Req-ID that does not resolve to an existing controlled-paragraph ID is reported as a broken reference, using the same broken-reference reporting that already covers uplinks and coverage links. The owning Decision Record is named in the error so the author can fix it at the source.
 4. **Render** — Decision Record HTML: the "Affected Documents" section renders as a normal Markdown table, except the Req-ID cell is rendered as a cross-document hyperlink to the controlled paragraph (same href style as a UL cell).
-5. **Render** — Specification HTML: the controlled-paragraph table emits the new `<th title="Decision Record">DR</th>` after the COV `<th>`, and a `<td class="item_id">` per row containing the resolved decision-record links (or empty). Specifications whose paragraphs have no decision-record links still get the new column — the column header is always present on Specification documents so the table shape is uniform across the project.
+5. **Render** — Specification HTML: the controlled-paragraph table emits the new "DR" column (title="Decision Record") after the COV column, and a class="item_id" per row containing the resolved decision-record links (or empty). Specifications whose paragraphs have no decision-record links still get the new column — the column header is always present on Specification documents so the table shape is uniform across the project.
 
 ## Out-of-scope clarifications carried over from ADR-170
 
@@ -115,6 +113,20 @@ ADR-170 excluded links between decision records and both specifications and prot
 | Latest Released Version | 0.3.1 |
 | Issue Found in Version | n/a |
 | Target Release Version | 0.4.0 |
+
+# Affected Documents
+
+| # | Proposed Text | Req-ID |
+|---|---|---|
+| 1 | The software shall recognise the "Affected Documents" section in Decision Records that indicates the list of Controlled Items with their text updated or created in scope of the Decision Record. | >[SRS-052] |
+| 2 | The software shall recognise the "Affected Documents" section as a single markdown table with the following columns in order: "#", "Proposed Text", and "Req-ID". | >[SRS-053] |
+| 3 | The software shall accept the External Controlled Item ID in the "Req-ID" column of the "Affected Documents" table in the form ">[BBB-NNN]", using the same syntax as test step references in Test Protocols. | >[SRS-054] |
+| 4 | When a Decision Record contains an "Affected Documents" section, the software shall establish a link from each row of the section to the referenced Controlled Item in the target Specification document. | >[SRS-055] |
+| 5 | The software shall report a broken reference if the "Req-ID" column in an "Affected Documents" table refers to a Controlled Item ID that does not exist, naming the owning Decision Record in the report. | >[SRS-056] |
+| 6 | The software shall render the "Req-ID" cell in the "Affected Documents" table of a Decision Record as a clickable link to the referenced Controlled Item in the Specification document. | >[SRS-057] |
+| 7 | For each Controlled Item software shall show a Decision Record ID the Item is affected by in form of clickable link (decision record link). | >[SRS-058] |
+| 8 | If there is more than one decision record link in the Controlled Item, the software shall show them in two steps. | >[SRS-059] |
+| 9 | If User clicks on the decision record link, the software shall navigate to the Decision Record this item is affected by. | >[SRS-060] |
 
 # References
 
