@@ -249,6 +249,16 @@ Table example:
 
 [SRS-057] The software shall render the "Req-ID" cell in the "Affected Documents" table of a Decision Record as a clickable link to the referenced Controlled Item in the Specification document.
 
+[SRS-061] The software shall expose a Start Date attribute on each Decision Record, computed as the earliest calendar date found in the Date column of the Decision Record's Status table and in the Start Date column of the Decision Record's Scope table.
+
+[SRS-062] The software shall recognise dates in the form "DD-MM-YYYY" when computing the Start Date attribute of a Decision Record. Cells whose contents do not match this form shall be skipped without raising an error.
+
+[SRS-063] The software shall identify the Date column of a Decision Record's Status table and the Start Date column of a Decision Record's Scope table by their header text, case-sensitive, and not by column position.
+
+[SRS-064] When neither the Status table's Date column nor the Scope table's Start Date column of a Decision Record contains a date matching the recognised form, the Start Date attribute of that Decision Record shall be undefined.
+
+[SRS-065] The Decision Records Overview page shall render the Start Date attribute of each Decision Record in the existing Start Date column, formatted as "DD-MM-YYYY". The cell shall be empty when the Start Date attribute is undefined.
+
 ## User Interface
 
 ### Up-links
