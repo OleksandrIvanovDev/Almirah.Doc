@@ -77,6 +77,8 @@ Decision records capture decisions made about the project — architectural choi
 
 **Filename convention**: `<letters>-<digits>-<descriptive-slug>.md`. The ID is derived from the `<letters>-<digits>` prefix (e.g., `adr-170-introduce-decision-records.md` → ID `adr-170`). Type is the uppercased letter prefix (`ADR`, `ISSUE`, `ENH`); sequence number is the digits.
 
+**Slug length**: keep the descriptive slug (the part after the ID) to **three words at most**. For example, prefer `adr-181-overview-release-version.md` over `adr-181-overview-target-release-version.md`. The full meaning belongs in the frontmatter `title:` field; the filename is just a stable handle.
+
 **Frontmatter**: every decision record should carry a YAML `title:` field, since this is what the rendered HTML and the overview page display. Without it, the title falls back to `<id>.md`.
 
 ```yaml
