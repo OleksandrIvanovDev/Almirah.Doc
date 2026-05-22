@@ -6,10 +6,10 @@ title: "ADR-181: Target Release Version Column on the Decision Records Overview"
 
 |  | Date | Status |
 |:---:|---|---|
-|  | 22-05-2026 | Proposed |
-| *  | 22-05-2026 | Accepted |
-|   |  | In-Progress |
-|   |  | Implemented |
+|   | 22-05-2026 | Proposed |
+|   | 22-05-2026 | Accepted |
+|   | 22-05-2026 | In-Progress |
+| * | 22-05-2026 | Implemented |
 
 # Context
 
@@ -19,11 +19,11 @@ A reader scanning the overview cannot tell from the table which release a given 
 
 # Decision
 
-Add a new `Version` column to the Decision Records Overview page, positioned between the existing `Target Date` and `Owner` columns. Populate each row with the decision record's Target Release Version, extracted from the record's `Software Versions` section during parsing and exposed as a `target_release_version` attribute on the Decision instance.
+Add a new `Release` column to the Decision Records Overview page, positioned between the existing `Target Date` and `Owner` columns. Populate each row with the decision record's Target Release Version, extracted from the record's `Software Versions` section during parsing and exposed as a `target_release_version` attribute on the Decision instance.
 
 ## Header rendering
 
-The column header renders as `<th title="Target Release Version">Version</th>`. The visible label is the short word `Version` so the overview table stays compact; hovering reveals the full meaning `Target Release Version` via the standard HTML `title` tooltip. This is the first overview header to carry a `title` attribute; future short-label columns may follow the same pattern.
+The column header renders as `<th title="Target Release Version">Release</th>`. The visible label is the short word `Release` so the overview table stays compact; hovering reveals the full meaning `Target Release Version` via the standard HTML `title` tooltip. This is the first overview header to carry a `title` attribute; future short-label columns may follow the same pattern.
 
 ## Extraction rule
 
@@ -47,16 +47,16 @@ For each decision row, the new column cell carries `target_release_version` as p
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Requirements | Proposed | 22-05-2026 |  | New SRS items in `srs.md` covering: the `target_release_version` attribute on a Decision Record; the extraction rule (Software Versions section, table lookup by column header, row lookup by exact match on `Target Release Version`); the empty-cell fallback when no value is found; rendering of the attribute in a new `Version` column on the Decision Records Overview; the `title="Target Release Version"` attribute on the column header |
-| Code | Proposed | 22-05-2026 |  | Add a `target_release_version` accessor on `Decision`; add an `extract_target_release_version` method that reuses `find_section_table` to locate the `Software Versions` table and reads the `Software Version ID` cell of the row whose `Software Version Category` is `Target Release Version`; wire the extractor into `DocFabric#create_decision` alongside `extract_current_status` and `extract_start_date`; insert the new `Version` column between `Target Date` and `Owner` in `decisions_overview.rb`, emitting the `<th>` with a `title` attribute and the `<td>` with the attribute value or empty |
-| Tests | Proposed | 22-05-2026 |  | End-to-end tests under `spec/e2e/decisions_spec.rb`: extraction reads the `Target Release Version` row from the `Software Versions` table; extraction works regardless of the column order in the Software Versions table (lookup by header text); extraction returns nil when the section is missing; extraction returns nil when the row is missing; extraction returns nil when the cell is empty; the rendered `Version` column carries the formatted value and is empty when undefined; the column header includes the `title="Target Release Version"` attribute; the column is placed between `Target Date` and `Owner` |
+| Requirements | Done | 22-05-2026 | 22-05-2026 | New SRS items in `srs.md` covering: the `target_release_version` attribute on a Decision Record; the extraction rule (Software Versions section, table lookup by column header, row lookup by exact match on `Target Release Version`); the empty-cell fallback when no value is found; rendering of the attribute in a new `Release` column on the Decision Records Overview; the `title="Target Release Version"` attribute on the column header |
+| Code | Done | 22-05-2026 | 22-05-2026 | Add a `target_release_version` accessor on `Decision`; add an `extract_target_release_version` method that reuses `find_section_table` to locate the `Software Versions` table and reads the `Software Version ID` cell of the row whose `Software Version Category` is `Target Release Version`; wire the extractor into `DocFabric#create_decision` alongside `extract_current_status` and `extract_start_date`; insert the new `Release` column between `Target Date` and `Owner` in `decisions_overview.rb`, emitting the `<th>` with a `title` attribute and the `<td>` with the attribute value or empty |
+| Tests | Done | 22-05-2026 | 22-05-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: extraction reads the `Target Release Version` row from the `Software Versions` table; extraction works regardless of the column order in the Software Versions table (lookup by header text); extraction returns nil when the section is missing; extraction returns nil when the row is missing; extraction returns nil when the cell is empty; the rendered `Release` column carries the formatted value and is empty when undefined; the column header includes the `title="Target Release Version"` attribute; the column is placed between `Target Date` and `Owner` |
 
 # Out of Scope
 
-- Sorting the Decision Records Overview by `Version`. Row order continues to follow [[adr-170-introduce-decision-records]] / [[enh-175-overview-sort-id]] (sequence number then ID).
+- Sorting the Decision Records Overview by `Release`. Row order continues to follow [[adr-170-introduce-decision-records]] / [[enh-175-overview-sort-id]] (sequence number then ID).
 - Parsing or validating the version string. Values like `n/a`, `TBD`, `0.4.0-beta`, or anything else the author writes in the `Software Version ID` cell are passed through verbatim. SemVer-aware comparison, sorting, or grouping is left to a future ADR.
 - The other rows of the `Software Versions` table (`Latest Released Version`, `Issue Found in Version`, etc.). They are not surfaced on the overview by this ADR.
-- A configurable column label or tooltip. The visible text is fixed at `Version` and the tooltip at `Target Release Version`; theming or localisation is out of scope.
+- A configurable column label or tooltip. The visible text is fixed at `Release` and the tooltip at `Target Release Version`; theming or localisation is out of scope.
 - Showing the same value on the rendered Decision Record page itself. The record already contains the `Software Versions` section in its body; this ADR only populates the overview's new column.
 - Visualising version distribution in any chart on the overview page (the chart grid reserved by [[adr-177-overview-pie-chart]] remains unrelated to this change).
 
@@ -83,7 +83,7 @@ For each decision row, the new column cell carries `target_release_version` as p
 
 - **Author the target release version as a frontmatter field (e.g., `target_release_version: 0.4.0`).** Rejected: duplicates information already present in the `Software Versions` table and creates a second place that can drift. Decision records already carry the Software Versions section by convention; deriving from it keeps maintenance cost zero.
 - **Expose all three rows of the Software Versions table as separate columns (`Latest Released`, `Issue Found In`, `Target Release`).** Rejected as overreach for this ADR. The overview is meant to stay compact; adding three version columns would crowd out the existing ones. A future ADR can broaden the surface area if needed.
-- **Use a long header text such as `Target Release Version` directly on the column.** Rejected: the overview already has seven columns and adding an eighth with a long header would force wrapping or horizontal scrolling. The short `Version` label with a `title` tooltip preserves the meaning without taking up width.
+- **Use a long header text such as `Target Release Version` directly on the column.** Rejected: the overview already has seven columns and adding an eighth with a long header would force wrapping or horizontal scrolling. The short `Release` label with a `title` tooltip preserves the meaning without taking up width.
 - **Look the row up by position (first row, or row index 2 of the body).** Rejected for the same reason ADR-178 rejected position-based column lookup: a future addition of, say, an `Investigation Started Version` row would silently change which row is read. Header-text and row-label lookup is robust to additions.
 - **Parse the version string as SemVer to enable sorting and validation.** Rejected: out of scope here. The current authoring convention allows free-form strings (`n/a`, `TBD`); imposing SemVer would force a migration of existing records. SemVer support can be added in a separate enhancement.
 
