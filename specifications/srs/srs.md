@@ -259,6 +259,16 @@ Table example:
 
 [SRS-065] The Decision Records Overview page shall render the Start Date attribute of each Decision Record in the existing Start Date column, formatted as "DD-MM-YYYY". The cell shall be empty when the Start Date attribute is undefined.
 
+[SRS-066] The software shall expose a Target Release Version attribute on each Decision Record, computed by locating the Decision Record's Software Versions section, finding the row of its table whose Software Version Category cell equals "Target Release Version", and taking the value of that row's Software Version ID cell.
+
+[SRS-067] The software shall identify the Software Version Category column and the Software Version ID column of a Decision Record's Software Versions table by their header text, case-sensitive, and not by column position.
+
+[SRS-068] The software shall identify the Target Release Version row of a Decision Record's Software Versions table by an exact, case-sensitive match against its Software Version Category cell after stripping surrounding whitespace.
+
+[SRS-069] When a Decision Record's Software Versions section, the table within it, the Software Version Category or Software Version ID column, the Target Release Version row, or the cell value is missing or empty, the Target Release Version attribute of that Decision Record shall be undefined.
+
+[SRS-070] The Decision Records Overview page shall include a "Release" column positioned between the "Target Date" and "Owner" columns, displaying each decision record's Target Release Version attribute as plain text. The column header shall carry an HTML title attribute with the value "Target Release Version". The cell shall be empty when the attribute is undefined.
+
 ## User Interface
 
 ### Up-links
