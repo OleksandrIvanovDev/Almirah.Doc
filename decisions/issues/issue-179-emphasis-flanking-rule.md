@@ -19,7 +19,7 @@ While reviewing the rendered HTML of [[issue-171-dash-unordered-list]], it was o
 
 The renderer turned the first `"*"` opening quote-plus-asterisk into a literal `"` followed by an italic opener; everything up to the second `"*"` was then wrapped in `<i>…</i>`, and the second `"*"` was consumed as the italic closer. Visually, the first asterisk disappeared and the body up to the second `"*"` was italicised.
 
-The root cause is in [text_line.rb:73]. `TextLineParser#tokenize` emitted an `ItalicToken` for every `*` character without any awareness of surrounding context. `TextLineBuilder#restore` then greedily paired the two `ItalicToken`s, producing the spurious italic span. The same defect applies to `**` and `***`: any quoted bold or bold-italic marker `"**"` / `"***"` would behave the same way.
+The root cause is in [text_line.rb:73](./../../../Almirah.Code/lib/almirah/doc_items/text_line.rb#L73). `TextLineParser#tokenize` emitted an `ItalicToken` for every `*` character without any awareness of surrounding context. `TextLineBuilder#restore` then greedily paired the two `ItalicToken`s, producing the spurious italic span. The same defect applies to `**` and `***`: any quoted bold or bold-italic marker `"**"` / `"***"` would behave the same way.
 
 Markdown specifications address this with delimiter "flanking" rules: an emphasis run can only open or close emphasis when its immediate neighbours qualify. The Almirah tokenizer had no such check.
 

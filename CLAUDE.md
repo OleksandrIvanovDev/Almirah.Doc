@@ -61,6 +61,8 @@ project.yml           # Declares specification inputs and linked repositories
 
 **Document frontmatter** uses either YAML (`---`) or Pandoc-style (`%`) headers. YAML frontmatter supports `title`, `revision`, `date`, and `author` fields.
 
+**Inline code spans** — only **single-backtick** pairs are recognised. Do **not** use double-backtick (or any multi-backtick) syntax to embed a literal backtick character inside a code span (the CommonMark form). Almirah's parser pairs every backtick with the next one and would scramble the rest of the line. To refer to the backtick character in prose, write the word "backtick" instead, or describe the syntax (e.g., "three consecutive backticks" for a fenced code block).
+
 ## Test Protocols
 
 Test protocols (`tests/protocols/tp-NNN/tp-NNN.md`) are templates containing test steps with columns: Test Step, Description, Expected Output, Actual Output, Result, Req-ID.
