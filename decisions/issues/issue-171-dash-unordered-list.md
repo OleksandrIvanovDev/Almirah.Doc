@@ -4,11 +4,11 @@ title: "ISSUE-171: Dash as Marker for Unordered List"
 
 # Status
 
-| Date | Status |
-|---|---|
-| 17-05-2026 | Proposed |
-| 17-05-2026 | Accepted |
-| 17-05-2026 | Implemented |
+|  | Date | Status |
+|:---:|---|---|
+|   | 17-05-2026 | Proposed |
+|   |17-05-2026 | Accepted |
+| * |17-05-2026 | Implemented |
 
 # Context
 
