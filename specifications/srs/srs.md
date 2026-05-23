@@ -269,6 +269,18 @@ Table example:
 
 [SRS-070] The Decision Records Overview page shall include a "Release" column positioned between the "Target Date" and "Owner" columns, displaying each decision record's Target Release Version attribute as plain text. The column header shall carry an HTML title attribute with the value "Target Release Version". The cell shall be empty when the attribute is undefined.
 
+[SRS-071] The Decision Records Overview page shall include a stacked bar chart visualising decision-record counts grouped by status across a trailing six-week window, placed in the second chart cell of the Decision Records Overview charts grid.
+
+[SRS-072] The velocity chart shall display six bars, one per Friday, corresponding to the six most recent Fridays on or before the date the page is rendered, ordered left-to-right oldest-to-newest, with each X-axis label formatted as "DD-MM-YYYY".
+
+[SRS-073] The status of a Decision Record as of a given calendar date shall be computed as the Status table row whose parseable date is the latest one that is on or before that calendar date; when multiple rows share that latest date, the row appearing later in the table shall be selected.
+
+[SRS-074] When the earliest parseable Status table date of a Decision Record is later than the calendar date of a velocity chart bar, that Decision Record shall not contribute to that bar.
+
+[SRS-075] Decision Records that have no Status section, no table in their Status section, or no Status table row whose Date cell is parseable as "DD-MM-YYYY" shall not contribute to any bar of the velocity chart.
+
+[SRS-076] The set of stack segments in the velocity chart shall be the union of every distinct status text encountered across all Decision Records and all six bars, with status text compared by exact case-sensitive equality after stripping surrounding whitespace.
+
 ## User Interface
 
 ### Up-links
