@@ -10,7 +10,9 @@ title: "ADR-174: Links Between Decision Records and Specifications"
 |   | 19-05-2026 | Accepted |
 |   | 19-05-2026 | In-Progress |
 |   | 19-05-2026 | Implemented |
-| * | 23-05-2026 | Reopened |
+|   | 23-05-2026 | Reopened |
+|   | 23-05-2026 | In-Progress |
+| * | 23-05-2026 | Implemented |
 
 # Context
 
