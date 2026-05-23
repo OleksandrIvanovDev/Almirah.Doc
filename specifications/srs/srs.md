@@ -318,7 +318,7 @@ Table example:
 
 ### Decision Record Links
 
-[SRS-058] For each Controlled Item software shall show a Decision Record ID the Item is affected by in form of clickable link (decision record link).
+[SRS-058] For each Controlled Item software shall show a Decision Record ID the Item is affected by in form of clickable link in uppercase (decision record link).
 
 [SRS-059] If there is more than one decision record link in the Controlled Item, the software shall show them in two steps:
 
