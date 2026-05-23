@@ -9,7 +9,8 @@ title: "ADR-174: Links Between Decision Records and Specifications"
 |   | 19-05-2026 | Proposed |
 |   | 19-05-2026 | Accepted |
 |   | 19-05-2026 | In-Progress |
-| * | 19-05-2026 | Implemented |
+|   | 19-05-2026 | Implemented |
+| * | 23-05-2026 | Reopened |
 
 # Context
 
@@ -124,7 +125,7 @@ ADR-170 excluded links between decision records and both specifications and prot
 | 4 | When a Decision Record contains an "Affected Documents" section, the software shall establish a link from each row of the section to the referenced Controlled Item in the target Specification document. | >[SRS-055] |
 | 5 | The software shall report a broken reference if the "Req-ID" column in an "Affected Documents" table refers to a Controlled Item ID that does not exist, naming the owning Decision Record in the report. | >[SRS-056] |
 | 6 | The software shall render the "Req-ID" cell in the "Affected Documents" table of a Decision Record as a clickable link to the referenced Controlled Item in the Specification document. | >[SRS-057] |
-| 7 | For each Controlled Item software shall show a Decision Record ID the Item is affected by in form of clickable link (decision record link). | >[SRS-058] |
+| 7 | For each Controlled Item software shall show a Decision Record ID the Item is affected by in form of clickable link in uppercase (decision record link). | >[SRS-058] |
 | 8 | If there is more than one decision record link in the Controlled Item, the software shall show them in two steps. | >[SRS-059] |
 | 9 | If User clicks on the decision record link, the software shall navigate to the Decision Record this item is affected by. | >[SRS-060] |
 
