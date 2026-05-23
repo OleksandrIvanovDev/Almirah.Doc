@@ -72,3 +72,10 @@ No alternatives were considered
 
 - SRS-039 through SRS-048 in [srs.md](./../specifications/srs/srs.md) — software requirements covering decision records
 - [ISSUE-171](./issues/issue-171-dash-unordered-list.md) — dash-marker support, surfaced while dogfooding this ADR
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47) 
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47)

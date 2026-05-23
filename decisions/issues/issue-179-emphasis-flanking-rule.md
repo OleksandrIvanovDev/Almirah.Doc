@@ -81,3 +81,9 @@ The "tightened" part is the removal of the "or preceded by punctuation" branch f
 
 - [ISSUE-171](./issue-171-dash-unordered-list.md) — the document whose rendered HTML surfaced the defect
 - SRS items related to text-line formatting in [srs.md](./../../specifications/srs/srs.md)
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47) 
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47)

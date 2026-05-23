@@ -99,3 +99,9 @@ Escaping is performed at the rendering layer, not the parser, to keep concerns s
 
 - [ISSUE-179](./issue-179-emphasis-flanking-rule.md) — the document whose rendered HTML surfaced the defect
 - [ADR-170](./../adr-170-introduce-decision-records.md) — the decision-record convention that this ISSUE follows
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47) 
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47)

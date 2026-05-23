@@ -76,3 +76,8 @@ Not applicable. Just a simple enhancement.
 # References
 
 - [ADR-170](./../adr-170-introduce-decision-records.md) — introduces decision records, the shared sequence number across types, and the overview page
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47) 

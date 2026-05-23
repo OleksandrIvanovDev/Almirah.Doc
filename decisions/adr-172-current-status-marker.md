@@ -8,7 +8,8 @@ title: "ADR-172: Current Status Marker in Decision Record Status Table"
 |:---:|---|---|
 |   | 17-05-2026 | Proposed |
 |   | 17-05-2026 | Accepted |
-| * | 17-05-2026 | In-Progress |
+|   | 17-05-2026 | In-Progress |
+| * | 23-05-2026 | Implemented |
 
 # Context
 
@@ -55,6 +56,8 @@ A new "Status" column shall be added to the Decision Records Overview page betwe
 | Code | In-Progress | 17-05-2026 |  | Add `current_status` attribute on Decision; parser locates the Status section and reads the "*"-marked row; renderer substitutes "*" with "▶" and tags the marked row with a CSS class for background highlighting; DecisionsOverview adds a Status column between Type and Title |
 | Tests | In-Progress | 17-05-2026 |  | Unit tests for `current_status` extraction (including zero / multiple markers); end-to-end tests for the rendered triangle, the row highlight, and the Status column value in the Decision Records Overview page |
 
+Final status update of existing decision records will be made in scope of this ADR as well to have a single commit for all records.
+
 # Out of Scope
 
 - Automatic detection of the current status by comparing today's date against row dates. Authors mark the row manually.
@@ -97,3 +100,10 @@ A new "Status" column shall be added to the Decision Records Overview page betwe
 
 - [ADR-170](./adr-170-introduce-decision-records.md) — introduces decision records and the Status table
 - [ISSUE-171](./issues/issue-171-dash-unordered-list.md) — earlier issue surfaced while dogfooding decision records
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47) 
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47)

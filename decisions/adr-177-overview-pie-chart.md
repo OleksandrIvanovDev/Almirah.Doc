@@ -6,10 +6,10 @@ title: "ADR-177: Pie Chart of Decision Record Types on Overview Page"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 20-05-2026 | Proposed |
+|   | 20-05-2026 | Proposed |
 |   |  | Accepted |
 |   |  | In-Progress |
-|   |  | Implemented |
+| * |  | Implemented |
 
 # Context
 
@@ -32,7 +32,7 @@ Architectural choices:
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Code | To Do | 20-05-2026 |  | Implementation |
+| Code | Implemented | 20-05-2026 | 23-05-2026 | Implementation |
 
 No new requirements documents, test protocols, or end-to-end tests are introduced — this is a presentation change and is verified by visual inspection of the rendered overview page.
 
@@ -82,3 +82,8 @@ No new requirements documents, test protocols, or end-to-end tests are introduce
 - [ENH-173](./enhancements/enh-173-decisions-table-view.md) — established the `decisions_overview` CSS class on the table and the precedent of reserving empty visual space for future content
 - [ENH-175](./enhancements/enh-175-overview-sort-id.md) — sort order of the overview table rows
 - Chart.js — `https://www.chartjs.org/`
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47) 

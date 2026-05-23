@@ -165,3 +165,10 @@ The result: pie slices and stacked-bar segments use exactly the same colours at 
 - [ADR-178](./adr-178-overview-start-date.md) — establishes the `find_section_table` helper and `DD-MM-YYYY` date parsing reused here
 - [ADR-181](./adr-181-overview-release-version.md) — sibling overview-data extraction; precedent for adding new attributes derived from existing tables
 - SRS-039 through SRS-070 in [srs.md](./../specifications/srs/srs.md) — current requirements covering decision records and the overview page; new SRS items added under this ADR extend that range
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47) 
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47)

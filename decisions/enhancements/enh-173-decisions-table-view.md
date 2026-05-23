@@ -82,3 +82,8 @@ The changes are considered as consmetic, so there are neither requirements nor e
 
 - [ADR-170](./../adr-170-introduce-decision-records.md) — introduces decision records and the overview page
 - [ADR-172](./../adr-172-current-status-marker.md) — introduces the `Status` column and current-status marker in the overview
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47)

@@ -73,3 +73,8 @@ Cosmetic change — no requirements or end-to-end tests added.
 
 - [ENH-173](./enh-173-decisions-table-view.md) — introduced the bold styling being rolled back here
 - [ENH-175](./enh-175-overview-sort-id.md) — adjacent overview-page enhancement
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/28)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/47) 
