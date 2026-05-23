@@ -4,12 +4,12 @@ title: "ADR-170: Introduce Decision Records"
 
 # Status
 
-| Date | Status |
-|---|---|
-| 14-05-2026 | Proposed |
-| 14-05-2026 | Accepted |
-| 15-05-2026 | In-Progress |
-| 17-05-2026 | Implemented |
+|  | Date | Status |
+|:---:|---|---|
+|   | 14-05-2026 | Proposed |
+|   | 14-05-2026 | Accepted |
+|   | 15-05-2026 | In-Progress |
+| * | 17-05-2026 | Implemented |
 
 # Context
 
