@@ -9,7 +9,8 @@ title: "ISSUE-183: Orama Search Broken on Index Page"
 |   | 26-05-2026 | Proposed |
 |   | 27-05-2026 | Accepted |
 |   | 27-05-2026 | In-Progress |
-| * | 27-05-2026 | Implemented |
+|   | 27-05-2026 | Implemented |
+| * | 28-05-2026 | Reopened |
 
 # Context
 
@@ -63,7 +64,8 @@ After the import is fixed, the `create({ schema })`, `insert(db, ...)`, and `sea
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
 | Code | Implemented | 26-05-2026 | 27-05-2026 | Update the import URL in `orama_search.js` to a pinned `@orama/orama@3.1.18` and the `dist/browser/index.js` path; rename the title field to `doc_title` in `specifications_db.rb`, the schema, the insert payload, and the result-rendering accessor; reconcile the `create`/`insert`/`search` call shapes with the 3.x API |
-| Tests | Implemented | 26-05-2026 | 27-05-2026 | Manual verification on the rendered Index page of `Almirah.Doc`: search returns results for a known term, the dropdown opens on focus, results render with title, color, heading link, and snippet |
+| Requirements | In-Progress | 28-05-2026 |  | Author SRS-077 and SRS-078 in `srs.md` specifying the Index-page full-text search behaviour and the no-matches indication (the search feature was previously unspecified); record them in this issue's Affected Documents section |
+| Tests | In-Progress | 26-05-2026 |  | Manual verification on the rendered Index page of `Almirah.Doc` (search returns results, dropdown opens on focus, results render with title, color, heading link, and snippet), plus an automated end-to-end browser test (`spec/e2e/orama_search_spec.rb`) that serves the build over HTTP and drives the real Index page, traced to SRS-077 and SRS-078 |
 
 # Out of Scope
 
@@ -103,6 +105,13 @@ After the import is fixed, the `create({ schema })`, `insert(db, ...)`, and `sea
 | Latest Released Version | 0.4.0 |
 | Issue Found in Version | 0.4.0 |
 | Target Release Version | 0.4.1 |
+
+# Affected Documents
+
+| # | Proposed Text | Req-ID |
+|---|---|---|
+| 1 | The software shall provide a full-text search on the Index page that, for a user-entered term, returns matching specification content showing the source document title, a link to the containing section, and a text snippet. | >[SRS-077] |
+| 2 | When no indexed content matches the entered search term, the software shall indicate that there are no matches. | >[SRS-078] |
 
 # References
 
