@@ -336,3 +336,9 @@ Table example:
 [SRS-048] The software shall provide a clickable "Decision Records" link in the top navigation bar of every rendered page, when at least one decision record exists in the project. The link shall lead to the Decision Records Overview page.
 
 [SRS-051] The Decision Records Overview page shall include a "Status" column between the "Type" and "Title" columns, displaying each decision record's current status. The cell shall be empty when the current status is undefined.
+
+### Search
+
+[SRS-077] The software shall provide a full-text search on the Index page that, for a user-entered term, returns matching specification content showing the source document title, a link to the containing section, and a text snippet.
+
+[SRS-078] When no indexed content matches the entered search term, the software shall indicate that there are no matches.
