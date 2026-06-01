@@ -281,6 +281,16 @@ Table example:
 
 [SRS-076] The set of stack segments in the velocity chart shall be the union of every distinct status text encountered across all Decision Records and all six bars, with status text compared by exact case-sensitive equality after stripping surrounding whitespace.
 
+[SRS-083] The Decision Records Overview page shall include a horizontal bar chart visualising the number of Decision Records grouped by their current status, placed in the third chart cell of the Decision Records Overview charts grid.
+
+[SRS-084] The current-status distribution chart shall count each Decision Record under its current status — the status value of the row marked with "*" in the record's Status table — with status text compared by exact case-sensitive equality after stripping surrounding whitespace.
+
+[SRS-085] The current-status distribution chart shall group every Decision Record whose current status is undefined under a single "Undefined" category, so that records with a missing or ambiguous current-status marker are surfaced for correction.
+
+[SRS-086] The current-status distribution chart shall use a linear value scale and shall display each category's record count within its bar label, so that categories with small counts remain legible alongside categories with large counts.
+
+[SRS-087] The categories of the current-status distribution chart shall be ordered by their first appearance in Decision Record parse order, with the "Undefined" category, when present, placed last.
+
 ## Console Output
 
 [SRS-079] While processing a project, the software shall emit a concise progress summary to standard output consisting of one line per processing phase, each line pairing a phase label with the number of items processed in that phase.
