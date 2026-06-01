@@ -281,6 +281,16 @@ Table example:
 
 [SRS-076] The set of stack segments in the velocity chart shall be the union of every distinct status text encountered across all Decision Records and all six bars, with status text compared by exact case-sensitive equality after stripping surrounding whitespace.
 
+## Console Output
+
+[SRS-079] While processing a project, the software shall emit a concise progress summary to standard output consisting of one line per processing phase, each line pairing a phase label with the number of items processed in that phase.
+
+[SRS-080] The software shall print the path of the generated index page as the final line of the progress summary.
+
+[SRS-081] The software shall apply ANSI colour to its progress output only when standard output is an interactive terminal, and shall emit uncoloured text otherwise.
+
+[SRS-082] When composing the generated index path for the progress summary, the software shall resolve the project directory argument to a normalised path free of duplicated or missing path separators, regardless of the form of the argument. The path shall be shown relative to the current directory as "./build/index.html" when the project directory resolves to the current working directory, and as an absolute path otherwise.
+
 ## User Interface
 
 ### Up-links

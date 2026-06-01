@@ -10,13 +10,16 @@ The companion code repository is at `../Almirah.Code/lib` (referenced in `projec
 
 ## Building
 
-Almirah processes specification documents using the Ruby `almirah` gem and outputs HTML:
+Almirah processes specification documents using the Ruby `almirah` gem and outputs HTML. Run it **from inside this repo** so the sibling code repos referenced by `project.yml` resolve:
 
 ```bash
-almirah please <absolute-path-to-project-folder>
+cd Almirah.Doc
+almirah please .
 ```
 
 This generates a `build/` folder containing rendered HTML versions of all specifications.
+
+The `repositories:` paths in [project.yml](project.yml) (`../Almirah.Code/lib`, `../Almirah.Code/spec`) are relative to the current working directory, not to the project argument. Running from elsewhere (e.g. `almirah please Almirah.Doc` from the parent workspace) still renders the specs but **silently skips all source-code linking** — the `<REQ>…>[ID]</REQ>` uplinks and the implementation matrix will be missing, with no error. This is intended: the framework assumes a flat layout with the doc repo and code repos as siblings. See the workspace-root `CLAUDE.md` § "Cross-Repo Relationships".
 
 ## Repository Structure
 
