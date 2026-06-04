@@ -8,8 +8,8 @@ title: "ADR-185: Current Status Distribution Chart on the Decision Records Overv
 |:---:|---|---|
 |   | 01-06-2026 | Proposed |
 |   | 01-06-2026 | Accepted |
-| * | 01-06-2026 | In-Progress |
-|   | 01-06-2026 | Implemented |
+|   | 01-06-2026 | In-Progress |
+| * | 04-06-2026 | Implemented |
 
 # Context
 
