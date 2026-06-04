@@ -10,7 +10,8 @@ title: "ISSUE-183: Orama Search Broken on Index Page"
 |   | 27-05-2026 | Accepted |
 |   | 27-05-2026 | In-Progress |
 |   | 27-05-2026 | Implemented |
-| * | 28-05-2026 | Reopened |
+|   | 28-05-2026 | Reopened |
+| * | 04-06-2026 | Implemented |
 
 # Context
 
