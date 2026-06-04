@@ -8,8 +8,8 @@ title: "ADR-186: Native Cross-Document Links (Markdown and Wiki)"
 |:---:|---|---|
 |   | 01-06-2026 | Proposed |
 |   | 01-06-2026 | Accepted |
-| * | 04-06-2026 | In-Progress |
-|   | 04-06-2026 | Implemented |
+|   | 04-06-2026 | In-Progress |
+| * | 04-06-2026 | Implemented |
 
 # Context
 
