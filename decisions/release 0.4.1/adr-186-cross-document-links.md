@@ -6,10 +6,10 @@ title: "ADR-186: Native Cross-Document Links (Markdown and Wiki)"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 01-06-2026 | Proposed |
+|   | 01-06-2026 | Proposed |
 |   | 01-06-2026 | Accepted |
-|   | 01-06-2026 | In-Progress |
-|   | 01-06-2026 | Implemented |
+| * | 04-06-2026 | In-Progress |
+|   | 04-06-2026 | Implemented |
 
 # Context
 
@@ -79,9 +79,9 @@ Links with an explicit external scheme (`http:`, `https:`, `mailto:`, …) are l
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Requirements | To Do | 01-06-2026 | 03-06-2026 | New SRS items (SRS-088 onward) covering: native Markdown relative cross-document links rewritten to the target's generated page; preserved on-disk editor navigability; double-bracket `[[target]]` links resolved by unique id/filename independent of folder; alias `[[target\|text]]`; anchors on both forms; the relative-URL-from-current-page mechanism for all internal links; broken-reference reporting for unresolved targets; external links left unchanged |
-| Code | To Do | 01-06-2026 | 03-06-2026 | Build a project-wide document registry (id and source-path keys → output path) populated for all doc types; add a relative-URL helper (`Pathname#relative_path_from`, forward slashes, encoded spaces); pass the current document's output location into the text-line link builder; rewrite `TextLine#link` to resolve native Markdown relative links and emit correct relative HTML URLs; add a `[[…]]` token to the parser with alias and anchor support resolving via the registry; report unresolved targets as broken; rework the hardcoded `instance_of?` depth ladders in `base_document` to use the shared relative-URL helper; remove the backslash-separator and word-only-stem defects |
-| Tests | To Do | 01-06-2026 | 03-06-2026 | End-to-end tests: spec↔spec, spec↔protocol, decision↔decision, decision↔spec Markdown links each resolve to the correct generated page with a forward-slash relative URL; a decision link resolves by id regardless of folder; `[[target]]`, `[[target\|alias]]`, `[[target#anchor]]`, and `path.md#anchor` all resolve; an unresolved target is reported and rendered broken; an external `http(s)`/`mailto` link is left unchanged; source Markdown links remain valid relative paths on disk |
+| Requirements | Done | 01-06-2026 | 04-06-2026 | New SRS items (SRS-088 onward) covering: native Markdown relative cross-document links rewritten to the target's generated page; preserved on-disk editor navigability; double-bracket `[[target]]` links resolved by unique id/filename independent of folder; alias `[[target\|text]]`; anchors on both forms; the relative-URL-from-current-page mechanism for all internal links; broken-reference reporting for unresolved targets; external links left unchanged |
+| Code | Done | 01-06-2026 | 04-06-2026 | Build a project-wide document registry (id and source-path keys → output path) populated for all doc types; add a relative-URL helper (`Pathname#relative_path_from`, forward slashes, encoded spaces); pass the current document's output location into the text-line link builder; rewrite `TextLine#link` to resolve native Markdown relative links and emit correct relative HTML URLs; add a `[[…]]` token to the parser with alias and anchor support resolving via the registry; report unresolved targets as broken; rework the hardcoded `instance_of?` depth ladders in `base_document` to use the shared relative-URL helper; remove the backslash-separator and word-only-stem defects |
+| Tests | Done | 01-06-2026 | 04-06-2026 | End-to-end tests in `spec/e2e/cross_document_links_spec.rb` (12 examples): spec↔spec, spec↔protocol, decision↔decision, decision↔spec Markdown links each resolve to the correct generated page with a forward-slash relative URL; a decision link resolves by id regardless of folder; `[[target]]`, `[[target\|alias]]`, `[[target#anchor]]`, and `path.md#anchor` all resolve; an unresolved target is reported and rendered broken; an external `http(s)`/`mailto` link is left unchanged; source Markdown links remain valid relative paths on disk. Unit tests for the relative-URL helper and the document registry under `spec/` |
 
 # Out of Scope
 
@@ -138,9 +138,9 @@ Links with an explicit external scheme (`http:`, `https:`, `mailto:`, …) are l
 |---|---|---|
 | 1 | The software shall resolve a Markdown link whose target, after resolving the link's relative path against the linking document's source directory, is a managed document's source file, and shall render it in the HTML output as a relative link to that target document's generated page. | >[SRS-088] |
 | 2 | The software shall preserve the on-disk relative validity of a Markdown cross-document link, so that the link in the source Markdown navigates to the target Markdown file while the generated HTML link navigates to the corresponding generated page. | >[SRS-089] |
-| 3 | The software shall support a double-bracket cross-document link of the form "[[target]]" that resolves the target to a managed document by its unique document identifier or filename, independent of the document's folder location. | >[SRS-090] |
-| 4 | The software shall support an alias in a double-bracket link of the form "[[target\|display text]]", rendering the display text as the visible link text. | >[SRS-091] |
-| 5 | The software shall support an anchor fragment in a cross-document link, written as "target#fragment" in a Markdown link and as "[[target#fragment]]" in a double-bracket link, producing an HTML link to that fragment within the target document's generated page. | >[SRS-092] |
+| 3 | The software shall support a double-bracket cross-document link of the form `[[target]]` that resolves the target to a managed document by its unique document identifier or filename, independent of the document's folder location. | >[SRS-090] |
+| 4 | The software shall support an alias in a double-bracket link of the form `[[target\|display text]]`, rendering the display text as the visible link text. | >[SRS-091] |
+| 5 | The software shall support an anchor fragment in a cross-document link, written as `target#fragment` in a Markdown link and as `[[target#fragment]]` in a double-bracket link, producing an HTML link to that fragment within the target document's generated page. | >[SRS-092] |
 | 6 | The software shall compute the relative URL of every internal link from the location of the generated page that contains the link to the location of the target's generated page, using forward-slash separators. | >[SRS-093] |
 | 7 | The software shall report a cross-document link whose target cannot be resolved to a managed document as a broken reference, naming the linking document, and shall render it as a visibly broken link without aborting the build. | >[SRS-094] |
 | 8 | The software shall leave links with an external scheme (such as "http", "https", or "mailto") unchanged and shall not treat them as cross-document targets. | >[SRS-095] |
@@ -149,7 +149,6 @@ Links with an explicit external scheme (`http:`, `https:`, `mailto:`, …) are l
 
 - SRS-011 and SRS-012 in [srs.md](./../../specifications/srs/srs.md) — existing requirements for internal text links and heading links, which these items extend
 - SRS-023 in [srs.md](./../../specifications/srs/srs.md) — existing broken-reference reporting for non-existent `>[ID]` targets, whose behaviour the unresolved-link handling mirrors
-- ADR-170 — introduces decision records and the Decision Records Overview page (decision id is the unique, folder-independent handle relied on here)
 
 # Review Evidences
 

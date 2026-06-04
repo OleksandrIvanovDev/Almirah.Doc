@@ -301,6 +301,24 @@ Table example:
 
 [SRS-082] When composing the generated index path for the progress summary, the software shall resolve the project directory argument to a normalised path free of duplicated or missing path separators, regardless of the form of the argument. The path shall be shown relative to the current directory as "./build/index.html" when the project directory resolves to the current working directory, and as an absolute path otherwise.
 
+## Cross-Document Links
+
+[SRS-088] The software shall resolve a Markdown link whose target, after resolving the link's relative path against the linking document's source directory, is a managed document's source file, and shall render it in the HTML output as a relative link to that target document's generated page.
+
+[SRS-089] The software shall preserve the on-disk relative validity of a Markdown cross-document link, so that the link in the source Markdown navigates to the target Markdown file while the generated HTML link navigates to the corresponding generated page.
+
+[SRS-090] The software shall support a double-bracket cross-document link of the form `[[target]]` that resolves the target to a managed document by its unique document identifier or filename, independent of the document's folder location.
+
+[SRS-091] The software shall support an alias in a double-bracket link of the form `[[target|display text]]`, rendering the display text as the visible link text.
+
+[SRS-092] The software shall support an anchor fragment in a cross-document link, written as `target#fragment` in a Markdown link and as `[[target#fragment]]` in a double-bracket link, producing an HTML link to that fragment within the target document's generated page.
+
+[SRS-093] The software shall compute the relative URL of every internal link from the location of the generated page that contains the link to the location of the target's generated page, using forward-slash separators.
+
+[SRS-094] The software shall report a cross-document link whose target cannot be resolved to a managed document as a broken reference, naming the linking document, and shall render it as a visibly broken link without aborting the build.
+
+[SRS-095] The software shall leave links with an external scheme (such as `http`, `https`, or `mailto`) unchanged and shall not treat them as cross-document targets.
+
 ## User Interface
 
 ### Up-links
