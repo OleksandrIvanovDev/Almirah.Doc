@@ -8,8 +8,8 @@ title: "ADR-184: Concise Console Progress Output"
 |:---:|---|---|
 |   | 31-05-2026 | Proposed |
 |   | 31-05-2026 | Accepted |
-| * | 31-05-2026 | In-Progress |
-|   | 31-05-2026 | Implemented |
+|   | 31-05-2026 | In-Progress |
+| * | 04-06-2026 | Implemented |
 
 # Context
 
