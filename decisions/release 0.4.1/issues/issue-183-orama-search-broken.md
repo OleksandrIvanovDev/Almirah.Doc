@@ -121,6 +121,6 @@ After the import is fixed, the `create({ schema })`, `insert(db, ...)`, and `sea
 
 # Review Evidences
 
-- Decision Record:
-- Code:
-- Tests:
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/29)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/48)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/48)

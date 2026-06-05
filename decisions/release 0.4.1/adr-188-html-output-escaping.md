@@ -127,7 +127,7 @@ The escaping and scheme-checking helpers shall be defined once and reused by eve
 
 # Review Evidences
 
-- Decision Record:
-- Requirements:
-- Code:
-- Tests:
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/29)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/29)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/48)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/48)
