@@ -319,6 +319,16 @@ Table example:
 
 [SRS-095] The software shall leave links with an external scheme (such as `http`, `https`, or `mailto`) unchanged and shall not treat them as cross-document targets.
 
+## HTML Output Safety
+
+[SRS-096] The software shall HTML-escape all author-supplied literal text rendered into element content — including paragraph, heading, blockquote, table-cell, and fenced code block text — so that markup present in the source Markdown is rendered as inert text and cannot introduce HTML elements.
+
+[SRS-097] The software shall escape author-supplied values interpolated into HTML attributes — including an image's source and alternate text and a link's address and visible text — so that the value cannot terminate the attribute or introduce additional attributes or elements.
+
+[SRS-098] The software shall admit a link or image URL only when it is a relative reference or uses an allowed scheme (`http`, `https`, or `mailto`), and shall render any other scheme (such as `javascript`, `data`, or `vbscript`) inert rather than emitting it.
+
+[SRS-099] The software shall render author-derived values displayed by client-side scripts — including search results and the image caption — using DOM text and attribute interfaces rather than HTML parsing, and shall admit a URL it assigns to a link only when it is a relative reference or uses an allowed scheme, so that indexed or displayed content cannot execute as script.
+
 ## User Interface
 
 ### Up-links
