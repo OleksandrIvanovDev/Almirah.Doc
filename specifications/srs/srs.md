@@ -394,3 +394,5 @@ Table example:
 ### Navigation
 
 [SRS-100] When the User navigates to an in-page anchor, the software shall position the target so that it is fully visible and not obscured by the fixed top navigation bar.
+
+[SRS-101] When the document sections tree in the navigation pane is taller than the viewport, the software shall allow the pane to scroll so that every item, including the last one, can be brought fully into view.
