@@ -122,12 +122,12 @@ The escaping and scheme-checking helpers shall be defined once and reused by eve
 # References
 
 - SRS-011 and SRS-012 in [srs.md](./../../specifications/srs/srs.md) — existing requirements for internal text links and heading links, whose rendering these escaping items harden
-- [ADR-186](./adr-186-cross-document-links.md) — cross-document linking; defines the `link` and `wiki_link` rendering paths affected here
+- [ADR-186](./../release%200.4.1/adr-186-cross-document-links.md) — cross-document linking; defines the `link` and `wiki_link` rendering paths affected here
 - ISSUE-180 in [issue-180-inline-code-spans.md](./../release%200.4.0/issues/issue-180-inline-code-spans.md) — inline code span handling, the one text path already escaped (`CGI.escapeHTML`)
 
 # Review Evidences
 
-- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/29)
-- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/29)
-- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/48)
-- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/48)
+- [Decision Record]()
+- [Requirements]()
+- [Code]()
+- [Tests]()
