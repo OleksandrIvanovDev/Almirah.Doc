@@ -390,3 +390,7 @@ Table example:
 [SRS-077] The software shall provide a full-text search on the Index page that, for a user-entered term, returns matching specification content showing the source document title, a link to the containing section, and a text snippet.
 
 [SRS-078] When no indexed content matches the entered search term, the software shall indicate that there are no matches.
+
+### Navigation
+
+[SRS-100] When the User navigates to an in-page anchor, the software shall position the target so that it is fully visible and not obscured by the fixed top navigation bar.
