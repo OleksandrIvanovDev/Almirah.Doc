@@ -6,9 +6,9 @@ title: "ADR-191: Target Date Extraction for the Decision Records Overview"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 11-06-2026 | Proposed |
-|   |  | Accepted |
-|   |  | In-Progress |
+|   | 11-06-2026 | Proposed |
+|   | 11-06-2026 | Accepted |
+| * | 11-06-2026 | In-Progress |
 |   |  | Implemented |
 
 # Context
@@ -49,9 +49,9 @@ The existing empty "Target Date" cell in the Decision Records Overview ([decisio
 
 | Item | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|
-| Requirements | Proposed | 11-06-2026 |  | New SRS items in `srs.md` covering: the `target_date` attribute on a Decision Record; the extraction rule (maximum of Status `Date` column and Scope `Target Date` column); column lookup by header text; the `DD-MM-YYYY` parse format; the empty-cell fallback when no date is parseable; rendering of `target_date` in the existing "Target Date" column of the Decision Records Overview |
-| Code | Proposed | 11-06-2026 |  | Add a `target_date` accessor on `Decision`; add an `extract_target_date` method that collects dates from the Status `Date` column and the Scope `Target Date` column (reusing `collect_dates` / `find_section_table`) and takes the maximum; call it from the same parse path that invokes `extract_start_date`; populate the existing Target Date cell in `decisions_overview.rb` with the formatted value |
-| Tests | Proposed | 11-06-2026 |  | End-to-end tests under `spec/e2e/decisions_spec.rb`: extraction picks the latest date when both tables have entries; extraction falls back to whichever table has a date when the other is empty or missing; extraction returns nil when no parseable date exists in either table; unparseable cells (e.g., empty Target Date, free-text Description) are ignored without raising; the rendered Target Date column carries the formatted value and is empty when undefined |
+| Requirements | Done | 11-06-2026 | 11-06-2026 | New SRS items SRS-102 through SRS-106 in `srs.md` covering: the `target_date` attribute on a Decision Record; the extraction rule (maximum of Status `Date` column and Scope `Target Date` column); column lookup by header text; the `DD-MM-YYYY` parse format; the empty-cell fallback when no date is parseable; rendering of `target_date` in the existing "Target Date" column of the Decision Records Overview |
+| Code | Done | 11-06-2026 | 11-06-2026 | Added a `target_date` accessor on `Decision`; added an `extract_target_date` method that collects dates from the Status `Date` column and the Scope `Target Date` column (reusing `collect_dates` / `find_section_table`) and takes the maximum; called it from the same `DocFabric.create_decision` path that invokes `extract_start_date`; populated the existing Target Date cell in `decisions_overview.rb` with the formatted value |
+| Tests | Done | 11-06-2026 | 11-06-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: extraction picks the latest date when both tables have entries; extraction falls back to whichever table has a date when the other is empty or missing; extraction leaves the cell empty when no parseable date exists in either table; unparseable cells (e.g., "TBD", empty Target Date) are ignored without raising; the Target Date column is read by header text regardless of position |
 
 # Out of Scope
 
