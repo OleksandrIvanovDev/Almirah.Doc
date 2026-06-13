@@ -92,3 +92,10 @@ When both `top` and `bottom` are set on a fixed element with `height: auto`, the
 
 - [ISSUE-189](./issue-189-anchor-scroll-offset.md) — the preceding issue in this release, a related fixed-layout/scroll defect; used as the structural template for this one
 - [ADR-170](./../../release%200.4.0/adr-170-introduce-decision-records.md) — the decision-record convention this ISSUE follows
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/49)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/49)

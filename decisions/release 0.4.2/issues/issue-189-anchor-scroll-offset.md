@@ -88,3 +88,10 @@ html {
 # References
 
 N/A
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/49)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/49)

@@ -8,8 +8,8 @@ title: "ADR-191: Target Date Extraction for the Decision Records Overview"
 |:---:|---|---|
 |   | 11-06-2026 | Proposed |
 |   | 11-06-2026 | Accepted |
-| * | 11-06-2026 | In-Progress |
-|   |  | Implemented |
+|   | 11-06-2026 | In-Progress |
+| * | 13-06-2026 | Implemented |
 
 # Context
 
@@ -115,7 +115,7 @@ The existing empty "Target Date" cell in the Decision Records Overview ([decisio
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/49)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/49)

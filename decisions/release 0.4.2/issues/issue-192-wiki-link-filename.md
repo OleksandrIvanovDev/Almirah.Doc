@@ -84,3 +84,10 @@ The change is purely additive — one extra dictionary entry per decision record
 # References
 
 - [[adr-186-cross-document-links]] — introduced the `[[…]]` form and SRS-090/091/092.
+
+# Review Evidences
+
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/49)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/49)

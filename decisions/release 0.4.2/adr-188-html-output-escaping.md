@@ -8,8 +8,8 @@ title: "ADR-188: Escape and Sanitise Generated HTML Output"
 |:---:|---|---|
 |   | 05-06-2026 | Proposed |
 |   | 07-06-2026 | Accepted |
-| * | 07-06-2026 | In-Progress |
-|   |  | Implemented |
+|   | 07-06-2026 | In-Progress |
+| * | 13-06-2026 | Implemented |
 
 # Context
 
@@ -140,7 +140,7 @@ The escaping and scheme-checking helpers shall be defined once and reused by eve
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/30)
 - [Code]()
 - [Tests]()
