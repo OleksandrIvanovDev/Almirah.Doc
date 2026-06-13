@@ -259,6 +259,16 @@ Table example:
 
 [SRS-065] The Decision Records Overview page shall render the Start Date attribute of each Decision Record in the existing Start Date column, formatted as "DD-MM-YYYY". The cell shall be empty when the Start Date attribute is undefined.
 
+[SRS-102] The software shall expose a Target Date attribute on each Decision Record, computed as the latest calendar date found in the Date column of the Decision Record's Status table and in the Target Date column of the Decision Record's Scope table.
+
+[SRS-103] The software shall recognise dates in the form "DD-MM-YYYY" when computing the Target Date attribute of a Decision Record. Cells whose contents do not match this form shall be skipped without raising an error.
+
+[SRS-104] The software shall identify the Date column of a Decision Record's Status table and the Target Date column of a Decision Record's Scope table by their header text, case-sensitive, and not by column position.
+
+[SRS-105] When neither the Status table's Date column nor the Scope table's Target Date column of a Decision Record contains a date matching the recognised form, the Target Date attribute of that Decision Record shall be undefined.
+
+[SRS-106] The Decision Records Overview page shall render the Target Date attribute of each Decision Record in the existing Target Date column, formatted as "DD-MM-YYYY". The cell shall be empty when the Target Date attribute is undefined.
+
 [SRS-066] The software shall expose a Target Release Version attribute on each Decision Record, computed by locating the Decision Record's Software Versions section, finding the row of its table whose Software Version Category cell equals "Target Release Version", and taking the value of that row's Software Version ID cell.
 
 [SRS-067] The software shall identify the Software Version Category column and the Software Version ID column of a Decision Record's Software Versions table by their header text, case-sensitive, and not by column position.
@@ -318,6 +328,16 @@ Table example:
 [SRS-094] The software shall report a cross-document link whose target cannot be resolved to a managed document as a broken reference, naming the linking document, and shall render it as a visibly broken link without aborting the build.
 
 [SRS-095] The software shall leave links with an external scheme (such as `http`, `https`, or `mailto`) unchanged and shall not treat them as cross-document targets.
+
+## HTML Output Safety
+
+[SRS-096] The software shall HTML-escape all author-supplied literal text rendered into element content — including paragraph, heading, blockquote, table-cell, and fenced code block text — so that markup present in the source Markdown is rendered as inert text and cannot introduce HTML elements.
+
+[SRS-097] The software shall escape author-supplied values interpolated into HTML attributes — including an image's source and alternate text and a link's address and visible text — so that the value cannot terminate the attribute or introduce additional attributes or elements.
+
+[SRS-098] The software shall admit a link or image URL only when it is a relative reference or uses an allowed scheme (`http`, `https`, or `mailto`), and shall render any other scheme (such as `javascript`, `data`, or `vbscript`) inert rather than emitting it.
+
+[SRS-099] The software shall render author-derived values displayed by client-side scripts — including search results and the image caption — using DOM text and attribute interfaces rather than HTML parsing, and shall admit a URL it assigns to a link only when it is a relative reference or uses an allowed scheme, so that indexed or displayed content cannot execute as script.
 
 ## User Interface
 
@@ -380,3 +400,9 @@ Table example:
 [SRS-077] The software shall provide a full-text search on the Index page that, for a user-entered term, returns matching specification content showing the source document title, a link to the containing section, and a text snippet.
 
 [SRS-078] When no indexed content matches the entered search term, the software shall indicate that there are no matches.
+
+### Navigation
+
+[SRS-100] When the User navigates to an in-page anchor, the software shall position the target so that it is fully visible and not obscured by the fixed top navigation bar.
+
+[SRS-101] When the document sections tree in the navigation pane is taller than the viewport, the software shall allow the pane to scroll so that every item, including the last one, can be brought fully into view.
