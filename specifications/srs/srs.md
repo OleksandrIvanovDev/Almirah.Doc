@@ -301,6 +301,20 @@ Table example:
 
 [SRS-087] The categories of the current-status distribution chart shall be ordered by their first appearance in Decision Record parse order, with the "Undefined" category, when present, placed last.
 
+## Planning
+
+[SRS-107] The Decision Record Scope table shall support work-item rows — including an Analysis row — each carrying an Owner and a Status whose value is one of To Do, In-Progress, or Done. These per-row statuses shall be independent of the Decision Record's hand-marked lifecycle status.
+
+[SRS-108] The software shall associate each Scope row with the owner named in its Owner column, and shall expose on each Decision Record the distinct, first-seen-ordered list of its rows' owners. The Owner column shall be identified by its header text, case-sensitive, and not by column position.
+
+[SRS-109] When a Scope row has no owner, that row shall contribute no owner; when a Decision Record has no Scope table, no Owner column, or an empty Owner column, its distinct owner list shall be empty.
+
+[SRS-110] The Decision Records Overview page shall render the distinct owner list of each Decision Record in the existing Owner column, comma-separated when there is more than one owner, and empty when the list is empty.
+
+[SRS-111] The Decision Records Overview page shall render a Work-In-Progress by Owner chart with one bar per owner whose length is the number of Scope rows, across all Decision Records, whose row Status is In-Progress and whose Owner is that owner, and shall draw a reference line at the configured work-in-progress freeze limit.
+
+[SRS-112] The software shall read an optional planning work-in-progress limit from the project configuration. When the limit is absent or invalid, the software shall apply a default of 2.
+
 ## Console Output
 
 [SRS-079] While processing a project, the software shall emit a concise progress summary to standard output consisting of one line per processing phase, each line pairing a phase label with the number of items processed in that phase.
