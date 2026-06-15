@@ -21,16 +21,13 @@ There are **two** kit gates, at two altitudes:
 1. **The primary gate is internal to a record** — its phases must run in order. You should not start coding before the analysis/requirements that feed it are finished. This is the gate that matters most day-to-day, and step 1 already gave us what it needs: per-row `Status` on a bounded vocabulary.
 2. **The secondary gate is across records** — a work item should not start while the matching activity it depends on, in another record, is not yet `Done`.
 
-Almirah already has the ingredients for both, without any external store:
-
-- **Row order.** `MarkdownTable` preserves row order, and the framework already uses a numbered leading column to identify steps (the test-protocol "Test Step" column; the `#` column on the Affected Documents and overview tables). The same convention gives Scope rows an explicit step number.
-- **A linkage mechanism.** The framework already turns a Decision's tables into **controlled tables of work items** and links them like test protocols to specifications (`link_*_to_spec`, [doc_linker.rb](./../../../Almirah.Code/lib/almirah/project/doc_linker.rb)). The same native row-to-row linking represents work-item dependencies — a record id resolves via `LinkRegistry.find_by_id` ([link_registry.rb](./../../../Almirah.Code/lib/almirah/link_registry.rb)), then to a specific work item by activity type.
-- **A row-based readiness signal.** Per the project decision that the open record lifecycle status (`Analysis`, `Implemented`, `Deployment`, `Reopened`, …) is **not** a planning input ([[adr-193-owner-wip-heatmap]], [[adr-172-current-status-marker]]), readiness reads the **bounded per-row `Status`**: a dependent work item is ready when the matching-activity predecessor it depends on is `Done`.
-- **A reporting channel.** The Check pass already prints unresolved cross-document links as **non-failing console warnings** (`report_broken_links` → `ConsoleReporter.warn`, [project.rb:100](./../../../Almirah.Code/lib/almirah/project.rb#L100)). A kit violation is the same shape of problem and joins the same family.
+Almirah already has the basic ingredients for both.
 
 # Decision
 
-Add a leading **`#` step column** and a per-row **`Depends On`** column to the Scope table — internally a **controlled table of work items** linked row-to-row (like test protocols). Enforce two non-failing kit gates — **phase ordering** within a record (primary) and **activity-type-aligned dependency readiness** across records (secondary) — both keyed on bounded per-row `Status`; and surface readiness on the overview.
+Add a leading **`#` step column** and a per-row **`Depends On`** column to the Scope table, parsed by a **purpose-built `ScopeTable`** that inherits from `ControlledTable` to add the new linking pattern. Each row becomes a **`WorkItem`** carrying **`predecessors`** and **`successors`** lists that span both intra-record (step-order) and cross-record edges, forming a per-row dependency network. On that network, enforce two non-failing kit gates keyed on bounded per-row `Status` — **phase ordering** within a record (primary) and **activity-type-aligned dependency readiness** across records (secondary) — and surface readiness on the overview.
+
+Implementation hooks: `doc_parser` swaps `MarkdownTable` for `ScopeTable` when `doc.instance_of?(Decision) && in_section?(doc, 'Scope')`; a new `link_work_items` method runs in `project.rb` after `link_all_decisions`.
 
 ## Phase ordering — the primary, intra-record gate
 
@@ -44,17 +41,19 @@ A **phase-order violation** is a started row (its `Status` is `In-Progress` or `
 
 ## Dependency data source and extraction (the secondary gate)
 
-`Depends On` is a **per-row** column (header text, not position): the row it is written in is the **dependent work item**, and its value is **one or more other decision records** the dependent comes after — predecessors, in the link form `>[ADR-193]` (comma-separated). A record **never references its own rows**: order **within** a record is taken from row order (the `#` step column), not hand-authored.
+`Depends On` is a **per-row** column (header text, not position): the row it is written in is the **dependent work item**, and its value is **one or more other decision records** it comes after — predecessors, in the link form `>[ADR-193]` (comma-separated). A record **never references its own rows**: order **within** a record comes from the `#` step column, not hand-authored links. The gem fills the intra-record edges internally, so every work item ends up connected (no orphans).
 
-**Activity-type-aligned resolution.** A record reference resolves to a *specific work item* of the prerequisite: the row whose **activity type** — its `Item` (`Analysis`, `Requirements`, `Code`, `Tests`, …) — **matches the dependent row's**, falling back to the prerequisite's nearest *earlier* activity type when an exact match is absent. So `Depends On: ADR-1` on ADR-2's `Analysis` row makes **ADR-2.Analysis depend on ADR-1.Analysis** — not on ADR-1's implementation. Alignment is by **activity type** (`Item`), *not* by the worker: the `Owner` (the resource — `BA1`, `BA2`, `DEV`, …) is a **separate** dimension used only for resource levelling, so two analysts give two parallel Analysis slots without changing the dependency graph.
+**Activity-type-aligned resolution.** A record reference resolves to a *specific work item* of the prerequisite: the row whose **activity type** — its `Item` (`Analysis`, `Requirements`, `Code`, `Tests`, …) — **matches the dependent row's**, falling back to the prerequisite's nearest *earlier* activity type when an exact match is absent. So `Depends On: ADR-1` on ADR-2's `Analysis` row makes **ADR-2.Analysis depend on ADR-1.Analysis** — not on ADR-1's implementation. Alignment is by **activity type** (`WorkItem`), *not* by the worker: the `Owner` (the resource — `BA1`, `BA2`, `DEV`, …) is a **separate** dimension used only for resource levelling, so two analysts give two parallel Analysis slots without changing the dependency graph.
 
-Internally this is the framework's existing controlled-table linkage: each Scope row becomes a work item with an id (`<record>.<step>`), and a resolved dependency is a native row-to-row link. The record id resolves via `LinkRegistry.find_by_id`; the work item within it, by activity type. Unresolved references (no such record) are reported (see *Reporting*). Each row's **predecessors** are therefore its lower-numbered same-record steps **plus** its resolved cross-record work items; a row with neither has no predecessors.
+Internally each Scope row becomes a **`WorkItem`** with a canonical id `<record>.<step>.<activity>` (e.g. `ADR-194.1.Analysis`). The author writes only the **record-level** `>[adr-1]`; the resolver expands it to the activity-type-aligned row defined above (no step, no activity authored by hand). The project holds a dictionary of every work item, `{ "record.step.activity" => "record" }`, which is the source of record IDs for the `link_work_items` method.
+
+Each `WorkItem` holds **`predecessors`** and **`successors`** lists, each entry mapping a readable `record.activity` label to the resolved `WorkItem`: e.g. `predecessors = [{ "ADR-1.1.Analysis" => WorkItem1 }, { "ADR-1.2.Code" => WorkItem2 }]`. A row's predecessors are its lower-numbered same-record steps **plus** its resolved cross-record work items; successors are the inverse, populated during linking. Unresolved references (no such record) are reported (see *Reporting*).
 
 This handles **inter-record dependencies** only; specification-item and Testing-Data-Set prerequisites are deferred. The per-row work-item network this produces is exactly what the critical-chain step ([[adr-195-critical-chain-buffer]]) schedules.
 
 ## Kit-readiness state
 
-A work item's cross-record predecessor is **satisfied** when **that resolved (activity-type-aligned) prerequisite work item is `Done`**. This supersedes the earlier whole-record "deliverable (`Code`/`Tests`) `Done`" rule, which over-serialised: it would block a dependent's *analysis* until the prerequisite was fully built, defeating the cross-role parallelism resource levelling should achieve (a dependent's Analysis can proceed once the prerequisite's Analysis is done, in parallel with the prerequisite's Code). It reads only bounded per-row `Status`, never the open lifecycle vocabulary.
+A work item's cross-record predecessor is **satisfied** when that resolved (activity-type-aligned) prerequisite work item is `Done` — read from the bounded per-row `Status`, never the open lifecycle vocabulary at the Decision Record level. This per-activity rule supersedes the earlier whole-record "deliverable `Done`" rule, which over-serialised (see *Alternatives Considered*).
 
 Derive `fully_kitted?` **per row**: a row is **kitted** when every one of its predecessors — its lower-numbered same-record steps **and** its resolved cross-record predecessor work items — is `Done` (trivially kitted when it has none); **blocked** otherwise. A record is kitted when all its rows are.
 
@@ -76,9 +75,9 @@ Add a **`Kit`** column to the Decision Records Overview, reflecting cross-record
 
 | # | Item | Owner | Depends On | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|
-| 1 | Analysis | BA | >[ADR-193] | In-Progress | 14-06-2026 |  | This decision record: the two-gate model (phase ordering + activity-type-aligned dependency readiness), the controlled-table work-item linkage, and the activity-type vs. owner separation |
+| 1 | Analysis | BA | >[ADR-193] | In-Progress | 14-06-2026 |  | This decision record: the two-gate model (phase ordering + activity-type-aligned dependency readiness), the purpose-built `ScopeTable` / `WorkItem` network (record-level authoring, internal `<record>.<step>` edges), and the activity-type vs. owner separation |
 | 2 | Requirements | BA | >[ADR-193] | To Do |  |  | New SRS items SRS-113 through SRS-119 in `srs.md` (the "Planning" chapter from [[adr-193-owner-wip-heatmap]]): the leading `#` step column and row ordering; the phase-order gate and its violation; the per-row `Depends On` column referencing other Decision Records; activity-type-aligned resolution (match the dependent row's `Item`, fallback to the nearest earlier activity type) with the owner kept separate; a work item's predecessors and per-row `fully_kitted?` (predecessor work item `Done`); the cross-record violation; unresolved-reference reporting; and the overview `Kit` column |
-| 3 | Code | DEV | >[ADR-193] | To Do |  |  | Parse the Scope table as a controlled table of work items (extend the existing `Decision`/`'Affected Documents'` controlled-table path to the `Scope` section), porting the date/owner/status extraction onto it; read the `#` step column (fall back to row order) for a phase-order check; resolve each per-row `Depends On` record reference to the activity-type-aligned predecessor work item (`LinkRegistry.find_by_id` for the record, `Item` match within it) and build the row-to-row links; add per-row `fully_kitted?`; add `report_kit_violations` (both gates) and unresolved-reference reporting alongside `report_broken_links`; add the `Kit` column to `decisions_overview.rb` |
+| 3 | Code | DEV | >[ADR-193] | To Do |  |  | Introduce a purpose-built `ScopeTable` / `WorkItem` class family (modelled on `ControlledTable` but with header-addressed columns and no fixed link-column position), parse the `# Scope` section into it, and port the date/owner/status extraction onto it; assign each row a `<record>.<step>` id; read the `#` step column (fall back to row order) for a phase-order check; resolve each per-row `Depends On` record reference to the activity-type-aligned work item (`LinkRegistry.find_by_id` for the record, `Item` match within it) and populate per-row `predecessors`/`successors` lists spanning intra- and cross-record edges; add per-row `fully_kitted?`; add `report_kit_violations` (both gates) and unresolved-reference reporting alongside `report_broken_links`; render the Scope table like the protocol controlled table; add the `Kit` column to `decisions_overview.rb` |
 | 4 | Tests | TEST | >[ADR-193] | To Do |  |  | E2E tests under `spec/e2e/decisions_spec.rb`: rows order by `#` (equal numbers concurrent; absent column → row order); a started row with an unfinished lower step is a phase-order violation; `Depends On: ADR-X` on a row resolves to ADR-X's same-`Item` work item (fallback to the nearest earlier activity type); the resolved predecessor must be `Done` for the dependent to be kitted; a dependent's Analysis is satisfied by the prerequisite's Analysis (not its Code), enabling parallelism; distinct owners (`BA1`/`BA2`) do not change the dependency; a started + blocked work item is a cross-record violation; unresolved `Depends On` reported; the `Kit` column renders empty / ready / blocked; everything reads row `Status`, never the lifecycle status |
 
 # Out of Scope
@@ -90,45 +89,12 @@ Add a **`Kit`** column to the Decision Records Overview, reflecting cross-record
 - **Using the record lifecycle status as a readiness signal.** Per the project decision, readiness reads bounded per-row `Status`; the open lifecycle vocabulary (`Deployment`, `Reopened`, …) is never consulted ([[adr-193-owner-wip-heatmap]], [[adr-172-current-status-marker]]).
 - **Estimates, buffers, and the fever chart** (roadmap steps 3–4).
 
-# Consequences
-
-## Positive
-
-- Implements both kit gates with **no hardcoded phase names** for ordering: one numbered column, one dependency column, two derived checks, one overview column — reusing the framework's existing controlled-table work-item linkage, `LinkRegistry`, and the numbered-column convention.
-- The primary (within-record) gate — the one teams hit most — is captured directly: "don't start Code before Requirements is Done" becomes a reported violation.
-- Activity-type-aligned resolution is what unlocks resource optimisation: a dependent's analysis waits only for the prerequisite's analysis, free to run in parallel with the prerequisite's code (different activity, different resource). A whole-record "deliverable done" rule would serialise them.
-- Reads only bounded per-row `Status`, so adding a lifecycle status (`Deployment`, `Reopened`) never changes the gate logic.
-- The per-row work-item network (intra-record step order + cross-record activity-aligned links) is exactly what the critical-chain step (3) schedules and resource-levels by `Owner`.
-
-## Negative
-
-- The renderer/check gain dependencies on the header text `Depends On` and on the `#`/item columns; renaming them changes behaviour. The test suite locks the headers, as for `Owner` ([[adr-193-owner-wip-heatmap]]) and `Target Date` ([[adr-191-overview-target-date]]).
-- Readiness is only as accurate as per-row `Status`: a delivery row left un-`Done` keeps dependents blocked even when the work is really finished.
-- Activity-type alignment matches the `Item` text across records; renaming an activity in one record but not another misaligns the cross-record dependency (the dependent then falls back to the nearest earlier activity). Consistent activity names across records matter for the secondary gate; the primary, ordering gate stays name-agnostic.
-
-## Neutral
-
-- Records authored before this ADR work unchanged: no `#` column → row order; no `Depends On` → kitted; existing rows keep their statuses.
-- When a prerequisite has no matching activity (and no earlier activity) to resolve to — e.g. no Scope rows at all — the dependent's cross-record predecessor is empty and treated as satisfied; the consistent consequence of not consulting lifecycle status, acceptable for purely architectural records.
-- Re-rendering is required to gain the columns and checks; nothing is retroactive.
-- This record's `Analysis` row depends on [[adr-193-owner-wip-heatmap]] and so resolves (activity-type-aligned) to ADR-193's `Analysis`, which is `In-Progress`, not `Done`. Because this record's `Analysis` is itself started, it is intentionally a **cross-record violation** — a live demonstration of the secondary gate catching concurrent analysis — while its single started step (step 1) has no lower step and raises no phase-order violation.
-
-# Alternatives Considered
-
-- **Authoring per-row dependency targets (`>[adr-194.3]`).** The per-row, protocol-style linkage **is adopted internally** — the Scope table becomes a `ControlledTable` of work items with row IDs (`<record>.<step>`), linked row-to-row like protocols to specs ([doc_linker.rb](./../../../Almirah.Code/lib/almirah/project/doc_linker.rb)). What is **rejected for authoring** is making the user write per-row *targets*: they declare only record-to-record predecessors, and resolution picks the prerequisite work item by activity type. Hand-writing row IDs would be tedious, redundant with row order, and fragile under reordering. (An explicit per-row target stays a deferred escape hatch for cross-activity dependencies.)
-- **Order phases by matching row names (`Analysis` → `Requirements` → `Code` → `Tests`).** Rejected: brittle and inflexible — a record may have only some phases, or extra ones, in a different order. A numbered column orders by intent and supports concurrent steps (equal numbers), with no name list to maintain.
-- **Whole-record satisfaction (the prerequisite's deliverable, or last step, `Done`).** Rejected: it over-serialises — a dependent's *analysis* would wait for the prerequisite's *implementation*, blocking the cross-role parallelism that resource levelling should find. Activity-type alignment lets each activity wait only for its matching predecessor. (This reverses the "Code/Tests `Done` if exist" rule from an earlier draft of this ADR.)
-- **Align dependencies by owner/role rather than activity type.** Rejected: a role may have several people (`BA1`, `BA2`). The dependency is a property of the work (analysis-needs-analysis), not the worker; aligning by activity type keeps the edge stable while extra staff in a role add parallel capacity during resource levelling.
-- **Key readiness on the record lifecycle status (`current_status == Implemented`).** Rejected per the project decision: the lifecycle vocabulary is open and not a planning input; row `Status` is the bounded, authoritative work signal.
-- **A record-level `depends_on:` frontmatter list.** Rejected: a second place to maintain relationships the Scope table already carries, prone to drift, as for frontmatter dates in [[adr-191-overview-target-date]] and a frontmatter owner in [[adr-193-owner-wip-heatmap]].
-- **Failing the build on a violation.** Rejected for this step, consistent with step 1: make the problem visible before enforcing it.
-
 # Software Versions
 
 | Software Version Category | Software Version ID |
 |---|---|
 | Latest Released Version | 0.4.2 |
-| Issue Found in Version | 0.4.3 |
+| Issue Found in Version | n/a |
 | Target Release Version | 0.4.3 |
 
 # Affected Documents
