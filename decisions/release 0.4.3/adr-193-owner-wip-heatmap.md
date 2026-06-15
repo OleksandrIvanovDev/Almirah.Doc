@@ -7,8 +7,8 @@ title: "ADR-193: Scope Owner Column and Work-In-Progress Heatmap"
 |  | Date | Status |
 |:---:|---|---|
 |   | 13-06-2026 | Proposed |
-| * | 14-06-2026 | Analysis |
-|   |  | Accepted |
+|   | 14-06-2026 | Analysis |
+| * | 15-06-2026 | Accepted |
 |   |  | In-Progress |
 |   |  | Implemented |
 
@@ -75,8 +75,8 @@ When `planning.wip_limit` is absent, default to `2`. A non-positive or non-integ
 
 | # | Item | Owner | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|
-| 1 | Analysis | BA | In-Progress | 14-06-2026 |  | This decision record: the per-row / altitude analysis, the two-independent-status-systems decision, and the Chart.js feasibility for the WIP chart |
-| 2 | Requirements | BA | To Do |  |  | New SRS items SRS-107 through SRS-112 in `srs.md`, under a new "Planning" chapter, covering: Scope work-item rows including an `Analysis` row, each with an `Owner` and a bounded `Status` (`To Do` / `In-Progress` / `Done`); the per-row owner and the record's distinct owner list (read by header text); the empty-owner fallback; rendering owners in the overview Owner column; the Work-In-Progress by Owner chart (one bar per owner = count of `In-Progress` Scope rows that owner is on); and the `planning.wip_limit` configuration with its default and over-limit indication |
+| 1 | Analysis | BA | Done | 14-06-2026 |  | This decision record: the per-row / altitude analysis, the two-independent-status-systems decision, and the Chart.js feasibility for the WIP chart |
+| 2 | Requirements | BA | In-Progress | 15-06-2026 |  | New SRS items SRS-107 through SRS-112 in `srs.md`, under a new "Planning" chapter, covering: Scope work-item rows including an `Analysis` row, each with an `Owner` and a bounded `Status` (`To Do` / `In-Progress` / `Done`); the per-row owner and the record's distinct owner list (read by header text); the empty-owner fallback; rendering owners in the overview Owner column; the Work-In-Progress by Owner chart (one bar per owner = count of `In-Progress` Scope rows that owner is on); and the `planning.wip_limit` configuration with its default and over-limit indication |
 | 3 | Code | DEV | To Do |  |  | Read each Scope row's `Owner` and `Status` and expose a distinct `owners` list on `Decision`, reusing `find_section_table` / `column_index`, from the same `DocFabric.create_decision` path that invokes `extract_start_date` / `extract_target_date`; populate the Owner cell in `decisions_overview.rb`; add a `wip_by_owner_chart_data` method that counts `In-Progress` rows by owner and **replace the pie chart cell in `render_charts_grid` with the WIP combined bar/line chart, keeping the pie-building code in place but no longer emitting its cell**; read `planning.wip_limit` in `project_configuration.rb` with a default of 2 |
 | 4 | Tests | TEST | To Do |  |  | End-to-end tests under `spec/e2e/decisions_spec.rb`: rows expose owner and bounded status read by header text regardless of position; an absent/empty Owner column yields no owner and an empty overview cell; the WIP chart counts only `In-Progress` rows and attributes each to its row owner (a record in its `Analysis` phase contributes to the analyst, not to DEV / TEST); the reference line reflects `planning.wip_limit`; the default of 2 applies when the key is absent or invalid; the per-row count is independent of the record's lifecycle status |
 
