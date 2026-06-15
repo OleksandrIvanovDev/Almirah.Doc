@@ -8,9 +8,9 @@ title: "ADR-193: Scope Owner Column and Work-In-Progress Heatmap"
 |:---:|---|---|
 |   | 13-06-2026 | Proposed |
 |   | 14-06-2026 | Analysis |
-| * | 15-06-2026 | Accepted |
-|   |  | In-Progress |
-|   |  | Implemented |
+|   | 15-06-2026 | Accepted |
+|   | 15-06-2026 | In-Progress |
+| * | 15-06-2026 | Implemented |
 
 # Context
 
@@ -54,7 +54,7 @@ Populate the existing, currently-empty Owner cell ([decisions_overview.rb:60](./
 
 The chart is a **combined bar/line** chart on the bundled Chart.js (v4, loaded from CDN on the overview page only — [base_document.rb:55](./../../../Almirah.Code/lib/almirah/doc_types/base_document.rb#L55)), requiring **no additional plugin**:
 
-- A **vertical bar** dataset: one bar per owner, height = the number of **Scope rows, across all Decision Records, whose row `Status` is `In-Progress`** and whose `Owner` is that owner. Owners with no in-progress rows are omitted; bars are sorted descending by count. The chart is vertical (`indexAxis: 'x'`) rather than horizontal so that the freeze line renders as a clean horizontal threshold using core Chart.js alone.
+- A **vertical bar** dataset: one bar for **every owner named in any Decision Record's Scope table**, height = the number of **Scope rows, across all Decision Records, whose row `Status` is `In-Progress`** and whose `Owner` is that owner. An owner with no in-progress rows renders as a **zero-height bar** rather than being omitted: showing the full roster of roles keeps the freeze line spanning the chart even when only one owner is currently busy (a single bar would otherwise leave the category-aligned threshold with a single point and nothing to draw). Bars are sorted descending by count, so idle owners — tied at zero — fall to the end in first-seen order. The chart is vertical (`indexAxis: 'x'`) rather than horizontal so that the freeze line renders as a clean horizontal threshold using core Chart.js alone.
 - A **line** dataset drawing the **WIP freeze limit** as a dashed horizontal threshold: the constant `wip_limit` value repeated across every owner label, with points hidden (`pointRadius: 0`) and a dashed stroke (`borderDash`). This is the combined bar/line — a top-level `type: 'bar'` chart with one dataset declared `type: 'line'`.
 - **Over-limit highlight:** bars at or below the limit use the normal palette colour; bars above it use the palette's warning colour. This is achieved by passing `backgroundColor` as a **per-bar array** computed in Ruby (each owner's count compared to `wip_limit`) — the same array-of-colours technique `status_distribution_chart_data` already uses, so the highlight is fully supported and needs no plugin.
 
@@ -75,10 +75,10 @@ When `planning.wip_limit` is absent, default to `2`. A non-positive or non-integ
 
 | # | Item | Owner | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|
-| 1 | Analysis | BA | Done | 14-06-2026 |  | This decision record: the per-row / altitude analysis, the two-independent-status-systems decision, and the Chart.js feasibility for the WIP chart |
-| 2 | Requirements | BA | In-Progress | 15-06-2026 |  | New SRS items SRS-107 through SRS-112 in `srs.md`, under a new "Planning" chapter, covering: Scope work-item rows including an `Analysis` row, each with an `Owner` and a bounded `Status` (`To Do` / `In-Progress` / `Done`); the per-row owner and the record's distinct owner list (read by header text); the empty-owner fallback; rendering owners in the overview Owner column; the Work-In-Progress by Owner chart (one bar per owner = count of `In-Progress` Scope rows that owner is on); and the `planning.wip_limit` configuration with its default and over-limit indication |
-| 3 | Code | DEV | To Do |  |  | Read each Scope row's `Owner` and `Status` and expose a distinct `owners` list on `Decision`, reusing `find_section_table` / `column_index`, from the same `DocFabric.create_decision` path that invokes `extract_start_date` / `extract_target_date`; populate the Owner cell in `decisions_overview.rb`; add a `wip_by_owner_chart_data` method that counts `In-Progress` rows by owner and **replace the pie chart cell in `render_charts_grid` with the WIP combined bar/line chart, keeping the pie-building code in place but no longer emitting its cell**; read `planning.wip_limit` in `project_configuration.rb` with a default of 2 |
-| 4 | Tests | TEST | To Do |  |  | End-to-end tests under `spec/e2e/decisions_spec.rb`: rows expose owner and bounded status read by header text regardless of position; an absent/empty Owner column yields no owner and an empty overview cell; the WIP chart counts only `In-Progress` rows and attributes each to its row owner (a record in its `Analysis` phase contributes to the analyst, not to DEV / TEST); the reference line reflects `planning.wip_limit`; the default of 2 applies when the key is absent or invalid; the per-row count is independent of the record's lifecycle status |
+| 1 | Analysis | BA | Done | 14-06-2026 | 15-06-2026 | This decision record: the per-row / altitude analysis, the two-independent-status-systems decision, and the Chart.js feasibility for the WIP chart |
+| 2 | Requirements | BA | Done | 15-06-2026 | 15-06-2026 | New SRS items SRS-107 through SRS-112 in `srs.md`, under a new "Planning" chapter, covering: Scope work-item rows including an `Analysis` row, each with an `Owner` and a bounded `Status` (`To Do` / `In-Progress` / `Done`); the per-row owner and the record's distinct owner list (read by header text); the empty-owner fallback; rendering owners in the overview Owner column; the Work-In-Progress by Owner chart (one bar per owner = count of `In-Progress` Scope rows that owner is on); and the `planning.wip_limit` configuration with its default and over-limit indication |
+| 3 | Code | DEV | Done | 15-06-2026 | 15-06-2026 | Read each Scope row's `Owner` and `Status` and expose a distinct `owners` list on `Decision`, reusing `find_section_table` / `column_index`, from the same `DocFabric.create_decision` path that invokes `extract_start_date` / `extract_target_date`; populate the Owner cell in `decisions_overview.rb`; add a `wip_by_owner_chart_data` method that counts `In-Progress` rows by owner and **replace the pie chart cell in `render_charts_grid` with the WIP combined bar/line chart, keeping the pie-building code in place but no longer emitting its cell**; read `planning.wip_limit` in `project_configuration.rb` with a default of 2 |
+| 4 | Tests | TEST | Done | 15-06-2026 | 15-06-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: rows expose owner and bounded status read by header text regardless of position; an absent/empty Owner column yields no owner and an empty overview cell; the WIP chart counts only `In-Progress` rows and attributes each to its row owner (a record in its `Analysis` phase contributes to the analyst, not to DEV / TEST); the reference line reflects `planning.wip_limit`; the default of 2 applies when the key is absent or invalid; the per-row count is independent of the record's lifecycle status |
 
 # Out of Scope
 
@@ -136,7 +136,7 @@ When `planning.wip_limit` is absent, default to `2`. A non-positive or non-integ
 | 2 | The software shall associate each Scope row with the owner named in its Owner column, and shall expose on each Decision Record the distinct, first-seen-ordered list of its rows' owners. The Owner column shall be identified by its header text, case-sensitive, and not by column position. | >[SRS-108] |
 | 3 | When a Scope row has no owner, that row shall contribute no owner; when a Decision Record has no Scope table, no Owner column, or an empty Owner column, its distinct owner list shall be empty. | >[SRS-109] |
 | 4 | The Decision Records Overview page shall render the distinct owner list of each Decision Record in the existing Owner column, comma-separated when there is more than one owner, and empty when the list is empty. | >[SRS-110] |
-| 5 | The Decision Records Overview page shall render a Work-In-Progress by Owner chart with one bar per owner whose length is the number of Scope rows, across all Decision Records, whose row Status is In-Progress and whose Owner is that owner, and shall draw a reference line at the configured work-in-progress freeze limit. | >[SRS-111] |
+| 5 | The Decision Records Overview page shall render a Work-In-Progress by Owner chart with one bar for every owner named in any Decision Record's Scope table, each bar's length being the number of Scope rows, across all Decision Records, whose row Status is In-Progress and whose Owner is that owner, taken as zero when the owner has none, and shall draw a reference line at the configured work-in-progress freeze limit. | >[SRS-111] |
 | 6 | The software shall read an optional planning work-in-progress limit from the project configuration. When the limit is absent or invalid, the software shall apply a default of 2. | >[SRS-112] |
 
 # References

@@ -311,7 +311,7 @@ Table example:
 
 [SRS-110] The Decision Records Overview page shall render the distinct owner list of each Decision Record in the existing Owner column, comma-separated when there is more than one owner, and empty when the list is empty.
 
-[SRS-111] The Decision Records Overview page shall render a Work-In-Progress by Owner chart with one bar per owner whose length is the number of Scope rows, across all Decision Records, whose row Status is In-Progress and whose Owner is that owner, and shall draw a reference line at the configured work-in-progress freeze limit.
+[SRS-111] The Decision Records Overview page shall render a Work-In-Progress by Owner chart with one bar for every owner named in any Decision Record's Scope table, each bar's length being the number of Scope rows, across all Decision Records, whose row Status is In-Progress and whose Owner is that owner, taken as zero when the owner has none, and shall draw a reference line at the configured work-in-progress freeze limit.
 
 [SRS-112] The software shall read an optional planning work-in-progress limit from the project configuration. When the limit is absent or invalid, the software shall apply a default of 2.
 
