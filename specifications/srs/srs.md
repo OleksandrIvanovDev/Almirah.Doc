@@ -329,6 +329,16 @@ Table example:
 
 [SRS-119] The Decision Records Overview page shall render a Kit column indicating, for each Decision Record, whether it has no declared prerequisites, is fully kitted, or is blocked by an unsatisfied prerequisite.
 
+[SRS-136] The Decision Records Overview page shall render a work-item schedule between the status charts and the records table, in a scrollable container whose leading Owner column does not scroll horizontally and whose remaining columns are indexed by day, omitting the schedule when no work item can be placed.
+
+[SRS-137] The software shall draw each Scope work item across all Decision Records as a bar on its Owner's lane with a constant duration of three days, until per-row estimates are available.
+
+[SRS-138] The software shall start each work item's bar no earlier than the latest finish among its predecessors, counting both lower-numbered same-record steps and resolved cross-record dependencies.
+
+[SRS-139] The software shall place work items sharing an Owner so that their bars do not overlap on that Owner's lane, serialising the lane by resource levelling, and shall produce the same schedule on repeated runs.
+
+[SRS-140] Each work-item bar shall indicate its row Status, and a started work item whose cross-record predecessor is not Done shall be visually emphasised, consistent with the Overview Kit cell.
+
 ## Console Output
 
 [SRS-079] While processing a project, the software shall emit a concise progress summary to standard output consisting of one line per processing phase, each line pairing a phase label with the number of items processed in that phase.
