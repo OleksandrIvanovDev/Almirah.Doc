@@ -7,10 +7,10 @@ title: "ADR-194: Scope Phase Ordering, Dependencies, and Full-Kit Readiness"
 |  | Date | Status |
 |:---:|---|---|
 |   | 13-06-2026 | Proposed |
-| * | 14-06-2026 | Analysis |
-|   |  | Accepted |
-|   |  | In-Progress |
-|   |  | Implemented |
+|   | 14-06-2026 | Analysis |
+|   | 14-06-2026 | Accepted |
+|   | 14-06-2026 | In-Progress |
+| * | 17-06-2026 | Implemented |
 
 # Context
 
@@ -23,11 +23,22 @@ There are **two** kit gates, at two altitudes:
 
 Almirah already has the basic ingredients for both.
 
+This step also builds on [[adr-197-decision-group-collection]], which collected the first-level `decisions/` sub-folders into `@project_data.decision_groups` — each folder being a *group of records planned together* (a release). The per-row dependency network this ADR builds is **global** (an edge may cross from one group to another), but the group boundary is recorded on every cross-record edge so the later scheduling step ([[adr-195-critical-chain-buffer]]) can size estimates and buffers **per group**: a dependency that stays inside a group is part of that group's chain, while a dependency that crosses into another group is an external readiness constraint on the dependent group's *start*, not part of its internal buffer. Abstractly:
+
+```
+[ Group1: Record1 -> Record2 -> Buffer ]
+[ Group2: Record3 (Depends On Group1.Record2) -> Buffer ]
+```
+
+Here `Record3` is blocked until `Group1.Record2` is `Done` (the gate this ADR enforces), but Group2's buffer is computed over Group2's own chain only — the cross-group edge gates Group2's start and is excluded from Group2's buffer sizing (deferred to [[adr-195-critical-chain-buffer]]).
+
 # Decision
 
 Add a leading **`#` step column** and a per-row **`Depends On`** column to the Scope table, parsed by a **purpose-built `ScopeTable`** that inherits from `ControlledTable` to add the new linking pattern. Each row becomes a **`WorkItem`** carrying **`predecessors`** and **`successors`** lists that span both intra-record (step-order) and cross-record edges, forming a per-row dependency network. On that network, enforce two non-failing kit gates keyed on bounded per-row `Status` — **phase ordering** within a record (primary) and **activity-type-aligned dependency readiness** across records (secondary) — and surface readiness on the overview.
 
-Implementation hooks: `doc_parser` swaps `MarkdownTable` for `ScopeTable` when `doc.instance_of?(Decision) && in_section?(doc, 'Scope')`; a new `link_work_items` method runs in `project.rb` after `link_all_decisions`.
+Dependency resolution is **global**: a `Depends On` reference is resolved against *all* managed Decision Records (via `LinkRegistry`), regardless of which `decision_groups` folder either record lives in. Every cross-record edge additionally records whether it is **in-group or cross-group** (by comparing the two records' first-level `decisions/` folders, the same key [[adr-197-decision-group-collection]] uses). That flag is **inert in this step** — kit readiness counts every predecessor alike — and exists only so [[adr-195-critical-chain-buffer]] can scope buffers per group. There is therefore **no cross-group warning**: a cross-group dependency is a legitimate, fully honoured edge.
+
+Implementation hooks: `doc_parser` swaps `MarkdownTable` for `ScopeTable` when `doc.instance_of?(Decision) && in_section?(doc, 'Scope')`; a new `link_work_items` method runs in `project.rb` after `link_all_decisions`. Because the new `ScopeTable` replaces the plain `MarkdownTable` previously returned for the Scope section, the [[adr-193-owner-wip-heatmap]] readers (`extract_owners`, `in_progress_owner_tally`, `effective_status_on`, and the shared `find_section_table` / `column_index`) are **ported onto `ScopeTable`** — which keeps a header-addressed cell-grid view alongside its `WorkItem` rows — so owner/WIP/velocity extraction is unaffected.
 
 ## Phase ordering — the primary, intra-record gate
 
@@ -43,11 +54,15 @@ A **phase-order violation** is a started row (its `Status` is `In-Progress` or `
 
 `Depends On` is a **per-row** column (header text, not position): the row it is written in is the **dependent work item**, and its value is **one or more other decision records** it comes after — predecessors, in the link form `>[ADR-193]` (comma-separated). A record **never references its own rows**: order **within** a record comes from the `#` step column, not hand-authored links. The gem fills the intra-record edges internally, so every work item ends up connected (no orphans).
 
-**Activity-type-aligned resolution.** A record reference resolves to a *specific work item* of the prerequisite: the row whose **activity type** — its `Item` (`Analysis`, `Requirements`, `Code`, `Tests`, …) — **matches the dependent row's**, falling back to the prerequisite's nearest *earlier* activity type when an exact match is absent. So `Depends On: ADR-1` on ADR-2's `Analysis` row makes **ADR-2.Analysis depend on ADR-1.Analysis** — not on ADR-1's implementation. Alignment is by **activity type** (`WorkItem`), *not* by the worker: the `Owner` (the resource — `BA1`, `BA2`, `DEV`, …) is a **separate** dimension used only for resource levelling, so two analysts give two parallel Analysis slots without changing the dependency graph.
+**Activity-type-aligned resolution.** A record reference resolves to a *specific work item* of the prerequisite: the row whose **activity type** — its `Item` (`Analysis`, `Requirements`, `Code`, `Tests`, …) — **matches the dependent row's**, falling back to the prerequisite's nearest *earlier* activity type (by step order) when an exact match is absent. So `Depends On: ADR-1` on ADR-2's `Analysis` row makes **ADR-2.Analysis depend on ADR-1.Analysis** — not on ADR-1's implementation. Alignment is by **activity type** (`WorkItem`), *not* by the worker: the `Owner` (the resource — `BA1`, `BA2`, `DEV`, …) is a **separate** dimension used only for resource levelling, so two analysts give two parallel Analysis slots without changing the dependency graph.
+
+The prerequisite record is found **globally** — `LinkRegistry.find_by_id` over every managed record — so the prerequisite may sit in any `decision_groups` folder. The activity-type match is then performed *within* that resolved record.
 
 Internally each Scope row becomes a **`WorkItem`** with a canonical id `<record>.<step>.<activity>` (e.g. `ADR-194.1.Analysis`). The author writes only the **record-level** `>[adr-1]`; the resolver expands it to the activity-type-aligned row defined above (no step, no activity authored by hand). The project holds a dictionary of every work item, `{ "record.step.activity" => "record" }`, which is the source of record IDs for the `link_work_items` method.
 
-Each `WorkItem` holds **`predecessors`** and **`successors`** lists, each entry mapping a readable `record.activity` label to the resolved `WorkItem`: e.g. `predecessors = [{ "ADR-1.1.Analysis" => WorkItem1 }, { "ADR-1.2.Code" => WorkItem2 }]`. A row's predecessors are its lower-numbered same-record steps **plus** its resolved cross-record work items; successors are the inverse, populated during linking. Unresolved references (no such record) are reported (see *Reporting*).
+Each `WorkItem` holds **`predecessors`** and **`successors`** lists, each entry mapping a readable `record.activity` label to the resolved `WorkItem`: e.g. `predecessors = [{ "ADR-1.1.Analysis" => WorkItem1 }, { "ADR-1.2.Code" => WorkItem2 }]`. A row's predecessors are its lower-numbered same-record steps **plus** its resolved cross-record work items; successors are the inverse, populated during linking. Unresolved references (no such record, or a target that is not a Decision Record) are reported (see *Reporting*).
+
+Each **cross-record** edge also carries a boolean tag for whether the two records share a `decision_groups` folder (in-group) or not (cross-group). Intra-record edges are in-group by definition. The tag is written during linking and not consumed in this step; it is the hook [[adr-195-critical-chain-buffer]] uses to keep a group's buffer over its own chain while treating a cross-group predecessor as an external start constraint.
 
 This handles **inter-record dependencies** only; specification-item and Testing-Data-Set prerequisites are deferred. The per-row work-item network this produces is exactly what the critical-chain step ([[adr-195-critical-chain-buffer]]) schedules.
 
@@ -55,30 +70,30 @@ This handles **inter-record dependencies** only; specification-item and Testing-
 
 A work item's cross-record predecessor is **satisfied** when that resolved (activity-type-aligned) prerequisite work item is `Done` — read from the bounded per-row `Status`, never the open lifecycle vocabulary at the Decision Record level. This per-activity rule supersedes the earlier whole-record "deliverable `Done`" rule, which over-serialised (see *Alternatives Considered*).
 
-Derive `fully_kitted?` **per row**: a row is **kitted** when every one of its predecessors — its lower-numbered same-record steps **and** its resolved cross-record predecessor work items — is `Done` (trivially kitted when it has none); **blocked** otherwise. A record is kitted when all its rows are.
+Derive `fully_kitted?` **per row**: a row is **kitted** when every one of its predecessors — its lower-numbered same-record steps **and** its resolved cross-record predecessor work items — is `Done` (trivially kitted when it has none); **blocked** otherwise. Readiness ignores the in-group/cross-group tag: a cross-group predecessor blocks the dependent exactly as an in-group one does (in the running example, `Group2.Record3` is blocked until `Group1.Record2` is `Done`). A record is kitted when all its rows are.
 
 ## Reporting (the gates)
 
 After the existing link checks, report — all as **non-failing** console warnings in the `report_broken_links` family:
 
-- **Cross-record kit violation:** a **started** work item (its `Status` is `In-Progress` or `Done`) whose resolved cross-record predecessor is not `Done`; name the record, the row, and the unsatisfied predecessor work item.
+- **Cross-record kit violation:** a **started** work item (its `Status` is `In-Progress` or `Done`) whose resolved cross-record predecessor is not `Done`; name the record, the row, and the unsatisfied predecessor work item. This applies to in-group and cross-group predecessors alike — a cross-group edge is a real dependency, so starting against an unfinished one is a violation just the same.
 - **Phase-order violation:** a started row with an unfinished lower-numbered step; name the record, the row, and the blocking step.
-- **Unresolved `Depends On` reference:** an ID resolving to nothing or to a non-decision document; name the referencing record and the bad target.
+- **Unresolved `Depends On` reference:** an ID resolving to nothing or to a non-decision document; name the referencing record and the bad target. A reference that resolves to a real Decision Record in another group is **not** unresolved — it is a valid cross-group dependency and is never warned on.
 
 The build always completes; these are flow advisories, matching step 1's "warn, don't fail" stance.
 
 ## Overview rendering
 
-Add a **`Kit`** column to the Decision Records Overview, reflecting cross-record readiness per record: empty when `depends_on` is empty; a "ready" marker when `fully_kitted?` and there is at least one prerequisite; a "blocked" marker (warning colour) otherwise. A record that is blocked while having a started row (a cross-record violation) is emphasised, matching the console.
+Add a **`Kit`** column to the Decision Records Overview, reflecting cross-record readiness per record, rendered as **text**: empty when `depends_on` is empty; the word **`Ready`** when `fully_kitted?` and there is at least one prerequisite; the word **`Blocked`** (warning colour) otherwise. A record that is blocked while having a started row (a cross-record violation) is emphasised, matching the console.
 
 # Scope
 
 | # | Item | Owner | Depends On | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|
-| 1 | Analysis | BA | >[ADR-193] | In-Progress | 14-06-2026 |  | This decision record: the two-gate model (phase ordering + activity-type-aligned dependency readiness), the purpose-built `ScopeTable` / `WorkItem` network (record-level authoring, internal `<record>.<step>` edges), and the activity-type vs. owner separation |
-| 2 | Requirements | BA | >[ADR-193] | To Do |  |  | New SRS items SRS-113 through SRS-119 in `srs.md` (the "Planning" chapter from [[adr-193-owner-wip-heatmap]]): the leading `#` step column and row ordering; the phase-order gate and its violation; the per-row `Depends On` column referencing other Decision Records; activity-type-aligned resolution (match the dependent row's `Item`, fallback to the nearest earlier activity type) with the owner kept separate; a work item's predecessors and per-row `fully_kitted?` (predecessor work item `Done`); the cross-record violation; unresolved-reference reporting; and the overview `Kit` column |
-| 3 | Code | DEV | >[ADR-193] | To Do |  |  | Introduce a purpose-built `ScopeTable` / `WorkItem` class family (modelled on `ControlledTable` but with header-addressed columns and no fixed link-column position), parse the `# Scope` section into it, and port the date/owner/status extraction onto it; assign each row a `<record>.<step>` id; read the `#` step column (fall back to row order) for a phase-order check; resolve each per-row `Depends On` record reference to the activity-type-aligned work item (`LinkRegistry.find_by_id` for the record, `Item` match within it) and populate per-row `predecessors`/`successors` lists spanning intra- and cross-record edges; add per-row `fully_kitted?`; add `report_kit_violations` (both gates) and unresolved-reference reporting alongside `report_broken_links`; render the Scope table like the protocol controlled table; add the `Kit` column to `decisions_overview.rb` |
-| 4 | Tests | TEST | >[ADR-193] | To Do |  |  | E2E tests under `spec/e2e/decisions_spec.rb`: rows order by `#` (equal numbers concurrent; absent column → row order); a started row with an unfinished lower step is a phase-order violation; `Depends On: ADR-X` on a row resolves to ADR-X's same-`Item` work item (fallback to the nearest earlier activity type); the resolved predecessor must be `Done` for the dependent to be kitted; a dependent's Analysis is satisfied by the prerequisite's Analysis (not its Code), enabling parallelism; distinct owners (`BA1`/`BA2`) do not change the dependency; a started + blocked work item is a cross-record violation; unresolved `Depends On` reported; the `Kit` column renders empty / ready / blocked; everything reads row `Status`, never the lifecycle status |
+| 1 | Analysis | BA | >[ADR-193] | Done | 14-06-2026 | 17-06-2026 | This decision record: the two-gate model (phase ordering + activity-type-aligned dependency readiness), the purpose-built `ScopeTable` / `WorkItem` network (record-level authoring, internal `<record>.<step>` edges), the activity-type vs. owner separation, **global** dependency resolution with each cross-record edge tagged in-group / cross-group (over [[adr-197-decision-group-collection]]) so [[adr-195-critical-chain-buffer]] can scope buffers per group while cross-group edges still gate readiness, and porting the [[adr-193-owner-wip-heatmap]] Scope readers onto `ScopeTable` |
+| 2 | Requirements | BA | >[ADR-193] | Done | 17-06-2026 | 17-06-2026 | New SRS items SRS-113 through SRS-119 in `srs.md` (the "Planning" chapter from [[adr-193-owner-wip-heatmap]]): the leading `#` step column and row ordering; the phase-order gate and its violation; the per-row `Depends On` column referencing other Decision Records; activity-type-aligned resolution (match the dependent row's `Item`, fallback to the nearest earlier activity type) with the owner kept separate; a work item's predecessors and per-row `fully_kitted?` (predecessor work item `Done`); the cross-record violation; unresolved-reference reporting; and the overview `Kit` column |
+| 3 | Code | DEV | >[ADR-193] | Done | 17-06-2026 | 17-06-2026 | Introduce a purpose-built `ScopeTable` / `WorkItem` class family (modelled on `ControlledTable` but with header-addressed columns and no fixed link-column position, keeping a header-addressed cell-grid view); parse the `# Scope` section into it, port the date/owner/status extraction onto it, and broaden `find_section_table` to recognise it; assign each row a `<record>.<step>` id; read the `#` step column (fall back to row order) for a phase-order check; resolve each per-row `Depends On` record reference **globally** to the activity-type-aligned work item (`LinkRegistry.find_by_id` for the record, `Item` match within it) and populate per-row `predecessors`/`successors` lists spanning intra- and cross-record edges, tagging each cross-record edge in-group / cross-group via the [[adr-197-decision-group-collection]] folder key; add per-row `fully_kitted?` (counting every predecessor, tag-agnostic); add `report_kit_violations` (both gates) and unresolved-reference reporting alongside `report_broken_links`; render the Scope table like the protocol controlled table, with each `Depends On` reference rendered as a deep link to the resolved activity row of the target record (its `#` step anchor, falling back to the record page when the target has no step column) and an unresolved reference as a broken-link span; add the `Kit` column to `decisions_overview.rb` rendering `Ready` / `Blocked` / empty as text |
+| 4 | Tests | TEST | >[ADR-193] | Done | 17-06-2026 | 17-06-2026 | E2E tests under `spec/e2e/decisions_spec.rb`: rows order by `#` (equal numbers concurrent; absent column → row order); a started row with an unfinished lower step is a phase-order violation; `Depends On: ADR-X` on a row resolves to ADR-X's same-`Item` work item (fallback to the nearest earlier activity type); the resolved predecessor must be `Done` for the dependent to be kitted; a dependent's Analysis is satisfied by the prerequisite's Analysis (not its Code), enabling parallelism; distinct owners (`BA1`/`BA2`) do not change the dependency; a started + blocked work item is a cross-record violation; a **cross-group** `Depends On` still creates the edge, blocks the dependent until the predecessor is `Done`, and is tagged cross-group (an in-group edge tagged in-group), with no cross-group warning; an only-truly-unresolved `Depends On` reported; the `Kit` column renders empty / `Ready` / `Blocked`; everything reads row `Status`, never the lifecycle status |
 
 # Out of Scope
 
@@ -88,6 +103,7 @@ Add a **`Kit`** column to the Decision Records Overview, reflecting cross-record
 - **Cycle detection and full topological scheduling** of either the step graph or the dependency graph. This step evaluates immediate readiness and adjacent-step ordering only; transitive scheduling is the critical-chain step's groundwork (step 3).
 - **Using the record lifecycle status as a readiness signal.** Per the project decision, readiness reads bounded per-row `Status`; the open lifecycle vocabulary (`Deployment`, `Reopened`, …) is never consulted ([[adr-193-owner-wip-heatmap]], [[adr-172-current-status-marker]]).
 - **Estimates, buffers, and the fever chart** (roadmap steps 3–4).
+- **Consuming the in-group / cross-group edge tag.** This step only *records* whether each cross-record edge stays within a `decision_groups` folder; scoping estimates and buffers per group — and treating a cross-group predecessor as an external start constraint rather than part of the dependent group's buffer — is [[adr-195-critical-chain-buffer]]'s work. Like [[adr-197-decision-group-collection]]'s collection, the tag arrives inert.
 
 # Software Versions
 
@@ -114,6 +130,7 @@ Add a **`Kit`** column to the Decision Records Overview, reflecting cross-record
 - [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the roadmap this ADR is step 2 of; implements the Full Kit rule
 - [[adr-193-owner-wip-heatmap]] — step 1; established the Scope row as the planning unit, the bounded per-row `Status`, and the decision that the lifecycle status is not a planning input. It is also this record's own prerequisite
 - [[adr-172-current-status-marker]] — the hand-marked, open-vocabulary record lifecycle status, kept independent of the per-row `Status` this gate reads
+- [[adr-197-decision-group-collection]] — collected the `decision_groups` folders this ADR tags each cross-record edge against; the per-group buffer boundary those groups define is consumed by [[adr-195-critical-chain-buffer]]
 - [[adr-186-cross-document-links]] — the `LinkRegistry` resolution and broken-link reporting this check extends
 - [[adr-191-overview-target-date]] — the header-text-not-position, derive-don't-duplicate discipline followed here
 - [[adr-170-introduce-decision-records]] — introduced decision records, the Status/Scope tables, the overview page, and the numbered "Test Step" column convention this ADR mirrors for Scope steps
