@@ -329,9 +329,25 @@ Table example:
 
 [SRS-119] The Decision Records Overview page shall render a Kit column indicating, for each Decision Record, whether it has no declared prerequisites, is fully kitted, or is blocked by an unsatisfied prerequisite.
 
+[SRS-120] The Decision Record Scope table shall support two optional estimate columns, a focused estimate and a safe estimate, each expressing a work-item row's effort as a non-negative number of working days. The columns shall be identified by their header text, case-sensitive, and not by column position.
+
+[SRS-121] The software shall treat each Scope row's focused estimate as its scheduling duration, treating empty or unparseable estimate cells as zero.
+
+[SRS-122] For each decision-record group, the software shall construct a planning network whose nodes are the not-Done Scope rows of the records in that group, with intra-record edges following the step-number order and cross-record edges placing each row that carries a Depends On reference after its activity-type-aligned predecessor work item in the referenced record.
+
+[SRS-123] The software shall schedule the planning network with a deterministic resource-levelling rule in which each row starts only when all its predecessor rows have finished and its owner is free, so that rows sharing the same owner do not run concurrently while rows with different owners, including multiple people in one role, may.
+
+[SRS-124] The software shall identify the critical chain of a decision-record group as the sequence of Scope rows that determines the group's completion in the resource-levelled schedule.
+
+[SRS-125] The software shall compute a project buffer for each decision-record group as the configured buffer ratio multiplied by the aggregated safety along the critical chain, where each row's safety contribution is its safe estimate minus its focused estimate clamped to zero, rounded up to a whole working day.
+
+[SRS-126] The software shall read an optional planning buffer ratio from the project configuration, applying a default of 0.5 when the value is absent or outside the range greater than 0 and at most 1.
+
+[SRS-127] The Decision Records Overview page shall render, per decision-record group, the ordered critical chain as role-phase rows, the project buffer size, and the projected duration, and shall indicate when a group has no estimated work.
+
 [SRS-136] The Decision Records Overview page shall render a work-item schedule between the status charts and the records table, in a scrollable container whose leading Owner column does not scroll horizontally and whose remaining columns are indexed by day, omitting the schedule when no work item can be placed.
 
-[SRS-137] The software shall draw each Scope work item across all Decision Records as a bar on its Owner's lane with a constant duration of three days, until per-row estimates are available.
+[SRS-137] The software shall draw each Scope work item across all Decision Records as a bar on its Owner's lane whose length in day columns is its focused estimate rounded up to a whole day, with a one-day minimum so that an unestimated row remains visible.
 
 [SRS-138] The software shall start each work item's bar no earlier than the latest finish among its predecessors, counting both lower-numbered same-record steps and resolved cross-record dependencies.
 

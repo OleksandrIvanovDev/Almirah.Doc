@@ -7,10 +7,10 @@ title: "ADR-195: Estimates, Critical Chain, and Project Buffer"
 |  | Date | Status |
 |:---:|---|---|
 |   | 13-06-2026 | Proposed |
-| * | 14-06-2026 | Analysis |
-|   |  | Accepted |
-|   |  | In-Progress |
-|   |  | Implemented |
+|   | 14-06-2026 | Analysis |
+|   | 18-06-2026 | Accepted |
+|   | 18-06-2026 | In-Progress |
+| * | 18-06-2026 | Implemented |
 
 # Context
 
@@ -43,7 +43,7 @@ Add two optional columns to the `# Scope` table, identified by header text (case
 - **`Est (focused)`** — the aggressive, no-safety estimate: how long the row takes with full focus and everything going well. This drives the schedule.
 - **`Est (safe)`** — the comfortable estimate the author would otherwise commit to. The difference `safe − focused` is the safety aggregated into the buffer.
 
-Estimates are a non-negative number of **working days** (decimals allowed); empty or unparseable cells count as `0`. Each row's own focused estimate is its scheduling **duration**. For display, also expose per-record aggregates (`focused_estimate` / `safe_estimate` = the column sums), reusing `find_section_table` / `column_index`.
+Estimates are a non-negative number of **working days** (decimals allowed); empty or unparseable cells count as `0`. Each row's own focused estimate is its scheduling **duration**.
 
 ## Critical chain and project buffer (per decision group)
 
@@ -82,10 +82,10 @@ planning:
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Analysis | BA | >[ADR-194] | 2 | 4 | In-Progress | 14-06-2026 |  | This decision record: the row-as-task scheduling model, the intra/cross-record edges, and the per-row buffer formula |
-| 2 | Requirements | BA | >[ADR-194] | 1 | 2 | To Do |  |  | New SRS items SRS-120 through SRS-127 in `srs.md` "Planning" chapter: the two per-row estimate columns (working days, empty = 0, header text); per-row durations and per-record aggregates; the per-group network whose nodes are not-`Done` rows with intra-record step edges and cross-record activity-type-aligned edges; the deterministic resource-levelling rule keyed on the per-row `Owner` (distinct owners run in parallel); the critical-chain definition over rows; the buffer formula and `buffer_ratio` config; the projected duration; and the overview "Critical Chain & Project Buffer" section with the unestimated note |
-| 3 | Code | DEV | >[ADR-194] | 3 | 6 | To Do |  |  | Add per-row `Est (focused)` / `Est (safe)` reading and per-record aggregates on `Decision`; add a planning module that builds the per-group row network (groups from [[adr-197-decision-group-collection]], consuming the `#` order, the activity-type-aligned cross-record links from [[adr-194-full-kit-readiness]], per-row owners and durations), resource-levels it deterministically, traces the critical chain, and sizes the buffer; read `planning.buffer_ratio` in `project_configuration.rb` (default 0.5, range-checked); render the standalone "Critical Chain & Project Buffer" view in `decisions_overview.rb`, and override `WorkItemScheduler#duration_for` with the focused estimate and the Gantt's `buffer_for(group)` hook with the computed buffer ([[adr-201-gantt-group-segmentation]]) |
-| 4 | Tests | TEST | >[ADR-194] | 2 | 5 | To Do |  |  | E2E tests under `spec/e2e/decisions_spec.rb`: per-row estimates with empty/unparseable = 0; a linear step chain within a record yields the expected ordering; two unlinked rows sharing an owner serialise (resource levelling) while rows with different owners and no edge run in parallel; a cross-record dependency places a dependent row after its activity-type-aligned predecessor in the prerequisite (a dependent's `Analysis` after the prerequisite's `Analysis`, free to run in parallel with the prerequisite's `Code`); the chain and buffer = `ceil(ratio × Σ(safe−focused))` with negatives clamped; `buffer_ratio` default and out-of-range fallback; `Done` rows and cross-group prerequisites are excluded as nodes; an all-unestimated group is reported unestimated; the schedule is deterministic across runs |
+| 1 | Analysis | BA | >[ADR-194] | 2 | 4 | Done | 14-06-2026 | 18-06-2026 | This decision record: the row-as-task scheduling model, the intra/cross-record edges, and the per-row buffer formula |
+| 2 | Requirements | BA | >[ADR-194] | 1 | 2 | Done | 18-06-2026 | 18-06-2026 | New SRS items SRS-120 through SRS-127 in `srs.md` "Planning" chapter: the two per-row estimate columns (working days, empty = 0, header text); per-row durations; the per-group network whose nodes are not-`Done` rows with intra-record step edges and cross-record activity-type-aligned edges; the deterministic resource-levelling rule keyed on the per-row `Owner` (distinct owners run in parallel); the critical-chain definition over rows; the buffer formula and `buffer_ratio` config; the projected duration; and the overview "Critical Chain & Project Buffer" section with the unestimated note |
+| 3 | Code | DEV | >[ADR-194] | 3 | 6 | Done | 18-06-2026 | 18-06-2026 | Add per-row `Est (focused)` / `Est (safe)` reading; add a planning module that builds the per-group row network (groups from [[adr-197-decision-group-collection]], consuming the `#` order, the activity-type-aligned cross-record links from [[adr-194-full-kit-readiness]], per-row owners and durations), resource-levels it deterministically, traces the critical chain, and sizes the buffer; read `planning.buffer_ratio` in `project_configuration.rb` (default 0.5, range-checked); render the standalone "Critical Chain & Project Buffer" view in `decisions_overview.rb`, and override `WorkItemScheduler#duration_for` with the focused estimate and the Gantt's `buffer_for(group)` hook with the computed buffer ([[adr-201-gantt-group-segmentation]]) |
+| 4 | Tests | TEST | >[ADR-194] | 2 | 5 | Done | 18-06-2026 | 18-06-2026 | E2E tests under `spec/e2e/decisions_spec.rb`: per-row estimates with empty/unparseable = 0; a linear step chain within a record yields the expected ordering; two unlinked rows sharing an owner serialise (resource levelling) while rows with different owners and no edge run in parallel; a cross-record dependency places a dependent row after its activity-type-aligned predecessor in the prerequisite (a dependent's `Analysis` after the prerequisite's `Analysis`, free to run in parallel with the prerequisite's `Code`); the chain and buffer = `ceil(ratio × Σ(safe−focused))` with negatives clamped; `buffer_ratio` default and out-of-range fallback; `Done` rows and cross-group prerequisites are excluded as nodes; an all-unestimated group is reported unestimated; the schedule is deterministic across runs |
 
 # Out of Scope
 
@@ -117,7 +117,7 @@ planning:
 
 - Records authored before this ADR work unchanged: rows with no estimate contribute 0 duration and do not lengthen any chain.
 - Re-rendering is required to compute and show the chain; nothing is retroactive.
-- This record's own rows carry sample estimates and depend on [[adr-194-full-kit-readiness]] (still in `Analysis`), so it remains not-fully-kitted — continuing the live demonstration from step 2.
+- This record's own rows carried sample estimates that drove the live critical chain during development; now Done, they leave the active plan, with [[adr-196-buffer-fever-chart]] (still in flight) carrying the live critical-chain demonstration for release 0.4.3.
 
 # Alternatives Considered
 
@@ -141,7 +141,7 @@ planning:
 | # | Proposed Text | Req-ID |
 |---|---|---|
 | 1 | The Decision Record Scope table shall support two optional estimate columns, a focused estimate and a safe estimate, each expressing a work-item row's effort as a non-negative number of working days. The columns shall be identified by their header text, case-sensitive, and not by column position. | >[SRS-120] |
-| 2 | The software shall treat each Scope row's focused estimate as its scheduling duration, treating empty or unparseable estimate cells as zero, and shall additionally expose per-Decision-Record focused-estimate and safe-estimate aggregates equal to the column sums. | >[SRS-121] |
+| 2 | The software shall treat each Scope row's focused estimate as its scheduling duration, treating empty or unparseable estimate cells as zero. | >[SRS-121] |
 | 3 | For each decision-record group, the software shall construct a planning network whose nodes are the not-Done Scope rows of the records in that group, with intra-record edges following the step-number order and cross-record edges placing each row that carries a Depends On reference after its activity-type-aligned predecessor work item in the referenced record. | >[SRS-122] |
 | 4 | The software shall schedule the planning network with a deterministic resource-levelling rule in which each row starts only when all its predecessor rows have finished and its owner is free, so that rows sharing the same owner do not run concurrently while rows with different owners, including multiple people in one role, may. | >[SRS-123] |
 | 5 | The software shall identify the critical chain of a decision-record group as the sequence of Scope rows that determines the group's completion in the resource-levelled schedule. | >[SRS-124] |
