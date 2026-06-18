@@ -343,7 +343,7 @@ Table example:
 
 [SRS-126] The software shall read an optional planning buffer ratio from the project configuration, applying a default of 0.5 when the value is absent or outside the range greater than 0 and at most 1.
 
-[SRS-127] The Decision Records Overview page shall render, per decision-record group, the ordered critical chain as role-phase rows, the project buffer size, and the projected duration, and shall indicate when a group has no estimated work.
+[SRS-127] The software shall render the per-decision-record-group critical chain, project buffer, and projected duration on a dedicated Critical Chain page rather than on the Decision Records Overview, indicating when a group has no estimated work.
 
 [SRS-136] The Decision Records Overview page shall render a work-item schedule between the status charts and the records table, in a scrollable container whose leading Owner column does not scroll horizontally and whose remaining columns are indexed by day, omitting the schedule when no work item can be placed.
 
@@ -354,6 +354,18 @@ Table example:
 [SRS-139] The software shall place work items sharing an Owner so that their bars do not overlap on that Owner's lane, serialising the lane by resource levelling, and shall produce the same schedule on repeated runs.
 
 [SRS-140] Each work-item bar shall indicate its row Status, and a started work item whose cross-record predecessor is not Done shall be visually emphasised, consistent with the Overview Kit cell.
+
+[SRS-141] The Decision Records Overview work-item schedule shall be segmented into one block per decision-record group, the blocks laid left to right in the groups' folder-encounter order, with each block carrying its own day-index axis beginning at one.
+
+[SRS-142] The software shall render a group band row between the day-header and the resource lanes, with one labelled cell per group spanning that group's day columns.
+
+[SRS-143] The software shall schedule each group's work items independently with per-owner resource levelling scoped to the group, treating any predecessor belonging to another group as an already-available input rather than a scheduled work item.
+
+[SRS-144] The Decision Records Overview shall render a Buffer lane as the last row below the resource lanes, drawing one buffer bar per group positioned after that group's last work item, its length the group's computed project buffer.
+
+[SRS-145] The software shall produce the same segmented layout, block order, and per-group schedule on repeated runs over unchanged input.
+
+[SRS-146] The software shall place a "Critical Chain" link in the top navigation menu immediately after the Decision Records link, pointing at the dedicated Critical Chain page, and shall show it exactly when the Decision Records link is shown.
 
 ## Console Output
 
