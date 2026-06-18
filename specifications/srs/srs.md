@@ -367,6 +367,10 @@ Table example:
 
 [SRS-146] The software shall place a "Critical Chain" link in the top navigation menu immediately after the Decision Records link, pointing at the dedicated Critical Chain page, and shall show it exactly when the Decision Records link is shown.
 
+[SRS-147] The software shall derive a consensus owner order across all Decision Records by tallying, for each record's distinct owner sequence, every ordered pair of owners that appears earlier-before-later, and ranking the owners by Copeland score — each owner scoring one for every other owner it precedes more often than it follows, minus one for every owner it follows more often — with the first-seen owner order as a tiebreak so the result is identical across repeated runs over unchanged input.
+
+[SRS-148] The Decision Records Overview Gantt shall order its resource lanes by the consensus owner order, while the Work-In-Progress by Owner chart shall retain its descending-in-progress-count order.
+
 ## Console Output
 
 [SRS-079] While processing a project, the software shall emit a concise progress summary to standard output consisting of one line per processing phase, each line pairing a phase label with the number of items processed in that phase.
