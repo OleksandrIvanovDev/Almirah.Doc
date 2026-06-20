@@ -393,13 +393,17 @@ Table example:
 
 [SRS-151] The software shall map each working-day index of the planning schedule to a calendar date counted from the start date, skipping non-working days, so that the Nth working day falls on the Nth working date on or after the anchor.
 
-[SRS-152] The Decision Records Overview Gantt shall render its day columns as consecutive calendar days, including non-working days, and shall mark each non-working column distinctly from working columns.
+[SRS-152] The Decision Records Overview Gantt shall render a day column for each working day and for each holiday that falls on a weekday, and shall not render columns for Saturdays and Sundays.
 
 [SRS-153] The Decision Records Overview Gantt shall render a calendar header naming the month spanning its day columns and numbering the day of the month for each column.
 
-[SRS-154] The software shall span each work-item bar and each buffer bar across the calendar columns from its first to its last working day inclusive, so that bars cover any intervening non-working columns without counting them as work.
+[SRS-154] The software shall span each work-item bar and each buffer bar across the business-day columns from its first to its last working day inclusive, so that bars cover any weekday-holiday columns they cross without counting them as work.
 
 [SRS-155] The Critical Chain page shall render, per decision-record group with an estimated critical chain, a projected completion date obtained by counting the projected duration in working days from the start date across non-working days.
+
+[SRS-158] The Decision Records Overview Gantt shall mark each weekday-holiday column as non-working, shading it distinctly and drawing work-item bars across it.
+
+[SRS-159] The Decision Records Overview Gantt shall highlight Friday columns to indicate the boundaries of the five-day working week.
 
 ## Console Output
 
