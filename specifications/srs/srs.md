@@ -371,6 +371,22 @@ Table example:
 
 [SRS-148] The Decision Records Overview Gantt shall order its resource lanes by the consensus owner order, while the Work-In-Progress by Owner chart shall retain its descending-in-progress-count order.
 
+[SRS-128] A Decision Record shall support an optional Effort section containing an append-only table whose columns are a date in DD-MM-YYYY form, an Item tying the entry to a Scope row, an optional owner, a non-negative number of hours, and an optional note. The columns shall be identified by header text, not by position.
+
+[SRS-129] The software shall expose on each Decision Record the total actual effort, an as-of-date total, and a per-Scope-row as-of-date effort summing the Hours of entries whose Item matches the row and whose date is on or before the given date.
+
+[SRS-130] The software shall read an optional planning hours-per-day value from the project configuration, applying a default of 8 when absent or non-positive, and shall use it to convert logged hours to working days.
+
+[SRS-131] For each decision-record group, the software shall compute the critical-chain completion as the focused-estimate-weighted fractional progress of the group's critical-chain rows, where a row's progress is its as-of-date actual days over its focused estimate clamped to one, and a row whose Status is Done credits full progress at the current date.
+
+[SRS-132] For each decision-record group, the software shall compute the buffer consumption as the percentage of the project buffer consumed, where consumed days equal the sum over the critical-chain rows of the amount by which each row's as-of-date actual days exceed its focused estimate, clamped to zero, and where the consumption may exceed one hundred percent.
+
+[SRS-133] The Critical Chain page shall render, per decision-record group with an estimated critical chain, a fever chart plotting buffer consumption against critical-chain completion, placed beside that group's critical-chain table.
+
+[SRS-134] The fever chart shall divide its area into green, yellow, and red zones by the conventional one-third and two-thirds diagonal boundaries, indicating respectively on-track, watch, and act conditions.
+
+[SRS-135] The fever chart shall render a trail of points, one per recent Friday, each computed from the as-of-date actual effort of the critical-chain rows on both axes, showing the trajectory of the decision group toward its current zone.
+
 ## Console Output
 
 [SRS-079] While processing a project, the software shall emit a concise progress summary to standard output consisting of one line per processing phase, each line pairing a phase label with the number of items processed in that phase.
