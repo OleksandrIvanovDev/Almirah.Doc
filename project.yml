@@ -8,3 +8,6 @@
       path: ../Almirah.Code/lib
     - name: Almirah.Spec
       path: ../Almirah.Code/spec
+
+  planning:
+    start_date: 12-05-2026

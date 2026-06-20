@@ -387,6 +387,20 @@ Table example:
 
 [SRS-135] The fever chart shall render a trail of points, one per recent Friday, each computed from the as-of-date actual effort of the critical-chain rows on both axes, showing the trajectory of the decision group toward its current zone.
 
+[SRS-149] The software shall read an optional planning start date from the project configuration in DD-MM-YYYY form, using it as the calendar anchor for the first working day and falling back to the render date when the value is absent or unparseable.
+
+[SRS-150] The software shall read an optional planning holidays list from the project configuration, each a DD-MM-YYYY date, and shall treat those dates, together with Saturdays and Sundays, as non-working days.
+
+[SRS-151] The software shall map each working-day index of the planning schedule to a calendar date counted from the start date, skipping non-working days, so that the Nth working day falls on the Nth working date on or after the anchor.
+
+[SRS-152] The Decision Records Overview Gantt shall render its day columns as consecutive calendar days, including non-working days, and shall mark each non-working column distinctly from working columns.
+
+[SRS-153] The Decision Records Overview Gantt shall render a calendar header naming the month spanning its day columns and numbering the day of the month for each column.
+
+[SRS-154] The software shall span each work-item bar and each buffer bar across the calendar columns from its first to its last working day inclusive, so that bars cover any intervening non-working columns without counting them as work.
+
+[SRS-155] The Critical Chain page shall render, per decision-record group with an estimated critical chain, a projected completion date obtained by counting the projected duration in working days from the start date across non-working days.
+
 ## Console Output
 
 [SRS-079] While processing a project, the software shall emit a concise progress summary to standard output consisting of one line per processing phase, each line pairing a phase label with the number of items processed in that phase.
