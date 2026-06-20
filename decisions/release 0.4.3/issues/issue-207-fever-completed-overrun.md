@@ -6,7 +6,10 @@ title: "ISSUE-207: Fever Chart Drops Buffer Consumed by Completed Chain Rows"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 20-06-2026 | Proposed |
+|   | 20-06-2026 | Proposed |
+|   | 20-06-2026 | Accepted |
+|   | 20-06-2026 | In-Progress |
+| * | 20-06-2026 | Implemented |
 
 # Context
 
@@ -39,9 +42,17 @@ The fever-chart math in `FeverChart` is unchanged — it was already correct; it
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Code | DEV |  | 1 | 2 | To do | 20-06-2026 | 20-06-2026 | In `project/critical_chain.rb`, retain `@items = reject(&:done?)` for the remaining-work chain and add an `@all_items` baseline scheduler; expose `baseline_chain` and `baseline_buffer` (a shared `buffer_for(rows)` helper), and base `estimated?` on the baseline. In `project/fever_chart.rb`, read `plan.baseline_chain` / `plan.baseline_buffer` instead of `plan.chain` / `plan.buffer` |
-| 2 | Tests | TEST |  | 1 | 2 | To do | 20-06-2026 | 20-06-2026 | Add an e2e case in `spec/e2e/decisions_spec.rb`: a Done chain row that overran keeps its overrun in buffer consumption and its full completion credit (the live point lands at the baseline-derived coordinate, not the remaining-only one); confirm the existing non-Done fever cases are unaffected because baseline equals remaining when nothing is Done |
-| 3 | Requirements | BA |  | 1 | 2 | To do | 20-06-2026 | 20-06-2026 | Clarify SRS-131 / SRS-132 wording so completion and consumption are explicitly computed over the *baseline* critical chain (completed rows included) against the plan-time buffer, not the remaining-work chain |
+| 1 | Code | DEV |  | 1 | 2 | Done | 20-06-2026 | 20-06-2026 | In `project/critical_chain.rb`, retain `@items = reject(&:done?)` for the remaining-work chain and add an `@all_items` baseline scheduler; expose `baseline_chain` and `baseline_buffer` (a shared `buffer_for(rows)` helper), and base `estimated?` on the baseline. In `project/fever_chart.rb`, read `plan.baseline_chain` / `plan.baseline_buffer` instead of `plan.chain` / `plan.buffer` |
+| 2 | Tests | TEST |  | 1 | 2 | Done | 20-06-2026 | 20-06-2026 | Add an e2e case in `spec/e2e/decisions_spec.rb`: a Done chain row that overran keeps its overrun in buffer consumption and its full completion credit (the live point lands at the baseline-derived coordinate, not the remaining-only one); confirm the existing non-Done fever cases are unaffected because baseline equals remaining when nothing is Done |
+| 3 | Requirements | BA |  | 1 | 2 | Done | 20-06-2026 | 20-06-2026 | Clarify SRS-131 / SRS-132 wording so completion and consumption are explicitly computed over the *baseline* critical chain (completed rows included) against the plan-time buffer, not the remaining-work chain |
+
+# Effort
+
+| Date | Item | Owner | Hours | Note |
+|---|---|---|---|---|
+| 20-06-2026 | Code | DEV | 1 | baseline chain/buffer in `critical_chain.rb` and `fever_chart.rb` rewiring |
+| 20-06-2026 | Tests | TEST | 1 | done-overrun e2e case in `decisions_spec.rb` |
+| 20-06-2026 | Requirements | BA | 1 | SRS-131 / SRS-132 baseline-chain clarification |
 
 # Out of Scope
 
@@ -67,7 +78,7 @@ The fever-chart math in `FeverChart` is unchanged — it was already correct; it
 ## Neutral
 
 - Re-rendering is required to pick up the corrected accounting; nothing is retroactive to already-built HTML.
-- A working prototype of the Code and Tests items exists in the `Almirah.Code` working tree (the full decisions e2e suite passes, 140 examples) pending acceptance of this record.
+- The Code and Tests items are implemented in `Almirah.Code` and the full decisions e2e suite passes (140 examples).
 
 # Alternatives Considered
 
