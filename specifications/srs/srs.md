@@ -355,7 +355,7 @@ Table example:
 
 [SRS-140] Each work-item bar shall indicate its row Status, and a started work item whose cross-record predecessor is not Done shall be visually emphasised, consistent with the Overview Kit cell.
 
-[SRS-141] The Decision Records Overview work-item schedule shall be segmented into one block per decision-record group, the blocks laid left to right in the groups' folder-encounter order, with each block carrying its own day-index axis beginning at one.
+[SRS-141] The Decision Records Overview work-item schedule shall be segmented into one block per decision-record group, the blocks laid left to right in the groups' folder-encounter order with a gutter column between adjacent blocks so they never overlap, each block carrying its own day-index axis beginning at one.
 
 [SRS-142] The software shall render a group band row between the day-header and the resource lanes, with one labelled cell per group spanning that group's day columns.
 
@@ -395,7 +395,9 @@ Table example:
 
 [SRS-150] The software shall read an optional planning holidays list from the project configuration, each a DD-MM-YYYY date, and shall treat those dates, together with Saturdays and Sundays, as non-working days.
 
-[SRS-151] The software shall map each working-day index of the planning schedule to a calendar date counted from the start date, skipping non-working days, so that the Nth working day falls on the Nth working date on or after the anchor.
+[SRS-163] The software shall read an optional per-group planning start date for each decision-record group from the project configuration in DD-MM-YYYY form, and shall anchor that group's Gantt block calendar — the dates labelling its day columns and the start its projected completion date is counted from — at that start date, falling back to the project start date when the group declares none. The blocks remain laid out sequentially (SRS-141); a group's start date sets the dates shown for its block, not the block's position.
+
+[SRS-151] The software shall map each working-day index of a decision-record group's schedule to a calendar date counted from that group's planning start date (SRS-163), skipping non-working days, so that the Nth working day falls on the Nth working date on or after that anchor.
 
 [SRS-152] The Decision Records Overview Gantt shall render a day column for each working day and for each holiday that falls on a weekday, and shall not render columns for Saturdays and Sundays.
 
@@ -403,13 +405,13 @@ Table example:
 
 [SRS-154] The software shall span each work-item bar and each buffer bar across the business-day columns from its first to its last working day inclusive, so that bars cover any weekday-holiday columns they cross without counting them as work.
 
-[SRS-155] The Critical Chain page shall render, per decision-record group with an estimated critical chain, a projected completion date obtained by counting the projected duration in working days from the start date across non-working days.
+[SRS-155] The Critical Chain page shall render, per decision-record group with an estimated critical chain, a projected completion date obtained by counting the projected duration in working days from that group's planning start date (SRS-163) across non-working days.
 
 [SRS-158] The Decision Records Overview Gantt shall mark each weekday-holiday column as non-working, shading it distinctly and drawing work-item bars across it.
 
 [SRS-159] The Decision Records Overview Gantt shall highlight Friday columns to indicate the boundaries of the five-day working week.
 
-[SRS-160] The Decision Records Overview Gantt shall mark the current date in each group block with a full-height vertical rule placed at the column of the first working day on or after the current date, clamped to the block's first column when the current date precedes the block and to the trailing edge of its last column when the current date follows the block.
+[SRS-160] The Decision Records Overview Gantt shall mark the current date with a full-height vertical rule at the column of the first working day on or after the current date, drawn only in a group block whose calendar range contains the current date and omitted from blocks the current date falls before or after.
 
 ## Console Output
 
