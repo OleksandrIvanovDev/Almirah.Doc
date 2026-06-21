@@ -387,6 +387,10 @@ Table example:
 
 [SRS-135] The fever chart shall render a trail of points, one per recent Friday, each computed from the as-of-date actual effort of the critical-chain rows on both axes, showing the trajectory of the decision group toward its current zone.
 
+[SRS-161] The Critical Chain page shall display, beside each decision-record group's project buffer figure, the buffer consumed as a percentage and as the consumed working days out of the group's baseline project buffer, omitting the line when the group has no baseline buffer to consume.
+
+[SRS-162] Each fever chart point shall carry the calendar date it was sampled on — a recent Friday for each trail point and the render date for the live point — and the chart's point tooltip shall present that date followed by the point's completion and consumption values.
+
 [SRS-149] The software shall read an optional planning start date from the project configuration in DD-MM-YYYY form, using it as the calendar anchor for the first working day and falling back to the render date when the value is absent or unparseable.
 
 [SRS-150] The software shall read an optional planning holidays list from the project configuration, each a DD-MM-YYYY date, and shall treat those dates, together with Saturdays and Sundays, as non-working days.
@@ -404,6 +408,8 @@ Table example:
 [SRS-158] The Decision Records Overview Gantt shall mark each weekday-holiday column as non-working, shading it distinctly and drawing work-item bars across it.
 
 [SRS-159] The Decision Records Overview Gantt shall highlight Friday columns to indicate the boundaries of the five-day working week.
+
+[SRS-160] The Decision Records Overview Gantt shall mark the current date in each group block with a full-height vertical rule placed at the column of the first working day on or after the current date, clamped to the block's first column when the current date precedes the block and to the trailing edge of its last column when the current date follows the block.
 
 ## Console Output
 
