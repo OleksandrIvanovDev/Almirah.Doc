@@ -8,8 +8,8 @@ title: "ADR-211: Per-Group Planning Start Dates"
 |:---:|---|---|
 |   | 21-06-2026 | Proposed |
 |   | 21-06-2026 | Accepted |
-| * | 21-06-2026 | In-Progress |
-|   |  | Implemented |
+|   | 21-06-2026 | In-Progress |
+| * | 21-06-2026 | Implemented |
 
 # Context
 
@@ -53,7 +53,7 @@ planning:
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | Requirements | BA |  | 1 | 2 | Done | 21-06-2026 | 21-06-2026 | Specify the optional `planning.groups` mapping (folder name to `DD-MM-YYYY` start date), the block-calendar anchoring rule, the project-start-date fallback, and that the start date labels a block's dates without changing the sequential gutter-separated layout |
 | 2 | Code | DEV |  | 2 | 3 | Done | 21-06-2026 | 21-06-2026 | Parse `planning.groups` in `ProjectConfiguration` reusing `parse_planning_date`; in the overview Gantt, anchor each block's `WorkingCalendar` at its group's start date (or the project start date) while keeping the left-to-right gutter-separated block layout; draw the today rule only in the block whose calendar contains today; count the Critical Chain page's per-group completion date from the same group start |
-| 3 | Tests | TEST |  | 1 | 2 | In-Progress | 21-06-2026 | 21-06-2026 | Add `Almirah.Code` specs for the config parsing and the per-block calendar labelling (declared date, project-start fallback, single in-range today rule, gutter retained); rebuild `Almirah.Doc` and confirm the blocks tile cleanly with no new broken links or parse errors |
+| 3 | Tests | TEST |  | 1 | 2 | Done | 21-06-2026 | 21-06-2026 | Add `Almirah.Code` specs for the config parsing and the per-block calendar labelling (declared date, project-start fallback, single in-range today rule, gutter retained); rebuild `Almirah.Doc` and confirm the blocks tile cleanly with no new broken links or parse errors |
 
 # Out of Scope
 
@@ -121,5 +121,6 @@ This decision adds SRS-163 and amends SRS-141, SRS-151, SRS-155, and SRS-160 to 
 # Review Evidences
 
 - [Decision Record]()
+- [Requirements]()
 - [Code]()
 - [Tests]()
