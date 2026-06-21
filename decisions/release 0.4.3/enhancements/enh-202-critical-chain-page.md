@@ -29,10 +29,10 @@ Move the Critical Chain & Project Buffer view off the overview and onto a dedica
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Done | 18-06-2026 | 18-06-2026 | Add a `CriticalChainPage` (`BaseDocument` subclass) holding the moved `render_critical_chain` / `critical_chain_block` / `cc_chain_html` / `cc_chain_row` / `format_days` renderer, output to `build/decisions/critical-chain.html`; remove the `render_critical_chain` call from `DecisionsOverview#to_html`; add `render_critical_chain_page` in `project.rb` (guarded by `@project_data.decisions.any?`) and wire it into rendering; add `critical_chain_link` in `base_document.rb`, emitted in the `{{HOME_BUTTON}}` block right after `decisions_link` and gated by `show_decisions_link`, titled "Critical Chain" and pointing at `decisions/critical-chain.html` |
-| Tests | Done | 18-06-2026 | 18-06-2026 | E2E tests under `spec/e2e/decisions_spec.rb`: the Decision Records Overview no longer contains a `div.critical_chain`; `build/decisions/critical-chain.html` renders the per-group chains, buffers, and projected durations (and the unestimated note); the top menu contains a `#critical_chain_menu_item` link titled "Critical Chain" positioned immediately after the `#decisions_menu_item` link; the link is absent when the project has no decision records |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 18-06-2026 | 18-06-2026 | Add a `CriticalChainPage` (`BaseDocument` subclass) holding the moved `render_critical_chain` / `critical_chain_block` / `cc_chain_html` / `cc_chain_row` / `format_days` renderer, output to `build/decisions/critical-chain.html`; remove the `render_critical_chain` call from `DecisionsOverview#to_html`; add `render_critical_chain_page` in `project.rb` (guarded by `@project_data.decisions.any?`) and wire it into rendering; add `critical_chain_link` in `base_document.rb`, emitted in the `{{HOME_BUTTON}}` block right after `decisions_link` and gated by `show_decisions_link`, titled "Critical Chain" and pointing at `decisions/critical-chain.html` |
+| 2 | Tests | TEST |  |  |  | Done | 18-06-2026 | 18-06-2026 | E2E tests under `spec/e2e/decisions_spec.rb`: the Decision Records Overview no longer contains a `div.critical_chain`; `build/decisions/critical-chain.html` renders the per-group chains, buffers, and projected durations (and the unestimated note); the top menu contains a `#critical_chain_menu_item` link titled "Critical Chain" positioned immediately after the `#decisions_menu_item` link; the link is absent when the project has no decision records |
 
 # Out of Scope
 

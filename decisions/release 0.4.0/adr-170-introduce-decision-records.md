@@ -27,11 +27,11 @@ The Almirah Ruby script shall processs decision records, link them to the docume
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Requirements | Done | 12-05-2026 | 17-05-2026 | SRS-039 through SRS-048 added or revised in srs.md to cover ID derivation, sequence number, type, frontmatter title, per-record HTML rendering, overview page, and top-nav link |
-| Code | Done | 13-05-2026 | 17-05-2026 | Decision and DecisionsOverview doc types, parse_decisions / render_decisions_overview / render_all_decisions wired into Project pipelines, Decision Records nav link in BaseDocument |
-| Tests | Done | 13-05-2026 | 17-05-2026 | 18 end-to-end tests in decisions_spec.rb with `<REQ>` traces mapping to SRS-040 through SRS-048 |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Requirements | BA |  |  |  | Done | 12-05-2026 | 17-05-2026 | SRS-039 through SRS-048 added or revised in srs.md to cover ID derivation, sequence number, type, frontmatter title, per-record HTML rendering, overview page, and top-nav link |
+| 2 | Code | DEV |  |  |  | Done | 13-05-2026 | 17-05-2026 | Decision and DecisionsOverview doc types, parse_decisions / render_decisions_overview / render_all_decisions wired into Project pipelines, Decision Records nav link in BaseDocument |
+| 3 | Tests | TEST |  |  |  | Done | 13-05-2026 | 17-05-2026 | 18 end-to-end tests in decisions_spec.rb with `<REQ>` traces mapping to SRS-040 through SRS-048 |
 
 # Out of Scope
 

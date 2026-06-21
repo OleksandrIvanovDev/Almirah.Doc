@@ -47,10 +47,10 @@ Escaping is performed at the rendering layer, not the parser, to keep concerns s
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Done | 21-05-2026 | 22-05-2026 | Add `BacktickToken` and `InlineCodeToken` classes in `text_line.rb`; register the backtick token; add `fuse_backticks` and `next_backtick_index` helpers called at the end of `tokenize`; add `InlineCodeToken` case in `TextLineBuilder#restore`; add `inline_code` to `TextLineBuilderContext` and `TextLine` (the latter HTML-escapes via `CGI.escapeHTML` and wraps in `<code>` tags); `require 'cgi'` at the top of the file |
-| Tests | Done | 21-05-2026 | 22-05-2026 | Seven new unit tests in `text_line_spec.rb` covering: a basic `foo()` code span, HTML escaping of `<` and `>` inside backticks, ampersand escaping, emphasis markers inside a code span staying literal, two code spans on the same line, an unmatched single backtick rendered as a literal character, and code-span followed by an italic span |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 21-05-2026 | 22-05-2026 | Add `BacktickToken` and `InlineCodeToken` classes in `text_line.rb`; register the backtick token; add `fuse_backticks` and `next_backtick_index` helpers called at the end of `tokenize`; add `InlineCodeToken` case in `TextLineBuilder#restore`; add `inline_code` to `TextLineBuilderContext` and `TextLine` (the latter HTML-escapes via `CGI.escapeHTML` and wraps in `<code>` tags); `require 'cgi'` at the top of the file |
+| 2 | Tests | TEST |  |  |  | Done | 21-05-2026 | 22-05-2026 | Seven new unit tests in `text_line_spec.rb` covering: a basic `foo()` code span, HTML escaping of `<` and `>` inside backticks, ampersand escaping, emphasis markers inside a code span staying literal, two code spans on the same line, an unmatched single backtick rendered as a literal character, and code-span followed by an italic span |
 
 # Out of Scope
 

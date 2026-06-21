@@ -41,11 +41,11 @@ This is a general gate rather than special-casing the two page titles: the butto
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Implemented | 18-06-2026 | 18-06-2026 | In `templates/scripts/main.js` (`window.onload`), gate the `#document_tree_menu_item` toggle on `#nav_pane` having non-empty `innerHTML`, so it shows only when a navigation pane is rendered; pane-less pages (Decision Records Overview, Critical Chain) keep the button at its `display: none` default |
-| Requirements | Implemented | 18-06-2026 | 18-06-2026 | No new requirement — UI defect; the navigation-pane toggle is expected to appear only on pages that render a navigation pane |
-| Tests | Implemented | 18-06-2026 | 18-06-2026 | Verified by rendering and inspecting output: the `#nav_pane` div is empty on `decisions/overview.html` and `decisions/critical-chain.html` (button stays hidden) and populated on an individual decision record (button shown). No automated assertion was added because the visibility is decided by page script at load time and the e2e suite parses static HTML without executing JavaScript; the full suite remains green (353 examples) |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Implemented | 18-06-2026 | 18-06-2026 | In `templates/scripts/main.js` (`window.onload`), gate the `#document_tree_menu_item` toggle on `#nav_pane` having non-empty `innerHTML`, so it shows only when a navigation pane is rendered; pane-less pages (Decision Records Overview, Critical Chain) keep the button at its `display: none` default |
+| 2 | Requirements | BA |  |  |  | Implemented | 18-06-2026 | 18-06-2026 | No new requirement — UI defect; the navigation-pane toggle is expected to appear only on pages that render a navigation pane |
+| 3 | Tests | TEST |  |  |  | Implemented | 18-06-2026 | 18-06-2026 | Verified by rendering and inspecting output: the `#nav_pane` div is empty on `decisions/overview.html` and `decisions/critical-chain.html` (button stays hidden) and populated on an individual decision record (button shown). No automated assertion was added because the visibility is decided by page script at load time and the e2e suite parses static HTML without executing JavaScript; the full suite remains green (353 examples) |
 
 # Out of Scope
 

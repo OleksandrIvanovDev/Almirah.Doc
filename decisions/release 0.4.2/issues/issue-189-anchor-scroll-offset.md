@@ -35,11 +35,11 @@ html {
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Implemented | 07-06-2026 | 07-06-2026 | Add an `html { scroll-padding-top: 40px; }` rule to `lib/almirah/templates/css/main.css` so fragment navigation offsets below the fixed `#top_nav` |
-| Requirements | Implemented | 07-06-2026 | 07-06-2026 | Authored SRS-100 (under a new "Navigation" subsection of the User Interface chapter in `srs.md`) specifying that in-page anchor navigation positions the target clear of the fixed top navigation bar; recorded in this issue's Affected Documents section |
-| Tests | Implemented | 07-06-2026 | 07-06-2026 | Automated end-to-end browser test (`spec/e2e/anchor_navigation_spec.rb`) that renders a tall document, serves the build over HTTP, jumps to a heading fragment in headless Chrome, and asserts the target's top edge lands at or below the fixed `#top_nav` bottom edge; traced to SRS-100. Verified to fail without the fix (target top 3px vs bar bottom 29px) and pass with it |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Implemented | 07-06-2026 | 07-06-2026 | Add an `html { scroll-padding-top: 40px; }` rule to `lib/almirah/templates/css/main.css` so fragment navigation offsets below the fixed `#top_nav` |
+| 2 | Requirements | BA |  |  |  | Implemented | 07-06-2026 | 07-06-2026 | Authored SRS-100 (under a new "Navigation" subsection of the User Interface chapter in `srs.md`) specifying that in-page anchor navigation positions the target clear of the fixed top navigation bar; recorded in this issue's Affected Documents section |
+| 3 | Tests | TEST |  |  |  | Implemented | 07-06-2026 | 07-06-2026 | Automated end-to-end browser test (`spec/e2e/anchor_navigation_spec.rb`) that renders a tall document, serves the build over HTTP, jumps to a heading fragment in headless Chrome, and asserts the target's top edge lands at or below the fixed `#top_nav` bottom edge; traced to SRS-100. Verified to fail without the fix (target top 3px vs bar bottom 29px) and pass with it |
 
 # Out of Scope
 

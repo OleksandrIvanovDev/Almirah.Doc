@@ -50,11 +50,11 @@ A new "Status" column shall be added to the Decision Records Overview page betwe
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Requirements | In-Progress | 17-05-2026 |  | New SRS items for current-status extraction on the Decision class, asterisk-to-triangle substitution during HTML rendering, and the new Status column on the Decision Records Overview page |
-| Code | In-Progress | 17-05-2026 |  | Add `current_status` attribute on Decision; parser locates the Status section and reads the "*"-marked row; renderer substitutes "*" with "▶" and tags the marked row with a CSS class for background highlighting; DecisionsOverview adds a Status column between Type and Title |
-| Tests | In-Progress | 17-05-2026 |  | Unit tests for `current_status` extraction (including zero / multiple markers); end-to-end tests for the rendered triangle, the row highlight, and the Status column value in the Decision Records Overview page |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Requirements | BA |  |  |  | In-Progress | 17-05-2026 |  | New SRS items for current-status extraction on the Decision class, asterisk-to-triangle substitution during HTML rendering, and the new Status column on the Decision Records Overview page |
+| 2 | Code | DEV |  |  |  | In-Progress | 17-05-2026 |  | Add `current_status` attribute on Decision; parser locates the Status section and reads the "*"-marked row; renderer substitutes "*" with "▶" and tags the marked row with a CSS class for background highlighting; DecisionsOverview adds a Status column between Type and Title |
+| 3 | Tests | TEST |  |  |  | In-Progress | 17-05-2026 |  | Unit tests for `current_status` extraction (including zero / multiple markers); end-to-end tests for the rendered triangle, the row highlight, and the Status column value in the Decision Records Overview page |
 
 Final status update of existing decision records will be made in scope of this ADR as well to have a single commit for all records.
 

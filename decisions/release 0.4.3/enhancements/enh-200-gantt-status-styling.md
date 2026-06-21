@@ -34,9 +34,9 @@ Implementation note: items 1–3 are CSS in `templates/css/main.css`; item 4 is 
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Done | 17-06-2026 | 17-06-2026 | In `templates/css/main.css`: `.gantt_inprogress` → `background:#ffffdd; color:#333; box-shadow: inset 0 0 0 1px #bbb`; `.gantt_done` → `background:#cfc` with `box-shadow: inset 0 0 0 1px #e1e4e8`; `.gantt_blocked` → `box-shadow: inset 0 0 0 1px #bbb` (no bold, 1px). In `decisions_overview.rb`: add `gantt_pulse_script` (2.4s six-phase background pulse to `rgb(255,99,132)`, reads each bar's base colour, `prefers-reduced-motion`-aware) and emit it from `render_workitem_gantt` only when a blocked work item exists |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 17-06-2026 | 17-06-2026 | In `templates/css/main.css`: `.gantt_inprogress` → `background:#ffffdd; color:#333; box-shadow: inset 0 0 0 1px #bbb`; `.gantt_done` → `background:#cfc` with `box-shadow: inset 0 0 0 1px #e1e4e8`; `.gantt_blocked` → `box-shadow: inset 0 0 0 1px #bbb` (no bold, 1px). In `decisions_overview.rb`: add `gantt_pulse_script` (2.4s six-phase background pulse to `rgb(255,99,132)`, reads each bar's base colour, `prefers-reduced-motion`-aware) and emit it from `render_workitem_gantt` only when a blocked work item exists |
 
 As with [ENH-199](./enh-199-gantt-separator-lines.md), these are presentational refinements, so there are neither requirements nor end-to-end tests in scope.
 

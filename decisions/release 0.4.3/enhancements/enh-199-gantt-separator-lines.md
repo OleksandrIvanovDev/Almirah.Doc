@@ -27,9 +27,9 @@ Implementation note: the line is produced with cell `border-bottom` rules on the
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Done | 17-06-2026 | 17-06-2026 | In `templates/css/main.css`, `.workitem_gantt`: set `.gantt_grid` to `gap: 0` and give `.gantt_bar` a `1px` margin to preserve bar separation; add `border-bottom: 1px solid #bbb` to `.gantt_corner` and `.gantt_day_head` so a continuous rule sits beneath the header row |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 17-06-2026 | 17-06-2026 | In `templates/css/main.css`, `.workitem_gantt`: set `.gantt_grid` to `gap: 0` and give `.gantt_bar` a `1px` margin to preserve bar separation; add `border-bottom: 1px solid #bbb` to `.gantt_corner` and `.gantt_day_head` so a continuous rule sits beneath the header row |
 
 This change is cosmetic, so — as with [ENH-173](./../../release%200.4.0/enhancements/enh-173-decisions-table-view.md) — there are neither requirements nor end-to-end tests in its scope.
 

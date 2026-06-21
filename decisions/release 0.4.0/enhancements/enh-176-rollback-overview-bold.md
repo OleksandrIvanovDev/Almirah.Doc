@@ -31,9 +31,9 @@ The `decisions_overview` class on the table element is retained — it is still 
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Done | 20-05-2026 | 20-05-2026 | Three `font-weight: bold` rules scoped to `table.controlled.decisions_overview` removed from `main.css` |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 20-05-2026 | 20-05-2026 | Three `font-weight: bold` rules scoped to `table.controlled.decisions_overview` removed from `main.css` |
 
 Cosmetic change — no requirements or end-to-end tests added.
 

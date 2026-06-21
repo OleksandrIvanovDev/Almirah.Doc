@@ -36,10 +36,10 @@ The "tightened" part is the removal of the "or preceded by punctuation" branch f
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Done | 21-05-2026 | 21-05-2026 | Add `can_flank?` / `left_flanking?` / `right_flanking?` helpers in `text_line.rb` and call them from `tokenize` before emitting emphasis tokens; fall through to literal text when neither flanking direction holds |
-| Tests | Done | 21-05-2026 | 21-05-2026 | Five new unit tests in `text_line_spec.rb` covering: single quoted asterisk, two quoted asterisks on the same line, quoted phrase `*"foo"*` still italicises, lone asterisks surrounded by spaces stay literal, quoted double-asterisk `"**"` stays literal |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 21-05-2026 | 21-05-2026 | Add `can_flank?` / `left_flanking?` / `right_flanking?` helpers in `text_line.rb` and call them from `tokenize` before emitting emphasis tokens; fall through to literal text when neither flanking direction holds |
+| 2 | Tests | TEST |  |  |  | Done | 21-05-2026 | 21-05-2026 | Five new unit tests in `text_line_spec.rb` covering: single quoted asterisk, two quoted asterisks on the same line, quoted phrase `*"foo"*` still italicises, lone asterisks surrounded by spaces stay literal, quoted double-asterisk `"**"` stays literal |
 
 # Out of Scope
 

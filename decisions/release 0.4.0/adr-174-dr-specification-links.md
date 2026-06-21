@@ -69,11 +69,11 @@ ADR-170 excluded links between decision records and both specifications and prot
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Requirements | Proposed | 19-05-2026 |  | New SRS items in `srs.md` covering: the "Affected Documents" section convention; parsing of its table into `affected_items` on the Decision class; the bidirectional link computed during the Link phase; the new "DR" column on Specification controlled-paragraph tables (header text, tooltip, position after COV, collapsed-count widget for multi-link cells); broken-reference reporting for unresolved Req-IDs |
-| Code | Proposed | 19-05-2026 |  | Decision parser learns the "Affected Documents" section; doc_linker populates `decision_record_links` on ControlledParagraph; controlled_paragraph.rb emits the DR column header and cell on Specification documents only; Decision renderer turns Req-ID cell text into a cross-document anchor |
-| Tests | Proposed | 19-05-2026 |  | End-to-end tests under `spec/decisions_spec.rb` (or a new file) for: parsing the new section; bidirectional link resolution; rendered DR column in `srs.html` including multi-link collapse; rendered Req-ID anchors in a decision record's "Affected Documents" section; broken-reference detection for an unresolved Req-ID; absence of the DR column on Protocol HTML |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Requirements | BA |  |  |  | Proposed | 19-05-2026 |  | New SRS items in `srs.md` covering: the "Affected Documents" section convention; parsing of its table into `affected_items` on the Decision class; the bidirectional link computed during the Link phase; the new "DR" column on Specification controlled-paragraph tables (header text, tooltip, position after COV, collapsed-count widget for multi-link cells); broken-reference reporting for unresolved Req-IDs |
+| 2 | Code | DEV |  |  |  | Proposed | 19-05-2026 |  | Decision parser learns the "Affected Documents" section; doc_linker populates `decision_record_links` on ControlledParagraph; controlled_paragraph.rb emits the DR column header and cell on Specification documents only; Decision renderer turns Req-ID cell text into a cross-document anchor |
+| 3 | Tests | TEST |  |  |  | Proposed | 19-05-2026 |  | End-to-end tests under `spec/decisions_spec.rb` (or a new file) for: parsing the new section; bidirectional link resolution; rendered DR column in `srs.html` including multi-link collapse; rendered Req-ID anchors in a decision record's "Affected Documents" section; broken-reference detection for an unresolved Req-ID; absence of the DR column on Protocol HTML |
 
 # Out of Scope
 

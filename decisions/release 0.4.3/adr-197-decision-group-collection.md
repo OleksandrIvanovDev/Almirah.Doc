@@ -44,11 +44,11 @@ The group name is the **first-level sub-folder under `decisions/`** — the firs
 
 # Scope
 
-| # | Item | Owner | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|---|---|
-| 1 | Analysis | BA | Done | 15-06-2026 | 16-06-2026 | This decision record: the data shape (insertion-ordered list of single-key hashes), the first-level-folder group key, the `.`-group handling for top-level records, and the decision to leave `@project_data.decisions` untouched |
-| 2 | Code | DEV | Done | 16-06-2026 | 16-06-2026 | Add `@project_data.decision_groups` (initialized to an empty list, exposed via `attr_reader`) in [project_data.rb](./../../../Almirah.Code/lib/almirah/project/project_data.rb); in `parse_decisions` ([project.rb](./../../../Almirah.Code/lib/almirah/project.rb)) derive the group key as the first path segment of the already-computed `rel_dir`, find-or-append the matching single-key hash, and push the `Decision` reference into its list; leave the `@project_data.decisions` append and `html_rel_path` logic unchanged |
-| 3 | Tests | TEST | Done | 16-06-2026 | 16-06-2026 | Unit tests ([spec/decision_groups_spec.rb](./../../../Almirah.Code/spec/decision_groups_spec.rb)): parsing a project groups each record under its first-level folder name; records in nested sub-folders fold into their first-level parent; a record directly under `decisions/` lands in the `.` group; group order follows folder-encounter order; every reference in `decision_groups` is the same object held in `@project_data.decisions` and the two collections hold the same total record count |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Analysis | BA |  |  |  | Done | 15-06-2026 | 16-06-2026 | This decision record: the data shape (insertion-ordered list of single-key hashes), the first-level-folder group key, the `.`-group handling for top-level records, and the decision to leave `@project_data.decisions` untouched |
+| 2 | Code | DEV |  |  |  | Done | 16-06-2026 | 16-06-2026 | Add `@project_data.decision_groups` (initialized to an empty list, exposed via `attr_reader`) in [project_data.rb](./../../../Almirah.Code/lib/almirah/project/project_data.rb); in `parse_decisions` ([project.rb](./../../../Almirah.Code/lib/almirah/project.rb)) derive the group key as the first path segment of the already-computed `rel_dir`, find-or-append the matching single-key hash, and push the `Decision` reference into its list; leave the `@project_data.decisions` append and `html_rel_path` logic unchanged |
+| 3 | Tests | TEST |  |  |  | Done | 16-06-2026 | 16-06-2026 | Unit tests ([spec/decision_groups_spec.rb](./../../../Almirah.Code/spec/decision_groups_spec.rb)): parsing a project groups each record under its first-level folder name; records in nested sub-folders fold into their first-level parent; a record directly under `decisions/` lands in the `.` group; group order follows folder-encounter order; every reference in `decision_groups` is the same object held in `@project_data.decisions` and the two collections hold the same total record count |
 
 # Out of Scope
 
