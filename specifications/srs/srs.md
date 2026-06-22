@@ -357,6 +357,8 @@ Table example:
 
 [SRS-164] The Decision Records Overview Gantt shall visually distinguish the work-item bars lying on their group block's critical chain, using a channel separate from the row-Status colour and the blocked-work-item emphasis so the three can be read together.
 
+[SRS-165] The Decision Records Overview Gantt shall provide, behind a toggle hidden by default, a per-owner tracking lane that draws each work item's committed window — its Scope Start to Target dates, running to the current date when no target is given — and its real logged span — its earliest to latest Effort date — on the same calendar axis as the computed schedule, extending that axis to keep an overrun visible.
+
 [SRS-141] The Decision Records Overview work-item schedule shall be segmented into one block per decision-record group, the blocks laid left to right in the groups' folder-encounter order with a gutter column between adjacent blocks so they never overlap, each block carrying its own day-index axis beginning at one.
 
 [SRS-142] The software shall render a group band row between the day-header and the resource lanes, with one labelled cell per group spanning that group's day columns.
