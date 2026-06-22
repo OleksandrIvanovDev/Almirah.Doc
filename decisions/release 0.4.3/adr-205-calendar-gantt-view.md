@@ -10,7 +10,10 @@ title: "ADR-205: Calendar Gantt View and Working-Day Calendar"
 |   | 20-06-2026 | Analysis |
 |   | 20-06-2026 | Accepted |
 |   | 20-06-2026 | In-Progress |
-| * | 20-06-2026 | Implemented |
+|   | 20-06-2026 | Implemented |
+|   | 22-06-2026 | Reopened |
+|   | 22-06-2026 | In-Progress |
+| * | 22-06-2026 | Implemented |
 
 # Context
 
@@ -64,6 +67,10 @@ Render the group-segmented Gantt ([[adr-201-gantt-group-segmentation]]) on calen
 
 On the Critical Chain page ([[enh-202-critical-chain-page]]), add a **projected completion date** per decision group, computed as `WorkingCalendar#date_for(projected_duration)` — the working-day projected duration ([[adr-195-critical-chain-buffer]]) turned into a real date by skipping non-working days. The working-day figures (chain length, buffer, projected duration) remain shown; the date is an addition, not a replacement.
 
+## Amendment — 22-06-2026: holiday highlight colour
+
+Reopened to recolour the non-working highlight. The shaded `gantt_nonworking` column and header were a neutral grey. After [[adr-206-working-day-columns]] dropped weekends from the axis, the only non-working columns left are **weekday holidays**, and grey made them too easy to miss. Recolour them to the **Chart.js palette red** already used across the planning views (`rgb(255, 99, 132)`, the blocked-bar pulse and WIP-limit colour), and give the holiday column the **same diagonal stripe texture as the project-buffer bar** (a 45° `repeating-linear-gradient`) so a non-working span reads as a hatched red column; the day-of-month header keeps a solid red tint so its number stays legible. Both are light tints, so work-item bars still read over the column. This is a CSS-only change in `main.css` — the calendar projection, the columns chosen, and SRS-152 ("mark each non-working column distinctly") are all unchanged; only the distinguishing fill differs.
+
 # Scope
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
@@ -72,6 +79,7 @@ On the Critical Chain page ([[enh-202-critical-chain-page]]), add a **projected 
 | 2 | Requirements | BA | >[ADR-201] | 1 | 2 | Done | 20-06-2026 | 20-06-2026 | New SRS items SRS-149 through SRS-155 in the `srs.md` "Planning" chapter: the `planning.start_date` anchor (DD-MM-YYYY, default today) and the `planning.holidays` list; the working-day-to-calendar-date mapping skipping weekends and holidays; the calendar-day Gantt columns including non-working days; the month-name and day-of-month header rows; the shaded non-working columns; the calendar span of work-item and buffer bars; and the per-group projected completion date on the Critical Chain page |
 | 3 | Code | DEV | >[ADR-201] | 3 | 6 | Done | 20-06-2026 | 20-06-2026 | Add `WorkingCalendar` (`date_for`, `columns`, `working?`/`non_working?`) under `lib/almirah/project`; read `planning.start_date` and `planning.holidays` in `project_configuration.rb` (default anchor today, holidays empty); in `decisions_overview.rb` build each Gantt block's columns from `WorkingCalendar`, emit the month band and day-of-month header rows, shade `gantt_nonworking` columns, and place work-item and buffer bars on calendar columns; add the projected completion date to `critical_chain_page.rb`; add the calendar styles to `templates/css/main.css` |
 | 4 | Tests | TEST | >[ADR-201] | 2 | 4 | Done | 20-06-2026 | 20-06-2026 | Unit tests for `WorkingCalendar`: `date_for` skips weekends and holidays; `columns` includes non-working days and maps working days to columns; the anchor defaults to today and honours config. E2E under `spec/e2e/decisions_spec.rb`: the Gantt renders month and day-of-month headers; weekend and holiday columns carry `gantt_nonworking`; a bar starting before a weekend spans the shaded weekend columns; the Critical Chain page shows a projected completion date consistent with the anchor and the projected duration; output is reproducible when `start_date` is set |
+| 5 | Code | DEV |  | 1 | 1 | Done | 22-06-2026 | 22-06-2026 | Amendment: recolour the `gantt_nonworking` header to the Chart.js red (`rgb(255, 99, 132)`) tint and fill the holiday column with the buffer bar's 45° `repeating-linear-gradient` stripe in red, in `templates/css/main.css` |
 
 # Out of Scope
 
@@ -130,6 +138,7 @@ On the Critical Chain page ([[enh-202-critical-chain-page]]), add a **projected 
 
 - [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the planning/flow roadmap whose deferred calendar/date-placement step this record implements
 - [[adr-201-gantt-group-segmentation]] — the group-segmented Gantt this record re-renders on calendar columns; this record's own prerequisite
+- [[adr-206-working-day-columns]] — narrowed the non-working columns to weekday holidays only, the columns the amendment recolours
 - [[adr-198-workitem-gantt-visualization]] — the original work-item swimlane Gantt and its abstract day axis
 - [[adr-195-critical-chain-buffer]] — the working-day critical chain, buffer, and projected duration this record projects onto dates; the source of the "calendars deferred" out-of-scope note
 - [[adr-196-buffer-fever-chart]] — also deferred calendars; its recent-Fridays trail is already calendar-based and unaffected
