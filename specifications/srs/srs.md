@@ -335,7 +335,7 @@ Table example:
 
 [SRS-122] For each decision-record group, the software shall construct a planning network whose nodes are the not-Done Scope rows of the records in that group, with intra-record edges following the step-number order and cross-record edges placing each row that carries a Depends On reference after its activity-type-aligned predecessor work item in the referenced record.
 
-[SRS-123] The software shall schedule the planning network with a deterministic resource-levelling rule in which each row starts only when all its predecessor rows have finished and its owner is free, so that rows sharing the same owner do not run concurrently while rows with different owners, including multiple people in one role, may.
+[SRS-123] The software shall schedule the planning network with a deterministic resource-levelling rule in which each row starts at the earliest day, at or after the finish of all its predecessor rows, where its owner's lane holds no other row for the row's whole duration, so that a row may fill an idle gap between rows placed earlier and rows sharing the same owner never run concurrently.
 
 [SRS-124] The software shall identify the critical chain of a decision-record group as the sequence of Scope rows that determines the group's completion in the resource-levelled schedule.
 
