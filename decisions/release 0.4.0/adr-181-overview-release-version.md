@@ -111,7 +111,7 @@ For each decision row, the new column cell carries `target_release_version` as p
 - [ADR-172](./adr-172-current-status-marker.md) — established the parse-the-Status-table pattern reused for section-table lookups
 - [ADR-174](./adr-174-dr-specification-links.md) — precedent for an ADR that adds software requirements via an "Affected Documents" table
 - [ADR-178](./adr-178-overview-start-date.md) — sibling overview-column addition; reuses the same `find_section_table` helper and column-by-header lookup approach
-- SRS-039 through SRS-065 in [srs.md](./../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR extend that range
+- SRS-039 through SRS-065 in [srs.md](./../../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR extend that range
 
 # Review Evidences
 

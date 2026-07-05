@@ -80,7 +80,7 @@ The "tightened" part is the removal of the "or preceded by punctuation" branch f
 # References
 
 - [ISSUE-171](./issue-171-dash-unordered-list.md) — the document whose rendered HTML surfaced the defect
-- SRS items related to text-line formatting in [srs.md](./../../specifications/srs/srs.md)
+- SRS items related to text-line formatting in [srs.md](./../../../specifications/srs/srs.md)
 
 # Review Evidences
 

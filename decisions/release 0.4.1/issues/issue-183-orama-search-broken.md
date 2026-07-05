@@ -116,8 +116,8 @@ After the import is fixed, the `create({ schema })`, `insert(db, ...)`, and `sea
 
 # References
 
-- [ISSUE-180](./issue-180-inline-code-spans.md) — most recent issue decision record, used as the structural template for this one
-- [ADR-170](./../adr-170-introduce-decision-records.md) — the decision-record convention this ISSUE follows
+- [ISSUE-180](./../../release%200.4.0/issues/issue-180-inline-code-spans.md) — most recent issue decision record, used as the structural template for this one
+- [ADR-170](./../../release%200.4.0/adr-170-introduce-decision-records.md) — the decision-record convention this ISSUE follows
 
 # Review Evidences
 

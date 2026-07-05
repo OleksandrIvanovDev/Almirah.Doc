@@ -108,7 +108,7 @@ The existing empty "Start Date" cell in the Decision Records Overview becomes po
 - [ADR-172](./adr-172-current-status-marker.md) — established the parse-the-Status-table pattern (`extract_current_status`) reused here for the Scope table lookup
 - [ADR-174](./adr-174-dr-specification-links.md) — precedent for an ADR that adds software requirements via an "Affected Documents" table
 - [ADR-177](./adr-177-overview-pie-chart.md) — sibling change to the Decision Records Overview page; this ADR leaves the chart grid untouched
-- SRS-039 through SRS-060 in [srs.md](./../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR extend that range
+- SRS-039 through SRS-060 in [srs.md](./../../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR extend that range
 
 # Review Evidences
 

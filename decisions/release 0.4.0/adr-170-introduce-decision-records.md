@@ -70,7 +70,7 @@ No alternatives were considered
 
 # References
 
-- SRS-039 through SRS-048 in [srs.md](./../specifications/srs/srs.md) — software requirements covering decision records
+- SRS-039 through SRS-048 in [srs.md](./../../specifications/srs/srs.md) — software requirements covering decision records
 - [ISSUE-171](./issues/issue-171-dash-unordered-list.md) — dash-marker support, surfaced while dogfooding this ADR
 
 # Review Evidences

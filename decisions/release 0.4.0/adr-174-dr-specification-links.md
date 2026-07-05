@@ -135,7 +135,7 @@ ADR-170 excluded links between decision records and both specifications and prot
 
 - [ADR-170](./adr-170-introduce-decision-records.md) — introduces decision records and explicitly defers decision-record-to-specification (and -to-protocol) linking; this ADR closes the specification half of that gap
 - [ADR-172](./adr-172-current-status-marker.md) — example of an ADR extending Decision Record parsing and rendering, used as a precedent for the parse/link/render split adopted here
-- SRS-039 through SRS-051 in [srs.md](./../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR will extend that range
+- SRS-039 through SRS-051 in [srs.md](./../../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR will extend that range
 
 # Review Evidences
 
