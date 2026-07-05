@@ -14,7 +14,7 @@ title: "ADR-194: Scope Phase Ordering, Dependencies, and Full-Kit Readiness"
 
 # Context
 
-This is the second implementation step of the planning/flow roadmap in [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md). It follows [[adr-193-owner-wip-heatmap]] (step 1, which established the **Scope row / work-item phase** as the unit of planning and the bounded per-row `Status`) and implements the **Full Kit** rule from *Goldratt's Rules of Flow*: a piece of work should not be started until everything it needs to run to completion without interruption is ready. Starting half-kitted work is one of the main causes of the bad multitasking step 1 made visible — the worker stalls waiting for a missing input and opens a second task to stay busy.
+This is the second implementation step of the planning/flow roadmap in [gfa.md](./../../specifications/gfa/gfa.md). It follows [[adr-193-owner-wip-heatmap]] (step 1, which established the **Scope row / work-item phase** as the unit of planning and the bounded per-row `Status`) and implements the **Full Kit** rule from *Goldratt's Rules of Flow*: a piece of work should not be started until everything it needs to run to completion without interruption is ready. Starting half-kitted work is one of the main causes of the bad multitasking step 1 made visible — the worker stalls waiting for a missing input and opens a second task to stay busy.
 
 There are **two** kit gates, at two altitudes:
 
@@ -127,7 +127,7 @@ Add a **`Kit`** column to the Decision Records Overview, reflecting cross-record
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the roadmap this ADR is step 2 of; implements the Full Kit rule
+- [gfa.md](./../../specifications/gfa/gfa.md) — the roadmap this ADR is step 2 of; implements the Full Kit rule
 - [[adr-193-owner-wip-heatmap]] — step 1; established the Scope row as the planning unit, the bounded per-row `Status`, and the decision that the lifecycle status is not a planning input. It is also this record's own prerequisite
 - [[adr-172-current-status-marker]] — the hand-marked, open-vocabulary record lifecycle status, kept independent of the per-row `Status` this gate reads
 - [[adr-197-decision-group-collection]] — collected the `decision_groups` folders this ADR tags each cross-record edge against; the per-group buffer boundary those groups define is consumed by [[adr-195-critical-chain-buffer]]

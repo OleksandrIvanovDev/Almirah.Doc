@@ -110,7 +110,7 @@ Unchanged from [[adr-205-calendar-gantt-view]]: the per-group projected completi
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the planning/flow roadmap whose calendar/date-placement step this record refines
+- [gfa.md](./../../specifications/gfa/gfa.md) — the planning/flow roadmap whose calendar/date-placement step this record refines
 - [[adr-205-calendar-gantt-view]] — the calendar Gantt whose calendar-day column axis this record supersedes with a compact business-day axis; this record's own prerequisite
 - [[adr-201-gantt-group-segmentation]] — the group-segmented Gantt re-rendered on the business-day axis
 - [[adr-198-workitem-gantt-visualization]] — the original work-item swimlane Gantt

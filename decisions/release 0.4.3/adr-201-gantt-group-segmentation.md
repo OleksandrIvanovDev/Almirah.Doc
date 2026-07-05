@@ -16,7 +16,7 @@ title: "ADR-201: Group-Segmented Gantt with Buffer Lane"
 
 Step 5 of the roadmap, [[adr-198-workitem-gantt-visualization]], put the per-row WorkItem network ([[adr-194-full-kit-readiness]]) on the Decision Records Overview as a **resource-swimlane Gantt**: one lane per owner, an abstract day-index axis, and a constant-duration bar per work item placed by `WorkItemScheduler` (forward pass + per-owner resource levelling). That chart schedules **every** work item across **every** record on **one global timeline** — the whole portfolio in a single strip.
 
-But the planning unit the roadmap ([goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md)) actually commits to is a **group of records planned together**, not the whole portfolio. [[adr-197-decision-group-collection]] already collected exactly that unit — `@project_data.decision_groups`, an insertion-ordered list of `{ folder-name => [Decision, …] }` derived from the first-level sub-folders under `decisions/` — and left it inert, awaiting a consumer. The project buffer is likewise a **per-group** quantity: [[adr-195-critical-chain-buffer]] sizes one buffer for each delivery, not one for the portfolio.
+But the planning unit the roadmap ([gfa.md](./../../specifications/gfa/gfa.md)) actually commits to is a **group of records planned together**, not the whole portfolio. [[adr-197-decision-group-collection]] already collected exactly that unit — `@project_data.decision_groups`, an insertion-ordered list of `{ folder-name => [Decision, …] }` derived from the first-level sub-folders under `decisions/` — and left it inert, awaiting a consumer. The project buffer is likewise a **per-group** quantity: [[adr-195-critical-chain-buffer]] sizes one buffer for each delivery, not one for the portfolio.
 
 So the single global Gantt mixes deliveries that are planned and buffered separately, and it has nowhere to hang a buffer. This step makes the Gantt **the first consumer of `decision_groups`**: it segments the chart into one block per group, laid left-to-right, and reserves a dedicated **Buffer lane** so each group's buffer has a home. It does **not** compute the buffer — that is [[adr-195-critical-chain-buffer]]'s work; this step builds the lane and leaves the same kind of single override hook ADR-198 left for durations.
 
@@ -117,7 +117,7 @@ In `gantt_grid` (`decisions_overview.rb`) the row scheme shifts: day-header `gri
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the roadmap; the per-group delivery view this segments the Gantt by
+- [gfa.md](./../../specifications/gfa/gfa.md) — the roadmap; the per-group delivery view this segments the Gantt by
 - [[adr-198-workitem-gantt-visualization]] — the resource-swimlane Gantt this segments and extends; its `duration_for` hook is the model for the `buffer_for` hook added here
 - [[adr-197-decision-group-collection]] — supplies `@project_data.decision_groups`, the folder grouping this is the first consumer of
 - [[adr-195-critical-chain-buffer]] — computes the per-group buffer that fills this Buffer lane via the `buffer_for` hook, and owns the separate critical-chain chart

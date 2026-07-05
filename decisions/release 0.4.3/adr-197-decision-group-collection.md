@@ -15,7 +15,7 @@ title: "ADR-197: Decision Group Collection by Folder"
 
 Decision records live under `decisions/` in first-level sub-folders that are themselves a planning artifact — `release 0.4.0`, `release 0.4.1`, `release 0.4.2`, `release 0.4.3`. Each folder is a **logical group of records planned together**. The parser already walks this tree (`parse_decisions` in [project.rb](./../../../Almirah.Code/lib/almirah/project.rb)) and computes each record's relative directory (`rel_dir`) purely to lay out the HTML output path — then **discards the grouping**. There is today no aggregation unit between a single `Decision` and the whole portfolio held in `@project_data.decisions`.
 
-The planning/flow roadmap ([goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md)) needs that unit. Its later steps — the project buffer ([[adr-195-critical-chain-buffer]]) and the per-release fever chart ([[adr-196-buffer-fever-chart]]) — are inherently computed over a *set* of records sharing a delivery, not over one record. Before any of that machinery is built, the cheapest enabling step is to **collect the grouping that already exists on disk** and keep it as object references for future use.
+The planning/flow roadmap ([gfa.md](./../../specifications/gfa/gfa.md)) needs that unit. Its later steps — the project buffer ([[adr-195-critical-chain-buffer]]) and the per-release fever chart ([[adr-196-buffer-fever-chart]]) — are inherently computed over a *set* of records sharing a delivery, not over one record. Before any of that machinery is built, the cheapest enabling step is to **collect the grouping that already exists on disk** and keep it as object references for future use.
 
 This step deliberately introduces **no new source of truth**. Membership is derived from the folder layout the author already maintains, consistent with the derive-don't-duplicate discipline of [[adr-191-overview-target-date]] and [[adr-193-owner-wip-heatmap]]: nothing is hand-listed, so nothing can drift.
 
@@ -89,7 +89,7 @@ The group name is the **first-level sub-folder under `decisions/`** — the firs
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the roadmap whose later steps consume this grouping
+- [gfa.md](./../../specifications/gfa/gfa.md) — the roadmap whose later steps consume this grouping
 - [[adr-195-critical-chain-buffer]] — the project-buffer step that aggregates over a group of records
 - [[adr-196-buffer-fever-chart]] — the per-release fever chart, the other consumer
 - [[adr-193-owner-wip-heatmap]] — sibling derive-from-existing-structure step; established the per-row planning vocabulary

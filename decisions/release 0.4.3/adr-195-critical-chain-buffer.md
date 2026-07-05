@@ -14,7 +14,7 @@ title: "ADR-195: Estimates, Critical Chain, and Project Buffer"
 
 # Context
 
-This is the third implementation step of the planning/flow roadmap in [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md). It follows [[adr-193-owner-wip-heatmap]] (WIP signal) and [[adr-194-full-kit-readiness]] (phase ordering + dependencies), and implements the Critical Chain core of *Goldratt's Rules of Flow*: **strip the safety out of individual task estimates and protect the chain as a whole with a single project buffer**, instead of padding every task's due date.
+This is the third implementation step of the planning/flow roadmap in [gfa.md](./../../specifications/gfa/gfa.md). It follows [[adr-193-owner-wip-heatmap]] (WIP signal) and [[adr-194-full-kit-readiness]] (phase ordering + dependencies), and implements the Critical Chain core of *Goldratt's Rules of Flow*: **strip the safety out of individual task estimates and protect the chain as a whole with a single project buffer**, instead of padding every task's due date.
 
 The book's reasoning: per-task safety is wasted three ways — Student Syndrome (work starts late because the deadline feels far off), Parkinson's Law (work expands to fill the padded estimate), and non-passing of early finishes (an early finish rarely lets the next task start early). Aggregating that safety into one buffer at the end of the chain protects the commitment with far less total time, and turns scattered per-task deadlines into one number to watch.
 
@@ -151,7 +151,7 @@ planning:
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the roadmap this ADR is step 3 of; implements the aggressive-estimate-plus-project-buffer (Critical Chain) rule
+- [gfa.md](./../../specifications/gfa/gfa.md) — the roadmap this ADR is step 3 of; implements the aggressive-estimate-plus-project-buffer (Critical Chain) rule
 - [[adr-194-full-kit-readiness]] — supplies the `#` step ordering and the activity-type-aligned cross-record dependency graph the chain runs through; this record's own prerequisite
 - [[adr-193-owner-wip-heatmap]] — supplies the per-row single `Owner` that creates resource contention and the `planning:` config key extended here
 - [[adr-191-overview-target-date]] — the header-text-not-position, derive-don't-duplicate discipline followed here

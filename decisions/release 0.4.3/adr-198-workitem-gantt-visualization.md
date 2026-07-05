@@ -16,7 +16,7 @@ title: "ADR-198: Work-Item Network Visualization (Resource-Swimlane Gantt)"
 
 Step 2 of the roadmap, [[adr-194-full-kit-readiness]], built the per-row **WorkItem network**: every Scope row is a node carrying its `Owner` and bounded per-row `Status`, with `predecessors` / `successors` edges that span both intra-record step order and cross-record `Depends On` links. That network is rich, but today it is only surfaced as **non-failing console warnings** (the two kit gates) and a one-word **`Kit`** column on the Decision Records Overview. There is **no visual** of the sequence or structure — you cannot see, at a glance, what runs after what, which role is loaded, or where work piles up.
 
-Step 1, [[adr-193-owner-wip-heatmap]], added a WIP-by-owner bar, but that is a **point-in-time count** of `In-Progress` rows, not a time-ordered schedule. The roadmap in [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) calls for a **load / staggering view keyed off `Owner`** (Rule 3 — *stagger against the constraint*): see each resource's queue laid out over time so release starts can be staggered against the most-loaded role. A resource-swimlane Gantt is exactly that view, and it costs almost nothing new in data — the network already exists.
+Step 1, [[adr-193-owner-wip-heatmap]], added a WIP-by-owner bar, but that is a **point-in-time count** of `In-Progress` rows, not a time-ordered schedule. The roadmap in [gfa.md](./../../specifications/gfa/gfa.md) calls for a **load / staggering view keyed off `Owner`** (Rule 3 — *stagger against the constraint*): see each resource's queue laid out over time so release starts can be staggered against the most-loaded role. A resource-swimlane Gantt is exactly that view, and it costs almost nothing new in data — the network already exists.
 
 The honest constraint is that **estimates do not exist yet**. Per-row estimates, the critical chain, and project buffers are [[adr-195-critical-chain-buffer]]'s work. So this step draws every work item with a **constant placeholder duration of 3 days** and lays the schedule on an **abstract day index** (1, 2, 3, …), not a calendar. The value delivered now is the *visual and the scheduling pass*; the value deferred is *accurate durations*.
 
@@ -92,7 +92,7 @@ Bars are **coloured by `Status`**, reusing the existing decision-overview status
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the roadmap this realises; the resource load / staggering view of Rule 3 (*stagger against the constraint*)
+- [gfa.md](./../../specifications/gfa/gfa.md) — the roadmap this realises; the resource load / staggering view of Rule 3 (*stagger against the constraint*)
 - [[adr-194-full-kit-readiness]] — the per-row WorkItem network (predecessors/successors, owners, bounded Status) this visualizes; this record's own prerequisite
 - [[adr-193-owner-wip-heatmap]] — established the owner roster and the bounded per-row Status reused here; the WIP bar this complements with a time-ordered view
 - [[adr-195-critical-chain-buffer]] — extends this scheduler, swapping the constant 3-day duration for per-row estimates and overlaying the project buffer

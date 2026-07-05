@@ -14,7 +14,7 @@ title: "ADR-193: Scope Owner Column and Work-In-Progress Heatmap"
 
 # Context
 
-This is the first implementation step of the planning/flow roadmap captured in [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md), which reads Almirah as an ALM through *Goldratt's Rules of Flow* (Critical Chain / Theory of Constraints). The roadmap's first principle — and, per the book, the single highest-leverage one — is that **bad multitasking is the primary reason work does not flow**: the more items a person has open simultaneously, the longer every one of them takes to finish. The remedy is to make open-work-per-person *visible* and cap it, before any heavier estimation or buffer machinery is built.
+This is the first implementation step of the planning/flow roadmap captured in [gfa.md](./../../specifications/gfa/gfa.md), which reads Almirah as an ALM through *Goldratt's Rules of Flow* (Critical Chain / Theory of Constraints). The roadmap's first principle — and, per the book, the single highest-leverage one — is that **bad multitasking is the primary reason work does not flow**: the more items a person has open simultaneously, the longer every one of them takes to finish. The remedy is to make open-work-per-person *visible* and cap it, before any heavier estimation or buffer machinery is built.
 
 Almirah already has most of the substrate:
 
@@ -83,7 +83,7 @@ When `planning.wip_limit` is absent, default to `2`. A non-positive or non-integ
 # Out of Scope
 
 - **Deriving the record lifecycle status from row statuses.** The two remain independent and the lifecycle status stays hand-marked ([[adr-172-current-status-marker]]); per the project decision, the open lifecycle vocabulary (`Deployment`, `Reopened`, …) is not constrained to row-status values, and no row-to-lifecycle inference is performed.
-- **Estimates, the critical chain, and project buffers.** These are roadmap steps 3–4 in [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) and get their own ADRs; this ADR adds no `Est` / `Actual` columns.
+- **Estimates, the critical chain, and project buffers.** These are roadmap steps 3–4 in [gfa.md](./../../specifications/gfa/gfa.md) and get their own ADRs; this ADR adds no `Est` / `Actual` columns.
 - **The full-kit readiness check and `Depends On` column** (roadmap step 2).
 - **Constraint load / capacity-over-time charting.** The WIP chart here counts *current* open records, not forecast load across future weeks.
 - **Enforcement.** Exceeding `wip_limit` is surfaced visually (warning-coloured bar past the reference line); the build is not failed and no record is rejected.
@@ -141,7 +141,7 @@ When `planning.wip_limit` is absent, default to `2`. A non-positive or non-integ
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the roadmap this ADR is step 1 of; maps the five Rules of Flow onto Almirah features
+- [gfa.md](./../../specifications/gfa/gfa.md) — the roadmap this ADR is step 1 of; maps the five Rules of Flow onto Almirah features
 - [[adr-191-overview-target-date]] — sibling derive-from-the-Scope-table change whose `find_section_table` / `column_index` machinery and header-text-not-position discipline this ADR reuses
 - [[adr-178-overview-start-date]] — introduced the `collect_dates` / derived-attribute pattern
 - [[adr-172-current-status-marker]] — the hand-marked record lifecycle status, which this ADR keeps **independent** of the per-row `Status` that drives WIP, and whose vocabulary stays open (`Deployment`, `Reopened`, …)

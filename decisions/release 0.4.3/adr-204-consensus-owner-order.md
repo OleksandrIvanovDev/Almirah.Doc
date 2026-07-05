@@ -115,7 +115,7 @@ Copeland — not a pairwise comparator passed to `sort` — is the clarity choic
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the planning/flow roadmap these Gantt and owner features serve
+- [gfa.md](./../../specifications/gfa/gfa.md) — the planning/flow roadmap these Gantt and owner features serve
 - [[adr-201-gantt-group-segmentation]] — the group-segmented Gantt whose owner lanes this reorders
 - [[adr-198-workitem-gantt-visualization]] — introduced the resource-swimlane Gantt and its determinism guarantee
 - [[adr-193-owner-wip-heatmap]] — supplies each record's `owners` list and the `ordered_owners` / descending-count order this leaves on the heatmap and reorders for the Gantt

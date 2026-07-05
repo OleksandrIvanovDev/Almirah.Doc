@@ -14,7 +14,7 @@ title: "ADR-196: Effort Logging and Buffer-Consumption Fever Chart"
 
 # Context
 
-This is the fourth and final implementation step of the planning/flow roadmap in [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md). It follows [[adr-193-owner-wip-heatmap]], [[adr-194-full-kit-readiness]], and [[adr-195-critical-chain-buffer]], and implements the last Rule of Flow: **manage the project by buffer consumption.** Once safety is aggregated into a single project buffer (step 3), the only thing worth watching is whether that buffer is being eaten faster than the chain is being completed. That single signal — a *fever chart* — tells you when to act and, crucially, when to leave things alone, replacing the scramble over individual missed task dates the book argues against.
+This is the fourth and final implementation step of the planning/flow roadmap in [gfa.md](./../../specifications/gfa/gfa.md). It follows [[adr-193-owner-wip-heatmap]], [[adr-194-full-kit-readiness]], and [[adr-195-critical-chain-buffer]], and implements the last Rule of Flow: **manage the project by buffer consumption.** Once safety is aggregated into a single project buffer (step 3), the only thing worth watching is whether that buffer is being eaten faster than the chain is being completed. That single signal — a *fever chart* — tells you when to act and, crucially, when to leave things alone, replacing the scramble over individual missed task dates the book argues against.
 
 The prior steps produced everything the report needs except actuals:
 
@@ -161,7 +161,7 @@ planning:
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the roadmap this ADR is step 4 (the final step) of; implements the manage-by-buffer-consumption rule
+- [gfa.md](./../../specifications/gfa/gfa.md) — the roadmap this ADR is step 4 (the final step) of; implements the manage-by-buffer-consumption rule
 - [[adr-195-critical-chain-buffer]] — supplies the critical chain of role-phase rows, the project buffer, and the per-row focused estimates this report tracks against; this record's own prerequisite
 - [[adr-197-decision-group-collection]] — supplies the decision-group folder grouping the completion and buffer consumption are computed per (replacing the earlier per-target-release grouping)
 - [[enh-202-critical-chain-page]] — the dedicated Critical Chain page that already renders each group's chain, buffer, and projected duration; this ADR adds the fever chart beside that per-group block (the rendering moved here from the overview)

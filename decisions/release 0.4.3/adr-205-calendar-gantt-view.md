@@ -136,7 +136,7 @@ Reopened to recolour the non-working highlight. The shaded `gantt_nonworking` co
 
 # References
 
-- [goldratt-flow-analysis.md](./../../goldratt-flow-analysis.md) — the planning/flow roadmap whose deferred calendar/date-placement step this record implements
+- [gfa.md](./../../specifications/gfa/gfa.md) — the planning/flow roadmap whose deferred calendar/date-placement step this record implements
 - [[adr-201-gantt-group-segmentation]] — the group-segmented Gantt this record re-renders on calendar columns; this record's own prerequisite
 - [[adr-206-working-day-columns]] — narrowed the non-working columns to weekday holidays only, the columns the amendment recolours
 - [[adr-198-workitem-gantt-visualization]] — the original work-item swimlane Gantt and its abstract day axis
