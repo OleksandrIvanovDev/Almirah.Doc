@@ -45,11 +45,11 @@ For each decision row, the new column cell carries `target_release_version` as p
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Requirements | Done | 22-05-2026 | 22-05-2026 | New SRS items in `srs.md` covering: the `target_release_version` attribute on a Decision Record; the extraction rule (Software Versions section, table lookup by column header, row lookup by exact match on `Target Release Version`); the empty-cell fallback when no value is found; rendering of the attribute in a new `Release` column on the Decision Records Overview; the `title="Target Release Version"` attribute on the column header |
-| Code | Done | 22-05-2026 | 22-05-2026 | Add a `target_release_version` accessor on `Decision`; add an `extract_target_release_version` method that reuses `find_section_table` to locate the `Software Versions` table and reads the `Software Version ID` cell of the row whose `Software Version Category` is `Target Release Version`; wire the extractor into `DocFabric#create_decision` alongside `extract_current_status` and `extract_start_date`; insert the new `Release` column between `Target Date` and `Owner` in `decisions_overview.rb`, emitting the `<th>` with a `title` attribute and the `<td>` with the attribute value or empty |
-| Tests | Done | 22-05-2026 | 22-05-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: extraction reads the `Target Release Version` row from the `Software Versions` table; extraction works regardless of the column order in the Software Versions table (lookup by header text); extraction returns nil when the section is missing; extraction returns nil when the row is missing; extraction returns nil when the cell is empty; the rendered `Release` column carries the formatted value and is empty when undefined; the column header includes the `title="Target Release Version"` attribute; the column is placed between `Target Date` and `Owner` |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Requirements | BA |  |  |  | Done | 22-05-2026 | 22-05-2026 | New SRS items in `srs.md` covering: the `target_release_version` attribute on a Decision Record; the extraction rule (Software Versions section, table lookup by column header, row lookup by exact match on `Target Release Version`); the empty-cell fallback when no value is found; rendering of the attribute in a new `Release` column on the Decision Records Overview; the `title="Target Release Version"` attribute on the column header |
+| 2 | Code | DEV |  |  |  | Done | 22-05-2026 | 22-05-2026 | Add a `target_release_version` accessor on `Decision`; add an `extract_target_release_version` method that reuses `find_section_table` to locate the `Software Versions` table and reads the `Software Version ID` cell of the row whose `Software Version Category` is `Target Release Version`; wire the extractor into `DocFabric#create_decision` alongside `extract_current_status` and `extract_start_date`; insert the new `Release` column between `Target Date` and `Owner` in `decisions_overview.rb`, emitting the `<th>` with a `title` attribute and the `<td>` with the attribute value or empty |
+| 3 | Tests | TEST |  |  |  | Done | 22-05-2026 | 22-05-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: extraction reads the `Target Release Version` row from the `Software Versions` table; extraction works regardless of the column order in the Software Versions table (lookup by header text); extraction returns nil when the section is missing; extraction returns nil when the row is missing; extraction returns nil when the cell is empty; the rendered `Release` column carries the formatted value and is empty when undefined; the column header includes the `title="Target Release Version"` attribute; the column is placed between `Target Date` and `Owner` |
 
 # Out of Scope
 
@@ -111,7 +111,7 @@ For each decision row, the new column cell carries `target_release_version` as p
 - [ADR-172](./adr-172-current-status-marker.md) — established the parse-the-Status-table pattern reused for section-table lookups
 - [ADR-174](./adr-174-dr-specification-links.md) — precedent for an ADR that adds software requirements via an "Affected Documents" table
 - [ADR-178](./adr-178-overview-start-date.md) — sibling overview-column addition; reuses the same `find_section_table` helper and column-by-header lookup approach
-- SRS-039 through SRS-065 in [srs.md](./../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR extend that range
+- SRS-039 through SRS-065 in [srs.md](./../../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR extend that range
 
 # Review Evidences
 

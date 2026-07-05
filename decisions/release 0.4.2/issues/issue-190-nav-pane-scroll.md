@@ -38,11 +38,11 @@ When both `top` and `bottom` are set on a fixed element with `height: auto`, the
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Implemented | 07-06-2026 | 07-06-2026 | In `lib/almirah/templates/css/main.css`, replace `#nav_pane`'s `height: 100%` with `top: 0; bottom: 0;` so the fixed pane spans exactly the viewport and its internal scroll reaches the last item |
-| Requirements | Implemented | 07-06-2026 | 07-06-2026 | Authored SRS-101 (under the "Navigation" subsection of the User Interface chapter in `srs.md`) specifying that the navigation pane scrolls so every sections-tree item can be brought fully into view; recorded in this issue's Affected Documents section |
-| Tests | Implemented | 07-06-2026 | 07-06-2026 | Automated end-to-end browser test (`spec/e2e/nav_pane_scroll_spec.rb`) that renders a tall sections tree, opens the pane, scrolls it to the bottom in headless Chrome, and asserts the last item is fully within the viewport; traced to SRS-101. Verified to fail without the fix (last item bottom 534px vs viewport 513px) and pass with it |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 07-06-2026 | 07-06-2026 | In `lib/almirah/templates/css/main.css`, replace `#nav_pane`'s `height: 100%` with `top: 0; bottom: 0;` so the fixed pane spans exactly the viewport and its internal scroll reaches the last item |
+| 2 | Requirements | BA |  |  |  | Done | 07-06-2026 | 07-06-2026 | Authored SRS-101 (under the "Navigation" subsection of the User Interface chapter in `srs.md`) specifying that the navigation pane scrolls so every sections-tree item can be brought fully into view; recorded in this issue's Affected Documents section |
+| 3 | Tests | TEST |  |  |  | Done | 07-06-2026 | 07-06-2026 | Automated end-to-end browser test (`spec/e2e/nav_pane_scroll_spec.rb`) that renders a tall sections tree, opens the pane, scrolls it to the bottom in headless Chrome, and asserts the last item is fully within the viewport; traced to SRS-101. Verified to fail without the fix (last item bottom 534px vs viewport 513px) and pass with it |
 
 # Out of Scope
 

@@ -126,11 +126,11 @@ The creation date is filled at scaffold time via `Time.now.strftime('%d-%m-%Y')`
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Requirements | To Do | 05-06-2026 | 05-06-2026 | No new SRS items are added by this ADR; the example demonstrates the existing decision-record requirements (SRS-039, SRS-052). Formal SRS coverage of the `create` command's template contents is tracked separately (see Out of Scope). |
-| Code | Done | 05-06-2026 | 05-06-2026 | Added a `create_decisions` method to `lib/almirah/project_template.rb` writing `decisions/adr-001-start-project-decision.md` with the example content above, filling the Status-table date via `Time.now.strftime('%d-%m-%Y')`; invoked it from `ProjectTemplate#initialize`. |
-| Tests | Done | 05-06-2026 | 05-06-2026 | Added `spec/e2e/create_template_spec.rb`: `almirah create` produces `decisions/adr-001-start-project-decision.md`, and a subsequent `almirah please` renders `build/decisions/overview.html`, lists the record, renders `adr-001.html`, and links the decision to `REQ-001` from the requirements page. |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Requirements | BA |  |  |  | Done | 05-06-2026 | 05-06-2026 | No new SRS items are added by this ADR; the example demonstrates the existing decision-record requirements (SRS-039, SRS-052). Formal SRS coverage of the `create` command's template contents is tracked separately (see Out of Scope). |
+| 2 | Code | DEV |  |  |  | Done | 05-06-2026 | 05-06-2026 | Added a `create_decisions` method to `lib/almirah/project_template.rb` writing `decisions/adr-001-start-project-decision.md` with the example content above, filling the Status-table date via `Time.now.strftime('%d-%m-%Y')`; invoked it from `ProjectTemplate#initialize`. |
+| 3 | Tests | TEST |  |  |  | Done | 05-06-2026 | 05-06-2026 | Added `spec/e2e/create_template_spec.rb`: `almirah create` produces `decisions/adr-001-start-project-decision.md`, and a subsequent `almirah please` renders `build/decisions/overview.html`, lists the record, renders `adr-001.html`, and links the decision to `REQ-001` from the requirements page. |
 
 # Out of Scope
 

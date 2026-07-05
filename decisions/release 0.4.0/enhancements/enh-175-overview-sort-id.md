@@ -31,9 +31,9 @@ Sorting is performed once, in the `DecisionsOverview` renderer, immediately befo
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Done | 20-05-2026 | 20-05-2026 | `DecisionsOverview` sorts the list of `Decision` instances by the integer parsed from the digits portion of the decision-record ID before emitting table rows |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 20-05-2026 | 20-05-2026 | `DecisionsOverview` sorts the list of `Decision` instances by the integer parsed from the digits portion of the decision-record ID before emitting table rows |
 
 The change is considered cosmetic — there are no new requirements and no end-to-end tests are added in scope of this enhancement.
 

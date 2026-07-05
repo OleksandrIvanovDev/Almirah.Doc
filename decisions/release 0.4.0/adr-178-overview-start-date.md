@@ -45,11 +45,11 @@ The existing empty "Start Date" cell in the Decision Records Overview becomes po
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Requirements | Implemented | 21-05-2026 | 21-05-2026 | New SRS items in `srs.md` covering: the `start_date` attribute on a Decision Record; the extraction rule (minimum of Status `Date` column and Scope `Start Date` column); column lookup by header text; the `DD-MM-YYYY` parse format; the empty-cell fallback when no date is parseable; rendering of `start_date` in the existing "Start Date" column of the Decision Records Overview |
-| Code | Implemented | 21-05-2026 | 21-05-2026 | Add a `start_date` accessor on `Decision`; extend the Decision parser to locate the Scope section and read the "Start Date" column; share heading-lookup logic with `extract_current_status`; compute the minimum across both tables; populate the existing Start Date cell in `decisions_overview.rb` |
-| Tests | Implemented | 21-05-2026 | 21-05-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: extraction picks the earliest date when both tables have entries; extraction falls back to whichever table has a date when the other is empty or missing; extraction returns nil when no parseable date exists in either table; unparseable cells (e.g., empty Target Date, free-text Description) are ignored without raising; the rendered Start Date column carries the formatted value and is empty when undefined |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Requirements | BA |  |  |  | Done | 21-05-2026 | 21-05-2026 | New SRS items in `srs.md` covering: the `start_date` attribute on a Decision Record; the extraction rule (minimum of Status `Date` column and Scope `Start Date` column); column lookup by header text; the `DD-MM-YYYY` parse format; the empty-cell fallback when no date is parseable; rendering of `start_date` in the existing "Start Date" column of the Decision Records Overview |
+| 2 | Code | DEV |  |  |  | Done | 21-05-2026 | 21-05-2026 | Add a `start_date` accessor on `Decision`; extend the Decision parser to locate the Scope section and read the "Start Date" column; share heading-lookup logic with `extract_current_status`; compute the minimum across both tables; populate the existing Start Date cell in `decisions_overview.rb` |
+| 3 | Tests | TEST |  |  |  | Done | 21-05-2026 | 21-05-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: extraction picks the earliest date when both tables have entries; extraction falls back to whichever table has a date when the other is empty or missing; extraction returns nil when no parseable date exists in either table; unparseable cells (e.g., empty Target Date, free-text Description) are ignored without raising; the rendered Start Date column carries the formatted value and is empty when undefined |
 
 # Out of Scope
 
@@ -108,7 +108,7 @@ The existing empty "Start Date" cell in the Decision Records Overview becomes po
 - [ADR-172](./adr-172-current-status-marker.md) — established the parse-the-Status-table pattern (`extract_current_status`) reused here for the Scope table lookup
 - [ADR-174](./adr-174-dr-specification-links.md) — precedent for an ADR that adds software requirements via an "Affected Documents" table
 - [ADR-177](./adr-177-overview-pie-chart.md) — sibling change to the Decision Records Overview page; this ADR leaves the chart grid untouched
-- SRS-039 through SRS-060 in [srs.md](./../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR extend that range
+- SRS-039 through SRS-060 in [srs.md](./../../specifications/srs/srs.md) — current requirements covering decision records; new SRS items added under this ADR extend that range
 
 # Review Evidences
 

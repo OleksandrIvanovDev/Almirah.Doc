@@ -34,9 +34,9 @@ Implementation note: to keep these styling changes from affecting the Specificat
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Code | Done | 17-05-2026 | 17-05-2026 | `DecisionsOverview` emits `class="controlled decisions_overview"`; `#` anchor `href` switched to the decision page (with `name`/`id` retained for deep links); inline `<b>` removed; three CSS rules scoped to `table.controlled.decisions_overview` (bold `th`, `td.item_id`, `td.item_text`); three empty placeholder columns added after `Title` with class `item_meta` |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Code | DEV |  |  |  | Done | 17-05-2026 | 17-05-2026 | `DecisionsOverview` emits `class="controlled decisions_overview"`; `#` anchor `href` switched to the decision page (with `name`/`id` retained for deep links); inline `<b>` removed; three CSS rules scoped to `table.controlled.decisions_overview` (bold `th`, `td.item_id`, `td.item_text`); three empty placeholder columns added after `Title` with class `item_meta` |
 
 The changes are considered as consmetic, so there are neither requirements nor end-to-end tests are made in scope of this enhancement.
 

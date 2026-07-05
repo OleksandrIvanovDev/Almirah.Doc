@@ -20,11 +20,11 @@ It would be good to add the support of "-" along as "*".
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Requirements | Done | 17-05-2026 | 17-05-2026 | SRS-017 updated to allow "*" or "-" as the item marker |
-| Code | Done | 17-05-2026 | 17-05-2026 | Dash support added in doc_parser.rb and markdown_list.rb |
-| Tests | Done | 17-05-2026 | 17-05-2026 | Five new unit tests in doc_parser_spec.rb; `<REQ>` traces added for SRS-017, SRS-019, SRS-024 |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Requirements | BA |  |  |  | Done | 17-05-2026 | 17-05-2026 | SRS-017 updated to allow "*" or "-" as the item marker |
+| 2 | Code | DEV |  |  |  | Done | 17-05-2026 | 17-05-2026 | Dash support added in doc_parser.rb and markdown_list.rb |
+| 3 | Tests | TEST |  |  |  | Done | 17-05-2026 | 17-05-2026 | Five new unit tests in doc_parser_spec.rb; `<REQ>` traces added for SRS-017, SRS-019, SRS-024 |
 
 # Out of Scope
 

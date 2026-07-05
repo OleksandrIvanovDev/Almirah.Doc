@@ -66,11 +66,11 @@ The chart is rendered inline using Chart.js (already loaded for the existing cha
 
 # Scope
 
-| Item | Status | Start Date | Target Date | Description |
-|---|---|---|---|---|
-| Requirements | Done | 01-06-2026 | 02-06-2026 | New SRS items (SRS-083 onward) covering: a horizontal bar chart of decision-record counts by current status in the third chart cell; aggregation by the `*`-marked current status with exact case-sensitive text match; the "Undefined" category for records with a missing or ambiguous current-status marker; a linear scale with the count shown in each bar label; first-seen category ordering with "Undefined" last |
-| Code | Done | 01-06-2026 | 02-06-2026 | Add a private helper on `DecisionsOverview` that tallies `current_status` across decisions (counting `nil` under "Undefined"), derives categories in first-seen order with "Undefined" appended last, and emits a horizontal-bar Chart.js config into the third `chart_cell`; embed each count in its label; reuse `palette_rgba` for colours and give "Undefined" the neutral grey entry; keep the legend hidden |
-| Tests | Done | 01-06-2026 | 02-06-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: the chart canvas is emitted in the third chart cell; the chart type is `bar` with `indexAxis: 'y'`; the value scale is linear (no logarithmic axis); labels carry the counts; records are tallied under their `*`-marked status; records with zero or multiple markers fall under "Undefined"; "Undefined" is ordered last; an all-defined project emits no "Undefined" category |
+| # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | Requirements | BA |  |  |  | Done | 01-06-2026 | 02-06-2026 | New SRS items (SRS-083 onward) covering: a horizontal bar chart of decision-record counts by current status in the third chart cell; aggregation by the `*`-marked current status with exact case-sensitive text match; the "Undefined" category for records with a missing or ambiguous current-status marker; a linear scale with the count shown in each bar label; first-seen category ordering with "Undefined" last |
+| 2 | Code | DEV |  |  |  | Done | 01-06-2026 | 02-06-2026 | Add a private helper on `DecisionsOverview` that tallies `current_status` across decisions (counting `nil` under "Undefined"), derives categories in first-seen order with "Undefined" appended last, and emits a horizontal-bar Chart.js config into the third `chart_cell`; embed each count in its label; reuse `palette_rgba` for colours and give "Undefined" the neutral grey entry; keep the legend hidden |
+| 3 | Tests | TEST |  |  |  | Done | 01-06-2026 | 02-06-2026 | End-to-end tests under `spec/e2e/decisions_spec.rb`: the chart canvas is emitted in the third chart cell; the chart type is `bar` with `indexAxis: 'y'`; the value scale is linear (no logarithmic axis); labels carry the counts; records are tallied under their `*`-marked status; records with zero or multiple markers fall under "Undefined"; "Undefined" is ordered last; an all-defined project emits no "Undefined" category |
 
 # Out of Scope
 
