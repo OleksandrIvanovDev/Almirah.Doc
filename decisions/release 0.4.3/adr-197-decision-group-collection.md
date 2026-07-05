@@ -99,6 +99,8 @@ The group name is the **first-level sub-folder under `decisions/`** — the firs
 
 # Review Evidences
 
-- [Decision Record]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/31)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/31)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/50)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/50)
+

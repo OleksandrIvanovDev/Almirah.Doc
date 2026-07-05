@@ -76,5 +76,6 @@ This change is cosmetic, so — as with [ENH-173](./../../release%200.4.0/enhanc
 
 # Review Evidences
 
-- [Decision Record]()
-- [Code]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/31)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/50)
+

@@ -127,7 +127,8 @@ In `gantt_grid` (`decisions_overview.rb`) the row scheme shifts: day-header `gri
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/31)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/31)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/50)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/50)
+

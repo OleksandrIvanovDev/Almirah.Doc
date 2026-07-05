@@ -85,5 +85,5 @@ As with [ENH-199](./enh-199-gantt-separator-lines.md), these are presentational 
 
 # Review Evidences
 
-- [Decision Record]()
-- [Code]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/31)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/50)

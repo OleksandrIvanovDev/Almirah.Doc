@@ -1,6 +1,8 @@
-# Goldratt Flow Analysis
+---
+title: Goldratt Flow Analysis
+---
 
-## Overview
+# Overview
 
 *Almirah as an ALM: Project Planning & Tracking through the Lens of "Goldratt's Rules of Flow"*
 
@@ -10,7 +12,7 @@ Initial Analysis and enhancement proposal made before the work on release 0.4.3 
 
 > This is a strategy/advisory note, not a formal decision record. It is intended as input to future ADRs under `decisions/`.
 
-## 1. What Almirah is today, seen through a "flow" lens
+# What Almirah is today, seen through a "flow" lens
 
 Almirah is a **traceability-first ALM**: Markdown specs/tests/source compiled into interlinked HTML, with a hard rule that *the document is the single source of truth* — attributes like `start_date`, `target_date`, `current_status` are **derived during parsing** from tables already in the file. ADR-191 is explicit that a hand-maintained frontmatter field "duplicates information and creates a third place that can drift."
 
@@ -27,7 +29,7 @@ So the gap is **not** "build a planner from scratch." It is: *the data model rec
 
 **Where it is blind (the flow gaps):** no estimate vs. actual, no resource/owner load (the `Owner` column is a literal empty placeholder in `decisions_overview.rb`), no dependency sequencing, no WIP / multitasking signal, no buffer, due-dates treated as hard per-task targets (the anti-pattern CCPM warns against).
 
-## 2. The Rules of Flow → ALM mapping
+# The Rules of Flow → ALM mapping
 
 The five rules from Goldratt-Ashlag's book, translated into features Almirah could actually derive:
 
@@ -41,11 +43,11 @@ The five rules from Goldratt-Ashlag's book, translated into features Almirah cou
 
 The elegant part: **all five can be expressed as new Markdown columns / tables + derived attributes**, staying true to the "no third place that drifts" principle in ADR-191.
 
-## 3. Concrete proposal
+# Concrete proposal
 
 Split into **low-level** (inside one decision record / one release) and **high-level** (portfolio across releases), because Almirah already has those two altitudes: the *Scope table* (low) and the *Decisions Overview* (high).
 
-### A. Data model — extend the Scope table, add nothing external
+## Data model — extend the Scope table, add nothing external
 
 Today's Scope row: `Item | Status | Start Date | Target Date | Description`.
 
@@ -62,7 +64,7 @@ Proposed columns (all optional, all parsed by header text so old records keep wo
 
 A new derived attribute `chain` on `Decision` computes the **critical chain** through the Scope items (longest dependency + resource path), and `buffer = Σ(safe − focused)/2` along that chain (CCPM's 50% buffer heuristic). All derivable in a `decision.rb` method exactly like `extract_target_date`.
 
-### B. High-level (portfolio / release planning) — extend the Overview
+## High-level (portfolio / release planning) — extend the Overview
 
 The Decisions Overview is the portfolio board. Add three derived views:
 
@@ -72,7 +74,7 @@ The Decisions Overview is the portfolio board. Add three derived views:
 
 3. **Full-kit readiness column (Rule 2).** For each record, walk its up-links; mark **"kitted"** only if every prerequisite record / spec is `Done` / `Implemented`. A record that is `In-Progress` but *not* kitted is a flow defect — surface it like a broken link (Almirah already has a "Check" pass for dangling references; this is the same machinery applied to readiness).
 
-### C. Low-level (within a record) — estimation & actual effort
+## Low-level (within a record) — estimation & actual effort
 
 - **Estimation:** the two-estimate columns above. The rendered record page shows the critical chain and the computed buffer, so the author sees *"focused path = 9 days, buffer = 4 days, commit date = 13 days from kit-complete"* rather than hand-typing a `Target Date` per row.
 - **Actual effort tracking, git-native:** rather than a mutable `Actual` cell, add an **effort log table** that is append-only — which matches how the Status table already works:
@@ -86,11 +88,11 @@ The Decisions Overview is the portfolio board. Add three derived views:
 
 `collect_dates`-style parsing already exists; summing `Hours` per item gives actuals, and the daily series feeds a real burn-up. This keeps the "single source of truth, derived, append-only, diffable in git" philosophy intact.
 
-### D. The payoff report — fever chart (Rule 5)
+## The payoff report — fever chart (Rule 5)
 
 Per release, derive **% critical-chain complete** (from Effort actuals vs. focused estimates) against **% buffer consumed** (elapsed buffer vs. total buffer), and plot the point on a red / yellow / green fever chart. This replaces "are we past the per-task Target Date" (the padded-due-date thinking the book attacks) with "is the *release* buffer healthy." It is the same `effective_status_on` time-machine you already have, just measuring buffer instead of status counts.
 
-## 4. Suggested sequencing (and where it lands in the repos)
+# Suggested sequencing (and where it lands in the repos)
 
 Per the workspace routing rules, every step is an ADR in `Almirah.Doc/decisions/` first, then code in `Almirah.Code`, then fixtures in `Almirah.TDS`. Phased to deliver flow value early:
 
@@ -101,6 +103,6 @@ Per the workspace routing rules, every step is an ADR in `Almirah.Doc/decisions/
 
 Each is independently shippable and each maps to one Rule of Flow, so you can dogfood it on Almirah's own decision records (`Almirah.Doc`) as you go — which is the fastest way to find out whether the model is right.
 
-## 5. PM caution
+# PM caution
 
 The book's central message is that **the constraint is rarely the tool — it is the policy of starting too much work.** If only one thing were built, it should be **#1 (the WIP heatmap)**: ship it, and watch whether your own decision-record throughput improves *before* investing in the heavier critical-chain machinery. Estimation and buffers are worth far less until multitasking is under control.
