@@ -64,9 +64,9 @@ After the import is fixed, the `create({ schema })`, `insert(db, ...)`, and `sea
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Code | DEV |  |  |  | Implemented | 26-05-2026 | 27-05-2026 | Update the import URL in `orama_search.js` to a pinned `@orama/orama@3.1.18` and the `dist/browser/index.js` path; rename the title field to `doc_title` in `specifications_db.rb`, the schema, the insert payload, and the result-rendering accessor; reconcile the `create`/`insert`/`search` call shapes with the 3.x API |
-| 2 | Requirements | BA |  |  |  | In-Progress | 28-05-2026 |  | Author SRS-077 and SRS-078 in `srs.md` specifying the Index-page full-text search behaviour and the no-matches indication (the search feature was previously unspecified); record them in this issue's Affected Documents section |
-| 3 | Tests | TEST |  |  |  | In-Progress | 26-05-2026 |  | Manual verification on the rendered Index page of `Almirah.Doc` (search returns results, dropdown opens on focus, results render with title, color, heading link, and snippet), plus an automated end-to-end browser test (`spec/e2e/orama_search_spec.rb`) that serves the build over HTTP and drives the real Index page, traced to SRS-077 and SRS-078 |
+| 1 | Code | DEV |  |  |  | Done | 26-05-2026 | 27-05-2026 | Update the import URL in `orama_search.js` to a pinned `@orama/orama@3.1.18` and the `dist/browser/index.js` path; rename the title field to `doc_title` in `specifications_db.rb`, the schema, the insert payload, and the result-rendering accessor; reconcile the `create`/`insert`/`search` call shapes with the 3.x API |
+| 2 | Requirements | BA |  |  |  | Done | 28-05-2026 | 04-06-2026 | Author SRS-077 and SRS-078 in `srs.md` specifying the Index-page full-text search behaviour and the no-matches indication (the search feature was previously unspecified); record them in this issue's Affected Documents section |
+| 3 | Tests | TEST |  |  |  | Done | 26-05-2026 | 04-06-2026 | Manual verification on the rendered Index page of `Almirah.Doc` (search returns results, dropdown opens on focus, results render with title, color, heading link, and snippet), plus an automated end-to-end browser test (`spec/e2e/orama_search_spec.rb`) that serves the build over HTTP and drives the real Index page, traced to SRS-077 and SRS-078 |
 
 # Out of Scope
 

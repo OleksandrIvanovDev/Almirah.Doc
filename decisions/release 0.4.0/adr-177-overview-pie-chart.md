@@ -32,7 +32,7 @@ Architectural choices:
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Code | DEV |  |  |  | Implemented | 20-05-2026 | 23-05-2026 | Implementation |
+| 1 | Code | DEV |  |  |  | Done | 20-05-2026 | 23-05-2026 | Implementation |
 
 No new requirements documents, test protocols, or end-to-end tests are introduced — this is a presentation change and is verified by visual inspection of the rendered overview page.
 
