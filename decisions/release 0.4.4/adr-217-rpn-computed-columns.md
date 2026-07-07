@@ -6,7 +6,9 @@ title: "ADR-217: RPN Computed Columns"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 05-07-2026 | Proposed |
+|   | 05-07-2026 | Proposed |
+|   | 07-07-2026 | Analysis |
+| * | 07-07-2026 | In-Progress |
 
 # Context
 
@@ -48,9 +50,9 @@ risks:
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Requirements | BA | >[ADR-216] | 1 | 2 | To-Do |  |  | State SRS-169 and SRS-170: the register table shall append one computed column per configured named RPN group as the product of the record's numeric input sections, blank when any input is missing or non-numeric, and shall colour the cell by the group's acceptable and unacceptable thresholds |
-| 2 | Code | DEV | >[ADR-216] | 2 | 4 | To-Do |  |  | Parse the rpn groups and thresholds from project.yml; compute the product per record from the input sections' numeric values; render the appended columns with blank-on-missing semantics and the three threshold styles |
-| 3 | Tests | TEST |  | 2 | 4 | To-Do |  |  | Add an `Almirah.Code` e2e covering a three-factor FMEA group, an initial-plus-residual pair, a single-input group, the blank cell for a non-numeric factor, and the three colour bands; extend the `Almirah.TDS` fixtures |
+| 1 | Requirements | BA | >[ADR-216] | 1 | 2 | Done | 07-07-2026 |  | State SRS-169 and SRS-170: the register table shall append one computed column per configured named RPN group as the product of the record's numeric input sections, blank when any input is missing or non-numeric, and shall colour the cell by the group's acceptable and unacceptable thresholds |
+| 2 | Code | DEV | >[ADR-216] | 2 | 4 | Done | 07-07-2026 |  | Parse the rpn groups and thresholds from project.yml; compute the product per record from the input sections' numeric values; render the appended columns with blank-on-missing semantics and the three threshold styles |
+| 3 | Tests | TEST |  | 2 | 4 | Done | 07-07-2026 |  | Add an `Almirah.Code` e2e covering a three-factor FMEA group, an initial-plus-residual pair, a single-input group, the blank cell for a non-numeric factor, and the three colour bands, with inline fixtures |
 
 # Out of Scope
 
@@ -119,3 +121,4 @@ This decision adds SRS-169 and SRS-170.
 | Date | Item | Owner | Hours | Note |
 |---|---|---|---|---|
 | 05-07-2026 | Requirements | BA | 1 | Initial Proposal |
+| 07-07-2026 | Requirements | DEV | 0.25 | Analysis |

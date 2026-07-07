@@ -321,6 +321,18 @@ Table example:
 
 >Example 3: a registry with no entry under the "risks:" root in project.yml renders the implicit columns plus Status only.
 
+[SRS-169] The software shall append to a risk register table one computed column per RPN group configured for the registry, each group having a name and an ordered list of input section names, the cell value being the product of the record's numeric input section values and blank when any input is missing or not numeric.
+
+>Example 1: a group named "Initial" with "inputs: [Severity, Occurrence, Detection]" appends an "Initial RPN" column; a record whose sections hold 8, 3, and 2 shows 48.
+
+>Example 2: a record whose "# Occurrence" section holds "TBD" gets a blank "Initial RPN" cell, not zero.
+
+>Example 3: a group with the single input "CVSS Score" surfaces that section's value unchanged as a rankable RPN column.
+
+[SRS-170] The software shall colour an RPN cell by the group's optional thresholds: acceptable style at or below the acceptable bound, unacceptable style at or above the unacceptable bound, caution style between the bounds, and no colouring when thresholds are not configured.
+
+>Example: with "acceptable: 20" and "unacceptable: 100", the value 18 renders in the acceptable style, 48 in the caution style, and 120 in the unacceptable style.
+
 ## Planning
 
 [SRS-107] The Decision Record Scope table shall support work-item rows — including an Analysis row — each carrying an Owner and a Status whose value is one of To Do, In-Progress, or Done. These per-row statuses shall be independent of the Decision Record's hand-marked lifecycle status.
