@@ -333,6 +333,20 @@ Table example:
 
 >Example: with "acceptable: 20" and "unacceptable: 100", the value 18 renders in the acceptable style, 48 in the caution style, and 120 in the unacceptable style.
 
+[SRS-171] The software shall parse a risk record's Affected Documents section as a controlled table whose Req-ID column carries uplinks to controlled paragraphs, as for decision records, and shall render the register table's Affected Documents column as only the distinct linked controlled-paragraph IDs, each a clickable link to its paragraph.
+
+>Example 1: a risk record row "| 1 | The software shall sanitise search input. | >[SRS-123] |" links the record to [SRS-123]; the SRS paragraph shows the risk record among its downlinks, and the register cell shows "SRS-123" as a clickable link without the Proposed Text.
+
+>Example 2: a Req-ID referencing a non-existing controlled paragraph renders in the register cell in the existing broken-link style instead of being dropped.
+
+[SRS-172] The software shall add a Risks entry to the top menu bar, present only when the project has at least one risk registry, leading to a summary page holding one row per registry with the columns Risk Registry, Total Risks, Open Risks, Highest RPN and Average RPN, where the registry name links to its registry page, the open count excludes records whose current status is Closed, and the RPN aggregates are computed over the registry's leading RPN group ignoring blank values.
+
+>Example 1: a registry with four records of which one is Closed shows Total Risks 4 and Open Risks 3; a record without a current-status marker counts as open.
+
+>Example 2: a registry whose leading RPN group carries thresholds renders its Highest RPN cell in the threshold style of that value; a registry with no RPN configuration shows blank Highest and Average RPN cells.
+
+>Example 3: a project without a risks folder shows no Risks menu entry and no summary page.
+
 ## Planning
 
 [SRS-107] The Decision Record Scope table shall support work-item rows — including an Analysis row — each carrying an Owner and a Status whose value is one of To Do, In-Progress, or Done. These per-row statuses shall be independent of the Decision Record's hand-marked lifecycle status.

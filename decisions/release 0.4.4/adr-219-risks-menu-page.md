@@ -6,7 +6,9 @@ title: "ADR-219: Risks Menu and Registries Page"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 05-07-2026 | Proposed |
+|   | 05-07-2026 | Proposed |
+|   | 07-07-2026 | Analysis |
+| * | 07-07-2026 | In-Progress |
 
 # Context
 
@@ -25,9 +27,9 @@ Add a Risks entry to the top menu bar leading to an all-registries summary page.
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Requirements | BA | >[ADR-217] | 1 | 2 | To-Do |  |  | State SRS-172: the software shall add a Risks top-menu entry, present only when a registry exists, leading to a summary page with one row per registry carrying total, open, highest-RPN and average-RPN figures with the registry name linked to its page |
-| 2 | Code | DEV | >[ADR-217] | 2 | 3 | To-Do |  |  | Emit the conditional top-menu button; render the registries page with the aggregate table; compute open counts from the lifecycle marker and the RPN aggregates from the leading group, blank-safe; colour Highest RPN by the leading group's thresholds |
-| 3 | Tests | TEST |  | 2 | 3 | To-Do |  |  | Add an `Almirah.Code` e2e asserting the button's presence and absence, the row per registry, the open count, the blank aggregates without RPN configuration, and the threshold colouring of Highest RPN; extend the `Almirah.TDS` fixtures |
+| 1 | Requirements | BA | >[ADR-217] | 1 | 2 | Done | 07-07-2026 |  | State SRS-172: the software shall add a Risks top-menu entry, present only when a registry exists, leading to a summary page with one row per registry carrying total, open, highest-RPN and average-RPN figures with the registry name linked to its page |
+| 2 | Code | DEV | >[ADR-217] | 2 | 3 | Done | 07-07-2026 |  | Emit the conditional top-menu button; render the registries page with the aggregate table; compute open counts from the lifecycle marker and the RPN aggregates from the leading group, blank-safe; colour Highest RPN by the leading group's thresholds |
+| 3 | Tests | TEST |  | 2 | 3 | Done | 07-07-2026 |  | Add an `Almirah.Code` e2e asserting the button's presence and absence, the row per registry, the open count, the blank aggregates without RPN configuration, and the threshold colouring of Highest RPN, with inline fixtures |
 
 # Out of Scope
 
@@ -94,3 +96,4 @@ This decision adds SRS-172.
 | Date | Item | Owner | Hours | Note |
 |---|---|---|---|---|
 | 05-07-2026 | Requirements | BA | 1 | Initial Proposal |
+| 07-07-2026 | Requirements | DEV | 0.25 | Analysis |
