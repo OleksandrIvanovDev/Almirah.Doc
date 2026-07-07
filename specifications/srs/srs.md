@@ -313,6 +313,14 @@ Table example:
 
 >Example: a Status table row containing "*" in the leading column and "Mitigating" in the Status column makes "Mitigating" the current status of the risk record.
 
+[SRS-168] The software shall render each risk registry to an overview page consisting of the registry's overview.md content followed by a register table with one row per risk record, whose leading columns are the linked record ID and title and whose further columns are configured per registry and filled from each record's section whose heading matches the column name, the Status column being filled from the record's current lifecycle status.
+
+>Example 1: a "risks/project" registry configured in project.yml with "columns: [Probability, Impact, Status]" renders "build/risks/project/overview.html" with the table columns #, Title, Probability, Impact, Status; the Probability and Impact cells hold the content of each record's "# Probability" and "# Impact" sections.
+
+>Example 2: a record without an "# Impact" section gets an empty Impact cell.
+
+>Example 3: a registry with no entry under the "risks:" root in project.yml renders the implicit columns plus Status only.
+
 ## Planning
 
 [SRS-107] The Decision Record Scope table shall support work-item rows — including an Analysis row — each carrying an Owner and a Status whose value is one of To Do, In-Progress, or Done. These per-row statuses shall be independent of the Decision Record's hand-marked lifecycle status.

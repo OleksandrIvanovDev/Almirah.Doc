@@ -6,7 +6,9 @@ title: "ADR-216: Risk Register Table"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 05-07-2026 | Proposed |
+|   | 05-07-2026 | Proposed |
+|   | 07-07-2026 | Analysis |
+| * | 07-07-2026 | In-Progress |
 
 # Context
 
@@ -38,9 +40,9 @@ risks:
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Requirements | BA | >[ADR-215] | 1 | 2 | To-Do |  |  | State SRS-168: each risk registry shall render an overview page holding the registry preface followed by a register table whose columns are configured per registry and filled from the records' sections matched by heading text |
-| 2 | Code | DEV | >[ADR-215] | 3 | 5 | To-Do |  |  | Read the risks root from project.yml; render the registry page from overview.md plus the register table; fill cells from sections matched by heading, Status from the lifecycle marker; link the ID column to the record pages; default to implicit columns for unconfigured registries |
-| 3 | Tests | TEST |  | 1 | 2 | To-Do |  |  | Add an `Almirah.Code` e2e asserting the registry page order, the configured columns, empty cells for missing sections, and the unconfigured-registry default; extend the `Almirah.TDS` fixtures accordingly |
+| 1 | Requirements | BA | >[ADR-215] | 1 | 2 | Done | 07-07-2026 |  | State SRS-168: each risk registry shall render an overview page holding the registry preface followed by a register table whose columns are configured per registry and filled from the records' sections matched by heading text |
+| 2 | Code | DEV | >[ADR-215] | 3 | 5 | Done | 07-07-2026 |  | Read the risks root from project.yml; render the registry page from overview.md plus the register table; fill cells from sections matched by heading, Status from the lifecycle marker; link the ID column to the record pages; default to implicit columns for unconfigured registries |
+| 3 | Tests | TEST |  | 1 | 2 | Done | 07-07-2026 |  | Add an `Almirah.Code` e2e asserting the registry page order, the configured columns, empty cells for missing sections, and the unconfigured-registry default, with inline fixtures |
 
 # Out of Scope
 
@@ -109,3 +111,4 @@ This decision adds SRS-168.
 | Date | Item | Owner | Hours | Note |
 |---|---|---|---|---|
 | 05-07-2026 | Requirements | BA | 1 | Initial Proposal |
+| 07-07-2026 | Requirements | DEV | 0.25 | Analysis |
