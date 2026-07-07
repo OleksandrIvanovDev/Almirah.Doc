@@ -6,7 +6,9 @@ title: "ADR-215: Risk Record Collection"
 
 |  | Date | Status |
 |:---:|---|---|
-| * | 05-07-2026 | Proposed |
+|   | 05-07-2026 | Proposed |
+|   | 07-07-2026 | Analysis |
+| * | 07-07-2026 | In-Progress |
 
 # Context
 
@@ -31,9 +33,9 @@ Introduce a third record collection, *risk records*, parsed from a `risks/` fold
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Requirements | BA |  | 1 | 2 | To-Do |  |  | State SRS-166 and SRS-167: the software shall collect risk records from first-level subfolders of a risks folder and shall derive each record's current status from its Status table marker |
-| 2 | Code | DEV |  | 2 | 3 | To-Do |  |  | Add a RiskRecord document type and the risks folder scan mirroring the decisions scan; derive IDs from filenames; report duplicate IDs; treat overview.md as the registry preface; reuse the Status-table current-state extraction; render each record to its own page |
-| 3 | Tests | TEST |  | 2 | 3 | To-Do |  |  | Add an `Almirah.Code` e2e building a fixture project with two registries and asserting record pages, IDs, and current statuses; add matching fixture documents to `Almirah.TDS` |
+| 1 | Requirements | BA |  | 1 | 2 | Done | 05-07-2026 | 07-07-2026 | State SRS-166 and SRS-167: the software shall collect risk records from first-level subfolders of a risks folder and shall derive each record's current status from its Status table marker |
+| 2 | Code | DEV |  | 2 | 3 | Done | 07-07-2026 | 07-07-2026 | Add a RiskRecord document type and the risks folder scan mirroring the decisions scan; derive IDs from filenames; report duplicate IDs; treat overview.md as the registry preface; reuse the Status-table current-state extraction; render each record to its own page |
+| 3 | Tests | TEST |  | 2 | 3 | Done | 07-07-2026 | 07-07-2026 | Add an `Almirah.Code` e2e building a fixture project with two registries and asserting record pages, IDs, and current statuses, with inline fixtures |
 
 # Out of Scope
 
@@ -104,3 +106,6 @@ This decision adds SRS-166 and SRS-167.
 | Date | Item | Owner | Hours | Note |
 |---|---|---|---|---|
 | 05-07-2026 | Requirements | BA | 1 | Initial Proposal |
+| 07-07-2026 | Requirements | DEV | 0.25 | Analysis |
+| 07-07-2026 | Code | DEV | 0.5 | Implementation |
+| 07-07-2026 | Tests | TEST | 0.5 | Verification |

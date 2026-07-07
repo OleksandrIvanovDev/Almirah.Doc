@@ -301,6 +301,18 @@ Table example:
 
 [SRS-087] The categories of the current-status distribution chart shall be ordered by their first appearance in Decision Record parse order, with the "Undefined" category, when present, placed last.
 
+## Risk Records
+
+[SRS-166] The software shall collect risk records from the first-level subfolders of a risks folder at the project root, each subfolder forming a risk registry, each record identified by the letters-digits prefix of its file name, and shall render each record to its own HTML page.
+
+>Example 1: "risks/project/prjr-001-expertise-loss.md" — registry is "project", ID is "prjr-001", rendered to "build/risks/project/prjr-001.html"
+
+>Example 2: a "risks/product/overview.md" file is a registry preface, not a risk record.
+
+[SRS-167] The software shall derive a risk record's current status from the row of its Status table marked with an asterisk in the leading column, in the same way as for decision records.
+
+>Example: a Status table row containing "*" in the leading column and "Mitigating" in the Status column makes "Mitigating" the current status of the risk record.
+
 ## Planning
 
 [SRS-107] The Decision Record Scope table shall support work-item rows — including an Analysis row — each carrying an Owner and a Status whose value is one of To Do, In-Progress, or Done. These per-row statuses shall be independent of the Decision Record's hand-marked lifecycle status.
