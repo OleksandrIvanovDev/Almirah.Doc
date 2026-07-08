@@ -87,10 +87,10 @@ This enhancement amends SRS-168 and SRS-172.
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
 
 # Effort
 

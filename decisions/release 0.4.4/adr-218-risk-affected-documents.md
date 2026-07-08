@@ -8,7 +8,8 @@ title: "ADR-218: Risk Affected Documents"
 |:---:|---|---|
 |   | 05-07-2026 | Proposed |
 |   | 07-07-2026 | Analysis |
-| * | 07-07-2026 | In-Progress |
+|   | 07-07-2026 | In-Progress |
+| * | 08-07-2026 | Implemented |
 
 # Context
 
@@ -29,9 +30,9 @@ Handle a risk record's `# Affected Documents` section identically to a decision 
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Requirements | BA | >[ADR-216] | 1 | 2 | Done | 07-07-2026 |  | State SRS-171: a risk record's Affected Documents section shall be parsed as a controlled table with requirement uplinks as in decision records, and the register table's Affected Documents column shall render only the linked controlled-paragraph IDs as clickable links |
-| 2 | Code | DEV | >[ADR-216] | 2 | 3 | Done | 07-07-2026 |  | Extend the doc parser's Affected Documents controlled-table path to RiskRecord documents; collect the section's linked IDs per record; render the register cell as linked IDs with broken links in the existing style |
-| 3 | Tests | TEST |  | 1 | 2 | Done | 07-07-2026 |  | Add an `Almirah.Code` e2e asserting the record-page table links, the specification downlinks, the IDs-only register cell, and the broken-link rendering, with inline fixtures including a risk record carrying valid and dangling Req-IDs |
+| 1 | Requirements | BA | >[ADR-216] | 1 | 2 | Done | 07-07-2026 | 08-07-2026 | State SRS-171: a risk record's Affected Documents section shall be parsed as a controlled table with requirement uplinks as in decision records, and the register table's Affected Documents column shall render only the linked controlled-paragraph IDs as clickable links |
+| 2 | Code | DEV | >[ADR-216] | 2 | 3 | Done | 07-07-2026 | 08-07-2026 | Extend the doc parser's Affected Documents controlled-table path to RiskRecord documents; collect the section's linked IDs per record; render the register cell as linked IDs with broken links in the existing style |
+| 3 | Tests | TEST |  | 1 | 2 | Done | 07-07-2026 | 08-07-2026 | Add an `Almirah.Code` e2e asserting the record-page table links, the specification downlinks, the IDs-only register cell, and the broken-link rendering, with inline fixtures including a risk record carrying valid and dangling Req-IDs |
 
 # Out of Scope
 
@@ -86,10 +87,10 @@ This decision adds SRS-171.
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
 
 # Effort
 

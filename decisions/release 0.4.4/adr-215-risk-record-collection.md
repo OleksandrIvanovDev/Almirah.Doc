@@ -8,7 +8,8 @@ title: "ADR-215: Risk Record Collection"
 |:---:|---|---|
 |   | 05-07-2026 | Proposed |
 |   | 07-07-2026 | Analysis |
-| * | 07-07-2026 | In-Progress |
+|   | 07-07-2026 | In-Progress |
+| * | 08-07-2026 | Implemented |
 
 # Context
 
@@ -96,10 +97,10 @@ This decision adds SRS-166 and SRS-167.
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
 
 # Effort
 

@@ -8,7 +8,8 @@ title: "ADR-217: RPN Computed Columns"
 |:---:|---|---|
 |   | 05-07-2026 | Proposed |
 |   | 07-07-2026 | Analysis |
-| * | 07-07-2026 | In-Progress |
+|   | 07-07-2026 | In-Progress |
+| * | 08-07-2026 | Implemented |
 
 # Context
 
@@ -50,9 +51,9 @@ risks:
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Requirements | BA | >[ADR-216] | 1 | 2 | Done | 07-07-2026 |  | State SRS-169 and SRS-170: the register table shall append one computed column per configured named RPN group as the product of the record's numeric input sections, blank when any input is missing or non-numeric, and shall colour the cell by the group's acceptable and unacceptable thresholds |
-| 2 | Code | DEV | >[ADR-216] | 2 | 4 | Done | 07-07-2026 |  | Parse the rpn groups and thresholds from project.yml; compute the product per record from the input sections' numeric values; render the appended columns with blank-on-missing semantics and the three threshold styles |
-| 3 | Tests | TEST |  | 2 | 4 | Done | 07-07-2026 |  | Add an `Almirah.Code` e2e covering a three-factor FMEA group, an initial-plus-residual pair, a single-input group, the blank cell for a non-numeric factor, and the three colour bands, with inline fixtures |
+| 1 | Requirements | BA | >[ADR-216] | 1 | 2 | Done | 07-07-2026 | 08-07-2026 | State SRS-169 and SRS-170: the register table shall append one computed column per configured named RPN group as the product of the record's numeric input sections, blank when any input is missing or non-numeric, and shall colour the cell by the group's acceptable and unacceptable thresholds |
+| 2 | Code | DEV | >[ADR-216] | 2 | 4 | Done | 07-07-2026 | 08-07-2026 | Parse the rpn groups and thresholds from project.yml; compute the product per record from the input sections' numeric values; render the appended columns with blank-on-missing semantics and the three threshold styles |
+| 3 | Tests | TEST |  | 2 | 4 | Done | 07-07-2026 | 08-07-2026 | Add an `Almirah.Code` e2e covering a three-factor FMEA group, an initial-plus-residual pair, a single-input group, the blank cell for a non-numeric factor, and the three colour bands, with inline fixtures |
 
 # Out of Scope
 
@@ -111,10 +112,10 @@ This decision adds SRS-169 and SRS-170.
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
 
 # Effort
 

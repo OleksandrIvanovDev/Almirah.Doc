@@ -8,7 +8,8 @@ title: "ADR-216: Risk Register Table"
 |:---:|---|---|
 |   | 05-07-2026 | Proposed |
 |   | 07-07-2026 | Analysis |
-| * | 07-07-2026 | In-Progress |
+|   | 07-07-2026 | In-Progress |
+| * | 08-07-2026 | Implemented |
 
 # Context
 
@@ -40,9 +41,9 @@ risks:
 
 | # | Item | Owner | Depends On | Est (focused) | Est (safe) | Status | Start Date | Target Date | Description |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | Requirements | BA | >[ADR-215] | 1 | 2 | Done | 07-07-2026 |  | State SRS-168: each risk registry shall render an overview page holding the registry preface followed by a register table whose columns are configured per registry and filled from the records' sections matched by heading text |
-| 2 | Code | DEV | >[ADR-215] | 3 | 5 | Done | 07-07-2026 |  | Read the risks root from project.yml; render the registry page from overview.md plus the register table; fill cells from sections matched by heading, Status from the lifecycle marker; link the ID column to the record pages; default to implicit columns for unconfigured registries |
-| 3 | Tests | TEST |  | 1 | 2 | Done | 07-07-2026 |  | Add an `Almirah.Code` e2e asserting the registry page order, the configured columns, empty cells for missing sections, and the unconfigured-registry default, with inline fixtures |
+| 1 | Requirements | BA | >[ADR-215] | 1 | 2 | Done | 07-07-2026 | 08-07-2026 | State SRS-168: each risk registry shall render an overview page holding the registry preface followed by a register table whose columns are configured per registry and filled from the records' sections matched by heading text |
+| 2 | Code | DEV | >[ADR-215] | 3 | 5 | Done | 07-07-2026 | 08-07-2026 | Read the risks root from project.yml; render the registry page from overview.md plus the register table; fill cells from sections matched by heading, Status from the lifecycle marker; link the ID column to the record pages; default to implicit columns for unconfigured registries |
+| 3 | Tests | TEST |  | 1 | 2 | Done | 07-07-2026 | 08-07-2026 | Add an `Almirah.Code` e2e asserting the registry page order, the configured columns, empty cells for missing sections, and the unconfigured-registry default, with inline fixtures |
 
 # Out of Scope
 
@@ -101,10 +102,10 @@ This decision adds SRS-168.
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/32)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/51)
 
 # Effort
 
