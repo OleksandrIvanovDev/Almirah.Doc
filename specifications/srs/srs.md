@@ -313,13 +313,15 @@ Table example:
 
 >Example: a Status table row containing "*" in the leading column and "Mitigating" in the Status column makes "Mitigating" the current status of the risk record.
 
-[SRS-168] The software shall render each risk registry to an overview page consisting of the registry's overview.md content followed by a register table with one row per risk record, whose leading columns are the linked record ID and title and whose further columns are configured per registry and filled from each record's section whose heading matches the column name, the Status column being filled from the record's current lifecycle status.
+[SRS-168] The software shall render each risk registry to an overview page consisting of the registry's overview.md content followed by a register table with one row per risk record, whose leading columns are the record ID, displayed uppercased and linked to the record page, and the record title with the record's own leading ID prefix removed, and whose further columns are configured per registry and filled from each record's section whose heading matches the column name, the Status column being filled from the record's current lifecycle status.
 
 >Example 1: a "risks/project" registry configured in project.yml with "columns: [Probability, Impact, Status]" renders "build/risks/project/overview.html" with the table columns #, Title, Probability, Impact, Status; the Probability and Impact cells hold the content of each record's "# Probability" and "# Impact" sections.
 
->Example 2: a record without an "# Impact" section gets an empty Impact cell.
+>Example 2: the record "secr-001-sql-injection.md" titled "SECR-001: SQL Injection in Search" shows "SECR-001" in the ID column and "SQL Injection in Search" in the Title column; a title that does not start with the record's own ID renders unchanged.
 
->Example 3: a registry with no entry under the "risks:" root in project.yml renders the implicit columns plus Status only.
+>Example 3: a record without an "# Impact" section gets an empty Impact cell.
+
+>Example 4: a registry with no entry under the "risks:" root in project.yml renders the implicit columns plus Status only.
 
 [SRS-169] The software shall append to a risk register table one computed column per RPN group configured for the registry, each group having a name and an ordered list of input section names, the cell value being the product of the record's numeric input section values and blank when any input is missing or not numeric.
 
@@ -339,11 +341,13 @@ Table example:
 
 >Example 2: a Req-ID referencing a non-existing controlled paragraph renders in the register cell in the existing broken-link style instead of being dropped.
 
-[SRS-172] The software shall add a Risks entry to the top menu bar, present only when the project has at least one risk registry, leading to a summary page holding one row per registry with the columns Risk Registry, Total Risks, Open Risks, Highest RPN and Average RPN, where the registry name links to its registry page, the open count excludes records whose current status is Closed, and the RPN aggregates are computed over the registry's leading RPN group ignoring blank values.
+[SRS-172] The software shall add a Risks entry to the top menu bar, present only when the project has at least one risk registry, leading to a summary page holding one row per registry with the columns Risk Registry, Total Risks, Open Risks, Highest RPN and Average RPN, where the Risk Registry cell shows the registry preface's frontmatter title, falling back to the registry folder name when no preface title exists, linked to its registry page, the open count excludes records whose current status is Closed, and the RPN aggregates are computed over the registry's leading RPN group ignoring blank values.
 
 >Example 1: a registry with four records of which one is Closed shows Total Risks 4 and Open Risks 3; a record without a current-status marker counts as open.
 
->Example 2: a registry whose leading RPN group carries thresholds renders its Highest RPN cell in the threshold style of that value; a registry with no RPN configuration shows blank Highest and Average RPN cells.
+>Example 2: a "risks/security" registry whose overview.md frontmatter carries the title "Security Risk Register" shows "Security Risk Register" in the Risk Registry cell; a registry without a preface, or whose preface has no frontmatter title, shows its folder name.
+
+>Example 3: a registry whose leading RPN group carries thresholds renders its Highest RPN cell in the threshold style of that value; a registry with no RPN configuration shows blank Highest and Average RPN cells.
 
 >Example 3: a project without a risks folder shows no Risks menu entry and no summary page.
 
