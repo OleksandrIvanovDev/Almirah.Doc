@@ -301,6 +301,56 @@ Table example:
 
 [SRS-087] The categories of the current-status distribution chart shall be ordered by their first appearance in Decision Record parse order, with the "Undefined" category, when present, placed last.
 
+## Risk Records
+
+[SRS-166] The software shall collect risk records from the first-level subfolders of a risks folder at the project root, each subfolder forming a risk registry, each record identified by the letters-digits prefix of its file name, and shall render each record to its own HTML page.
+
+>Example 1: "risks/project/prjr-001-expertise-loss.md" — registry is "project", ID is "prjr-001", rendered to "build/risks/project/prjr-001.html"
+
+>Example 2: a "risks/product/overview.md" file is a registry preface, not a risk record.
+
+[SRS-167] The software shall derive a risk record's current status from the row of its Status table marked with an asterisk in the leading column, in the same way as for decision records.
+
+>Example: a Status table row containing "*" in the leading column and "Mitigating" in the Status column makes "Mitigating" the current status of the risk record.
+
+[SRS-168] The software shall render each risk registry to an overview page consisting of the registry's overview.md content followed by a register table with one row per risk record, whose leading columns are the record ID, displayed uppercased and linked to the record page, and the record title with the record's own leading ID prefix removed, and whose further columns are configured per registry and filled from each record's section whose heading matches the column name, the Status column being filled from the record's current lifecycle status.
+
+>Example 1: a "risks/project" registry configured in project.yml with "columns: [Probability, Impact, Status]" renders "build/risks/project/overview.html" with the table columns #, Title, Probability, Impact, Status; the Probability and Impact cells hold the content of each record's "# Probability" and "# Impact" sections.
+
+>Example 2: the record "secr-001-sql-injection.md" titled "SECR-001: SQL Injection in Search" shows "SECR-001" in the ID column and "SQL Injection in Search" in the Title column; a title that does not start with the record's own ID renders unchanged.
+
+>Example 3: a record without an "# Impact" section gets an empty Impact cell.
+
+>Example 4: a registry with no entry under the "risks:" root in project.yml renders the implicit columns plus Status only.
+
+[SRS-169] The software shall append to a risk register table one computed column per RPN group configured for the registry, each group having a name and an ordered list of input section names, the cell value being the product of the record's numeric input section values and blank when any input is missing or not numeric.
+
+>Example 1: a group named "Initial" with "inputs: [Severity, Occurrence, Detection]" appends an "Initial RPN" column; a record whose sections hold 8, 3, and 2 shows 48.
+
+>Example 2: a record whose "# Occurrence" section holds "TBD" gets a blank "Initial RPN" cell, not zero.
+
+>Example 3: a group with the single input "CVSS Score" surfaces that section's value unchanged as a rankable RPN column.
+
+[SRS-170] The software shall colour an RPN cell by the group's optional thresholds: acceptable style at or below the acceptable bound, unacceptable style at or above the unacceptable bound, caution style between the bounds, and no colouring when thresholds are not configured.
+
+>Example: with "acceptable: 20" and "unacceptable: 100", the value 18 renders in the acceptable style, 48 in the caution style, and 120 in the unacceptable style.
+
+[SRS-171] The software shall parse a risk record's Affected Documents section as a controlled table whose Req-ID column carries uplinks to controlled paragraphs, as for decision records, and shall render the register table's Affected Documents column as only the distinct linked controlled-paragraph IDs, each a clickable link to its paragraph.
+
+>Example 1: a risk record row "| 1 | The software shall sanitise search input. | >[SRS-123] |" links the record to [SRS-123]; the SRS paragraph shows the risk record among its downlinks, and the register cell shows "SRS-123" as a clickable link without the Proposed Text.
+
+>Example 2: a Req-ID referencing a non-existing controlled paragraph renders in the register cell in the existing broken-link style instead of being dropped.
+
+[SRS-172] The software shall add a Risks entry to the top menu bar, present only when the project has at least one risk registry, leading to a summary page holding one row per registry with the columns Risk Registry, Total Risks, Open Risks, Highest RPN and Average RPN, where the Risk Registry cell shows the registry preface's frontmatter title, falling back to the registry folder name when no preface title exists, linked to its registry page, the open count excludes records whose current status is Closed, and the RPN aggregates are computed over the registry's leading RPN group ignoring blank values.
+
+>Example 1: a registry with four records of which one is Closed shows Total Risks 4 and Open Risks 3; a record without a current-status marker counts as open.
+
+>Example 2: a "risks/security" registry whose overview.md frontmatter carries the title "Security Risk Register" shows "Security Risk Register" in the Risk Registry cell; a registry without a preface, or whose preface has no frontmatter title, shows its folder name.
+
+>Example 3: a registry whose leading RPN group carries thresholds renders its Highest RPN cell in the threshold style of that value; a registry with no RPN configuration shows blank Highest and Average RPN cells.
+
+>Example 3: a project without a risks folder shows no Risks menu entry and no summary page.
+
 ## Planning
 
 [SRS-107] The Decision Record Scope table shall support work-item rows — including an Analysis row — each carrying an Owner and a Status whose value is one of To Do, In-Progress, or Done. These per-row statuses shall be independent of the Decision Record's hand-marked lifecycle status.
@@ -335,7 +385,7 @@ Table example:
 
 [SRS-122] For each decision-record group, the software shall construct a planning network whose nodes are the not-Done Scope rows of the records in that group, with intra-record edges following the step-number order and cross-record edges placing each row that carries a Depends On reference after its activity-type-aligned predecessor work item in the referenced record.
 
-[SRS-123] The software shall schedule the planning network with a deterministic resource-levelling rule in which each row starts only when all its predecessor rows have finished and its owner is free, so that rows sharing the same owner do not run concurrently while rows with different owners, including multiple people in one role, may.
+[SRS-123] The software shall schedule the planning network with a deterministic resource-levelling rule in which each row starts at the earliest day, at or after the finish of all its predecessor rows, where its owner's lane holds no other row for the row's whole duration, so that a row may fill an idle gap between rows placed earlier and rows sharing the same owner never run concurrently.
 
 [SRS-124] The software shall identify the critical chain of a decision-record group as the sequence of Scope rows that determines the group's completion in the resource-levelled schedule.
 
