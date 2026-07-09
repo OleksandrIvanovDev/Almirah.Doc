@@ -461,6 +461,10 @@ Table example:
 
 [SRS-051] The Decision Records Overview page shall include a "Status" column between the "Type" and "Title" columns, displaying each decision record's current status. The cell shall be empty when the current status is undefined.
 
+[SRS-173] The software shall provide a clickable "Documents" link, carrying the home icon, in the top navigation bar of every rendered page, including the Index page itself, leading to the Index page.
+
+>Example: the Index page shows the same "Documents" menu item as every other page, linking to the page itself; no page shows a "Home" item.
+
 ### Search
 
 [SRS-077] The software shall provide a full-text search on the Index page that, for a user-entered term, returns matching specification content showing the source document title, a link to the containing section, and a text snippet.
