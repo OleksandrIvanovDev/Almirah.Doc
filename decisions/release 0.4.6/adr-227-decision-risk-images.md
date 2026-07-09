@@ -8,8 +8,8 @@ title: "ADR-227: Images in Decisions and Risks"
 |:---:|---|---|
 |   | 09-07-2026 | Proposed |
 |   | 09-07-2026 | Accepted |
-| * | 09-07-2026 | In-Progress |
-|   |  | Implemented |
+|   | 09-07-2026 | In-Progress |
+| * | 09-07-2026 | Implemented |
 
 # Context
 
@@ -44,7 +44,7 @@ The copy runs during rendering, alongside the existing specification and protoco
 | 1 | Requirements | BA |  | 0.5 | 1 | Done | 09-07-2026 | 09-07-2026 | State SRS-176: img folders under decisions and risks are copied into the build preserving relative location, so relative image references in decision records, risk records, and registry prefaces resolve in the rendered HTML |
 | 2 | Code | DEV | 1 | 1 | 2 | Done | 09-07-2026 | 09-07-2026 | One copy helper in the project pipeline globbing img folders under decisions and risks and copying each to the same relative path under build, called from both build entry points |
 | 3 | Tests | TEST | 2 | 1 | 2 | Done | 09-07-2026 | 09-07-2026 | E2e specs with inline fixtures covering every placement: img beside a root-level record, in a shared release folder, in a deeper subfolder, unreferenced, with subfolders and non-image files, in a registry, nested inside a registry, directly under risks, plus the no-img and file-named-img cases |
-| 4 | Manual Test Data | TEST | 2 | 0.5 | 1 | Open |  |  | Almirah.TDS example: a decision record with a screenshot and a risk registry whose overview carries an FTA diagram, for manual verification and showcase |
+| 4 | Manual Test Data | TEST | 2 | 0.5 | 1 | Done | 09-07-2026 | 09-07-2026 | Almirah.TDS demo-risks-fta branch: five risks derived by Fault Tree Analysis of two top events, the fault-tree SVG diagrams shown on the registry overview page from the registry img folder |
 
 # Out of Scope
 
@@ -115,3 +115,4 @@ This decision adds SRS-176.
 | 09-07-2026 | Requirements | BA | 0.25 | SRS-176 stated under a new Decision and Risk Images section |
 | 09-07-2026 | Code | DEV | 0.5 | copy_decision_and_risk_images helper in the project pipeline, called from both build entry points |
 | 09-07-2026 | Tests | TEST | 1 | decision_risk_images_spec e2e added covering all placements, suite 354 green, rubocop clean |
+| 09-07-2026 | Manual Test Data | TEST | 1 | TDS demo-risks-fta branch created: FTA register with two fault-tree diagrams on the overview, five cut-set records, verified with the installed gem |
