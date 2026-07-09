@@ -103,10 +103,10 @@ This decision rewrites two requirements and deletes fifty-one. Kept unchanged: S
 
 # Review Evidences
 
-- [Decision Record]()
-- [Requirements]()
-- [Code]()
-- [Tests]()
+- [Decision Record](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/33)
+- [Requirements](https://github.com/OleksandrIvanovDev/Almirah.Doc/pull/33)
+- [Code](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/52)
+- [Tests](https://github.com/OleksandrIvanovDev/Almirah.Code/pull/52)
 
 # Effort
 
