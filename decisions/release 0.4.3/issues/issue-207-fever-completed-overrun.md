@@ -9,7 +9,8 @@ title: "ISSUE-207: Fever Chart Drops Buffer Consumed by Completed Chain Rows"
 |   | 20-06-2026 | Proposed |
 |   | 20-06-2026 | Accepted |
 |   | 20-06-2026 | In-Progress |
-| * | 20-06-2026 | Implemented |
+|   | 20-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

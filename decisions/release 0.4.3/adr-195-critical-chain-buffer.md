@@ -10,7 +10,8 @@ title: "ADR-195: Estimates, Critical Chain, and Project Buffer"
 |   | 14-06-2026 | Analysis |
 |   | 18-06-2026 | Accepted |
 |   | 18-06-2026 | In-Progress |
-| * | 18-06-2026 | Implemented |
+|   | 18-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

@@ -10,7 +10,8 @@ title: "ADR-206: Compact Working-Day Gantt Columns"
 |   | 20-06-2026 | Analysis |
 |   | 20-06-2026 | Accepted |
 |   | 20-06-2026 | In-Progress |
-| * | 20-06-2026 | Implemented |
+|   | 20-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

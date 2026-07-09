@@ -9,7 +9,8 @@ title: "ADR-212: Critical Chain Highlight on the Gantt"
 |   | 21-06-2026 | Proposed |
 |   | 21-06-2026 | Accepted |
 |   | 21-06-2026 | In-Progress |
-| * | 21-06-2026 | Implemented |
+|   | 21-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

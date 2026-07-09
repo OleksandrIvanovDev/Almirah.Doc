@@ -9,7 +9,8 @@ title: "ENH-199: Work-Item Gantt Header Separator Line"
 |   | 17-06-2026 | Proposed |
 |   | 17-06-2026 | Accepted |
 |   | 17-06-2026 | In-Progress |
-| * | 17-06-2026 | Implemented |
+|   | 17-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

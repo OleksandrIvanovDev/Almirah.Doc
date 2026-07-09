@@ -13,7 +13,8 @@ title: "ADR-205: Calendar Gantt View and Working-Day Calendar"
 |   | 20-06-2026 | Implemented |
 |   | 22-06-2026 | Reopened |
 |   | 22-06-2026 | In-Progress |
-| * | 22-06-2026 | Implemented |
+|   | 22-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 
