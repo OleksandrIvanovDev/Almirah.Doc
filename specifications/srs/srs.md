@@ -351,6 +351,16 @@ Table example:
 
 >Example 3: a project without a risks folder shows no Risks menu entry and no summary page.
 
+## Decision and Risk Images
+
+[SRS-176] The software shall copy every folder named img located under the decisions folder and under the risks folder into the same relative location under the build folder, so that image files referenced through relative paths from decision records, risk records, and risk registry prefaces resolve in the rendered HTML.
+
+>Example 1: "decisions/release 1/img/diagram.png" is copied to "build/decisions/release 1/img/diagram.png", so the reference "img/diagram.png" in any record of that release folder resolves on its rendered page.
+
+>Example 2: "risks/security/img/threat-model.png" resolves both from a record of the "security" registry and from the registry's overview.md preface on "build/risks/security/overview.html".
+
+>Example 3: an img folder is copied whole — subfolders, unreferenced files and non-image files included — and a project without img folders gets no img folders in the build output.
+
 ## Decision Record Scope Table
 
 [SRS-107] The Decision Record Scope table shall support work-item rows — including an Analysis row — each carrying an Owner and a Status whose value is one of To Do, In-Progress, or Done. These per-row statuses shall be independent of the Decision Record's hand-marked lifecycle status.
