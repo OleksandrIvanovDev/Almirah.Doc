@@ -9,7 +9,8 @@ title: "ENH-202: Move Critical Chain to a Dedicated Page"
 |   | 18-06-2026 | Proposed |
 |   | 18-06-2026 | Accepted |
 |   | 18-06-2026 | In-Progress |
-| * | 18-06-2026 | Implemented |
+|   | 18-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

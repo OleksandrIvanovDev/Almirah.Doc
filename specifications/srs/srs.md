@@ -337,7 +337,7 @@ Table example:
 
 [SRS-171] The software shall parse a risk record's Affected Documents section as a controlled table whose Req-ID column carries uplinks to controlled paragraphs, as for decision records, and shall render the register table's Affected Documents column as only the distinct linked controlled-paragraph IDs, each a clickable link to its paragraph.
 
->Example 1: a risk record row "| 1 | The software shall sanitise search input. | >[SRS-123] |" links the record to [SRS-123]; the SRS paragraph shows the risk record among its downlinks, and the register cell shows "SRS-123" as a clickable link without the Proposed Text.
+>Example 1: a risk record row "| 1 | The software shall sanitise search input. | >[SRS-001] |" links the record to [SRS-001]; the SRS paragraph shows the risk record among its downlinks, and the register cell shows "SRS-001" as a clickable link without the Proposed Text.
 
 >Example 2: a Req-ID referencing a non-existing controlled paragraph renders in the register cell in the existing broken-link style instead of being dropped.
 
@@ -351,7 +351,7 @@ Table example:
 
 >Example 3: a project without a risks folder shows no Risks menu entry and no summary page.
 
-## Planning
+## Decision Record Scope Table
 
 [SRS-107] The Decision Record Scope table shall support work-item rows — including an Analysis row — each carrying an Owner and a Status whose value is one of To Do, In-Progress, or Done. These per-row statuses shall be independent of the Decision Record's hand-marked lifecycle status.
 
@@ -361,111 +361,11 @@ Table example:
 
 [SRS-110] The Decision Records Overview page shall render the distinct owner list of each Decision Record in the existing Owner column, comma-separated when there is more than one owner, and empty when the list is empty.
 
-[SRS-111] The Decision Records Overview page shall render a Work-In-Progress by Owner chart with one bar for every owner named in any Decision Record's Scope table, each bar's length being the number of Scope rows, across all Decision Records, whose row Status is In-Progress and whose Owner is that owner, taken as zero when the owner has none, and shall draw a reference line at the configured work-in-progress freeze limit.
+[SRS-113] The Decision Record Scope table shall support a leading step-number column rendered as an anchored, centered row number so that individual Scope rows can be linked; when the column is absent, the intrinsic row order applies.
 
-[SRS-112] The software shall read an optional planning work-in-progress limit from the project configuration. When the limit is absent or invalid, the software shall apply a default of 2.
+[SRS-115] The Decision Record Scope table shall support a per-row Depends On column, identified by header text and not position, whose references to other Decision Records render as clickable links to those records.
 
-[SRS-113] The Decision Record Scope table shall support a leading step-number column that establishes the order of work-item rows, where rows sharing a step number are concurrent and, when the column is absent, the intrinsic row order applies.
-
-[SRS-114] The software shall report, without failing the build, each Scope row that is In-Progress or Done while any lower-numbered step in the same Decision Record is not Done, naming the record, the row, and the blocking step.
-
-[SRS-115] The Decision Record Scope table shall support a per-row Depends On column, identified by header text and not position, in which the row carrying a reference is the dependent work item; each reference to another Decision Record shall be resolved to that record's work item whose activity type (its Item) matches the dependent row's, falling back to the record's nearest earlier activity type when no exact match exists, and the row's Owner shall not affect this resolution. A Decision Record shall not reference its own rows.
-
-[SRS-116] The software shall define a Scope row's predecessors as its lower-numbered same-record steps together with its resolved cross-record work items, and shall consider the row fully kitted when every predecessor's Status is Done, including when it has no predecessors.
-
-[SRS-117] The software shall report, without failing the build, each started Scope row (Status In-Progress or Done) whose resolved cross-record predecessor work item is not Done, naming the record, the row, and the unsatisfied predecessor.
-
-[SRS-118] The software shall report, without failing the build, each Depends On reference that does not resolve to a managed Decision Record, naming the referencing Decision Record and the unresolved reference.
-
-[SRS-119] The Decision Records Overview page shall render a Kit column indicating, for each Decision Record, whether it has no declared prerequisites, is fully kitted, or is blocked by an unsatisfied prerequisite.
-
-[SRS-120] The Decision Record Scope table shall support two optional estimate columns, a focused estimate and a safe estimate, each expressing a work-item row's effort as a non-negative number of working days. The columns shall be identified by their header text, case-sensitive, and not by column position.
-
-[SRS-121] The software shall treat each Scope row's focused estimate as its scheduling duration, treating empty or unparseable estimate cells as zero.
-
-[SRS-122] For each decision-record group, the software shall construct a planning network whose nodes are the not-Done Scope rows of the records in that group, with intra-record edges following the step-number order and cross-record edges placing each row that carries a Depends On reference after its activity-type-aligned predecessor work item in the referenced record.
-
-[SRS-123] The software shall schedule the planning network with a deterministic resource-levelling rule in which each row starts at the earliest day, at or after the finish of all its predecessor rows, where its owner's lane holds no other row for the row's whole duration, so that a row may fill an idle gap between rows placed earlier and rows sharing the same owner never run concurrently.
-
-[SRS-124] The software shall identify the critical chain of a decision-record group as the sequence of Scope rows that determines the group's completion in the resource-levelled schedule.
-
-[SRS-125] The software shall compute a project buffer for each decision-record group as the configured buffer ratio multiplied by the aggregated safety along the critical chain, where each row's safety contribution is its safe estimate minus its focused estimate clamped to zero, rounded up to a whole working day.
-
-[SRS-126] The software shall read an optional planning buffer ratio from the project configuration, applying a default of 0.5 when the value is absent or outside the range greater than 0 and at most 1.
-
-[SRS-127] The software shall render the per-decision-record-group critical chain, project buffer, and projected duration on a dedicated Critical Chain page rather than on the Decision Records Overview, indicating when a group has no estimated work.
-
-[SRS-136] The Decision Records Overview page shall render a work-item schedule between the status charts and the records table, in a scrollable container whose leading Owner column does not scroll horizontally and whose remaining columns are indexed by day, omitting the schedule when no work item can be placed.
-
-[SRS-137] The software shall draw each Scope work item across all Decision Records as a bar on its Owner's lane whose length in day columns is its focused estimate rounded up to a whole day, with a one-day minimum so that an unestimated row remains visible.
-
-[SRS-138] The software shall start each work item's bar no earlier than the latest finish among its predecessors, counting both lower-numbered same-record steps and resolved cross-record dependencies.
-
-[SRS-139] The software shall place work items sharing an Owner so that their bars do not overlap on that Owner's lane, serialising the lane by resource levelling, and shall produce the same schedule on repeated runs.
-
-[SRS-140] Each work-item bar shall indicate its row Status, and a started work item whose cross-record predecessor is not Done shall be visually emphasised, consistent with the Overview Kit cell.
-
-[SRS-164] The Decision Records Overview Gantt shall visually distinguish the work-item bars lying on their group block's critical chain, using a channel separate from the row-Status colour and the blocked-work-item emphasis so the three can be read together.
-
-[SRS-165] The Decision Records Overview Gantt shall provide, behind a toggle hidden by default, a per-owner tracking lane that draws each work item's committed window — its Scope Start to Target dates, running to the current date when no target is given — and its real logged span — its earliest to latest Effort date — on the same calendar axis as the computed schedule, extending that axis to keep an overrun visible.
-
-[SRS-141] The Decision Records Overview work-item schedule shall be segmented into one block per decision-record group, the blocks laid left to right in the groups' folder-encounter order with a gutter column between adjacent blocks so they never overlap, each block carrying its own day-index axis beginning at one.
-
-[SRS-142] The software shall render a group band row between the day-header and the resource lanes, with one labelled cell per group spanning that group's day columns.
-
-[SRS-143] The software shall schedule each group's work items independently with per-owner resource levelling scoped to the group, treating any predecessor belonging to another group as an already-available input rather than a scheduled work item.
-
-[SRS-144] The Decision Records Overview shall render a Buffer lane as the last row below the resource lanes, drawing one buffer bar per group positioned after that group's last work item, its length the group's computed project buffer.
-
-[SRS-145] The software shall produce the same segmented layout, block order, and per-group schedule on repeated runs over unchanged input.
-
-[SRS-146] The software shall place a "Critical Chain" link in the top navigation menu immediately after the Decision Records link, pointing at the dedicated Critical Chain page, and shall show it exactly when the Decision Records link is shown.
-
-[SRS-147] The software shall derive a consensus owner order across all Decision Records by tallying, for each record's distinct owner sequence, every ordered pair of owners that appears earlier-before-later, and ranking the owners by Copeland score — each owner scoring one for every other owner it precedes more often than it follows, minus one for every owner it follows more often — with the first-seen owner order as a tiebreak so the result is identical across repeated runs over unchanged input.
-
-[SRS-148] The Decision Records Overview Gantt shall order its resource lanes by the consensus owner order, while the Work-In-Progress by Owner chart shall retain its descending-in-progress-count order.
-
-[SRS-128] A Decision Record shall support an optional Effort section containing an append-only table whose columns are a date in DD-MM-YYYY form, an Item tying the entry to a Scope row, an optional owner, a non-negative number of hours, and an optional note. The columns shall be identified by header text, not by position.
-
-[SRS-129] The software shall expose on each Decision Record the total actual effort, an as-of-date total, and a per-Scope-row as-of-date effort summing the Hours of entries whose Item matches the row and whose date is on or before the given date.
-
-[SRS-130] The software shall read an optional planning hours-per-day value from the project configuration, applying a default of 8 when absent or non-positive, and shall use it to convert logged hours to working days.
-
-[SRS-131] For each decision-record group, the software shall compute the critical-chain completion as the focused-estimate-weighted fractional progress of the group's critical-chain rows, where a row's progress is its as-of-date actual days over its focused estimate clamped to one, and a row whose Status is Done credits full progress at the current date.
-
-[SRS-132] For each decision-record group, the software shall compute the buffer consumption as the percentage of the project buffer consumed, where consumed days equal the sum over the critical-chain rows of the amount by which each row's as-of-date actual days exceed its focused estimate, clamped to zero, and where the consumption may exceed one hundred percent.
-
-[SRS-133] The Critical Chain page shall render, per decision-record group with an estimated critical chain, a fever chart plotting buffer consumption against critical-chain completion, placed beside that group's critical-chain table.
-
-[SRS-134] The fever chart shall divide its area into green, yellow, and red zones by the conventional one-third and two-thirds diagonal boundaries, indicating respectively on-track, watch, and act conditions.
-
-[SRS-135] The fever chart shall render a trail of points, one per recent Friday, each computed from the as-of-date actual effort of the critical-chain rows on both axes, showing the trajectory of the decision group toward its current zone.
-
-[SRS-161] The Critical Chain page shall display, beside each decision-record group's project buffer figure, the buffer consumed as a percentage and as the consumed working days out of the group's baseline project buffer, omitting the line when the group has no baseline buffer to consume.
-
-[SRS-162] Each fever chart point shall carry the calendar date it was sampled on — a recent Friday for each trail point and the render date for the live point — and the chart's point tooltip shall present that date followed by the point's completion and consumption values.
-
-[SRS-149] The software shall read an optional planning start date from the project configuration in DD-MM-YYYY form, using it as the calendar anchor for the first working day and falling back to the render date when the value is absent or unparseable.
-
-[SRS-150] The software shall read an optional planning holidays list from the project configuration, each a DD-MM-YYYY date, and shall treat those dates, together with Saturdays and Sundays, as non-working days.
-
-[SRS-163] The software shall read an optional per-group planning start date for each decision-record group from the project configuration in DD-MM-YYYY form, and shall anchor that group's Gantt block calendar — the dates labelling its day columns and the start its projected completion date is counted from — at that start date, falling back to the project start date when the group declares none. The blocks remain laid out sequentially (SRS-141); a group's start date sets the dates shown for its block, not the block's position.
-
-[SRS-151] The software shall map each working-day index of a decision-record group's schedule to a calendar date counted from that group's planning start date (SRS-163), skipping non-working days, so that the Nth working day falls on the Nth working date on or after that anchor.
-
-[SRS-152] The Decision Records Overview Gantt shall render a day column for each working day and for each holiday that falls on a weekday, and shall not render columns for Saturdays and Sundays.
-
-[SRS-153] The Decision Records Overview Gantt shall render a calendar header naming the month spanning its day columns and numbering the day of the month for each column.
-
-[SRS-154] The software shall span each work-item bar and each buffer bar across the business-day columns from its first to its last working day inclusive, so that bars cover any weekday-holiday columns they cross without counting them as work.
-
-[SRS-155] The Critical Chain page shall render, per decision-record group with an estimated critical chain, a projected completion date obtained by counting the projected duration in working days from that group's planning start date (SRS-163) across non-working days.
-
-[SRS-158] The Decision Records Overview Gantt shall mark each weekday-holiday column as non-working, shading it distinctly and drawing work-item bars across it.
-
-[SRS-159] The Decision Records Overview Gantt shall highlight Friday columns to indicate the boundaries of the five-day working week.
-
-[SRS-160] The Decision Records Overview Gantt shall mark the current date with a full-height vertical rule at the column of the first working day on or after the current date, drawn only in a group block whose calendar range contains the current date and omitted from blocks the current date falls before or after.
+>Example: a Scope row carrying ">[ADR-901]" in its Depends On column renders "ADR-901" as a link to that record's page; a reference to a record that does not exist renders in the broken-link style.
 
 ## Console Output
 

@@ -10,7 +10,8 @@ title: "ADR-194: Scope Phase Ordering, Dependencies, and Full-Kit Readiness"
 |   | 14-06-2026 | Analysis |
 |   | 14-06-2026 | Accepted |
 |   | 14-06-2026 | In-Progress |
-| * | 17-06-2026 | Implemented |
+|   | 17-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

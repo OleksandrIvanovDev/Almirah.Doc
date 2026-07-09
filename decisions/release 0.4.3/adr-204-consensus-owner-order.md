@@ -10,7 +10,8 @@ title: "ADR-204: Consensus Owner Order for Gantt Lanes"
 |   | 18-06-2026 | Analysis |
 |   | 18-06-2026 | Accepted |
 |   | 18-06-2026 | In-Progress |
-| * | 18-06-2026 | Implemented |
+|   | 18-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

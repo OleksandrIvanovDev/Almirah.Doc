@@ -8,13 +8,3 @@
       path: ../Almirah.Code/lib
     - name: Almirah.Spec
       path: ../Almirah.Code/spec
-
-  planning:
-    start_date: 12-05-2026
-    groups:
-      release 0.4.0: 12-05-2026
-      release 0.4.1: 26-05-2026
-      release 0.4.2: 05-06-2026
-      release 0.4.3: 14-06-2026
-      release 0.4.4: 06-07-2026
-      release 0.4.4 fixes: 06-07-2026

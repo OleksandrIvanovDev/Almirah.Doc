@@ -10,7 +10,8 @@ title: "ADR-196: Effort Logging and Buffer-Consumption Fever Chart"
 |   | 14-06-2026 | Analysis |
 |   | 20-06-2026 | Accepted |
 |   | 20-06-2026 | In-Progress |
-| * | 20-06-2026 | Implemented |
+|   | 20-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

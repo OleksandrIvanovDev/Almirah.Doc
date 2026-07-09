@@ -9,7 +9,8 @@ title: "ADR-213: Plan-vs-Actual Tracking Lanes on the Gantt"
 |   | 22-06-2026 | Proposed |
 |   | 22-06-2026 | Accepted |
 |   | 22-06-2026 | In-Progress |
-| * | 22-06-2026 | Implemented |
+|   | 22-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

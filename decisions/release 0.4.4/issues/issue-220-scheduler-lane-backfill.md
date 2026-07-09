@@ -9,7 +9,8 @@ title: "ISSUE-220: Scheduler Queues Rows Behind Idle Lane Gaps"
 |   | 05-07-2026 | Proposed |
 |   | 05-07-2026 | Accepted |
 |   | 05-07-2026 | In Progress |
-| * | 05-07-2026 | Implemented |
+|   | 05-07-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

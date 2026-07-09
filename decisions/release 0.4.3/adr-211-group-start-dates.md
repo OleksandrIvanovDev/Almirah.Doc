@@ -9,7 +9,8 @@ title: "ADR-211: Per-Group Planning Start Dates"
 |   | 21-06-2026 | Proposed |
 |   | 21-06-2026 | Accepted |
 |   | 21-06-2026 | In-Progress |
-| * | 21-06-2026 | Implemented |
+|   | 21-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 

@@ -10,7 +10,8 @@ title: "ADR-193: Scope Owner Column and Work-In-Progress Heatmap"
 |   | 14-06-2026 | Analysis |
 |   | 15-06-2026 | Accepted |
 |   | 15-06-2026 | In-Progress |
-| * | 15-06-2026 | Implemented |
+|   | 15-06-2026 | Implemented |
+| * | 09-07-2026 | Superseded |
 
 # Context
 
