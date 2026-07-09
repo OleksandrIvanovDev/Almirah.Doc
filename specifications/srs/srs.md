@@ -418,6 +418,10 @@ Table example:
 
 [SRS-032] If User clicks on the up-link, the software shall navigate to an External Controlled Item this up-link refers to.
 
+[SRS-175] The software shall highlight the Req-ID cell of a rendered controlled table with the wrong-links red background when any of the cell's uplinks references a controlled paragraph that does not exist in an existing specification, rendering each such dangling reference in the broken-link style with an explanatory tooltip while keeping its link to the target document clickable, and shall render the cell as before when all its uplinks resolve.
+
+>Example: a decision record's Affected Documents row stating a not-yet-written requirement shows its Req-ID cell in red with the ID red-wavy-underlined until the paragraph is added to the specification.
+
 ### Down-links
 
 [SRS-029] For each Controlled Item software shall show an External Controlled Item ID the Item is referenced in form of clickable link (down-link).
