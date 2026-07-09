@@ -476,3 +476,9 @@ Table example:
 [SRS-100] When the User navigates to an in-page anchor, the software shall position the target so that it is fully visible and not obscured by the fixed top navigation bar.
 
 [SRS-101] When the document sections tree in the navigation pane is taller than the viewport, the software shall allow the pane to scroll so that every item, including the last one, can be brought fully into view.
+
+### Appearance
+
+[SRS-174] The software shall support an optional font_size number in project.yml setting the base text size in pixels of every rendered page, scaling the body text and the navigation pane while heading, top menu bar and footer sizes remain unchanged; when the setting is absent the pages shall render as without the feature.
+
+>Example: with "font_size: 14" in project.yml, paragraphs, tables, code blocks and the navigation pane render at 14px while headings keep their fixed pixel sizes.

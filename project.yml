@@ -1,4 +1,6 @@
 ---
+  font_size: 12
+
   specifications:
     input:
       - arch
