@@ -8,3 +8,18 @@
       path: ../Almirah.Code/lib
     - name: Almirah.Spec
       path: ../Almirah.Code/spec
+
+  risks:
+    - folder: security
+      columns: [Threat, Vulnerability, Mitigation, Affected Documents, Status]
+      rpn:
+        - name: Initial CVSS
+          inputs: [Initial CVSS Score]
+          thresholds:
+            acceptable: 3.9
+            unacceptable: 9.0
+        - name: Residual CVSS
+          inputs: [Residual CVSS Score]
+          thresholds:
+            acceptable: 3.9
+            unacceptable: 9.0
